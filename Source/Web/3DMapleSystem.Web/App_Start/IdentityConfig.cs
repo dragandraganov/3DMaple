@@ -55,11 +55,12 @@ namespace _3DMapleSystem.Web
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
+                //TODO change to 'true' on production mode
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
-                RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
+                RequireNonLetterOrDigit = false,
+                RequireDigit = false,
+                RequireLowercase = false,
+                RequireUppercase = false,
             };
 
             // Configure user lockout defaults

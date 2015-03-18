@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="3DMapleSystemDbContext.cs" />
     <Compile Include="I3DMapleSystemData.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +62,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Data\3DMapleSystem.Data.Common\3DMapleSystem.Data.Common.csproj">
+      <Project>{f705fe7c-9c20-4efe-9771-f1866bb69cea}</Project>
+      <Name>3DMapleSystem.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data\3DMapleSystem.Data.Models\3DMapleSystem.Data.Models.csproj">
       <Project>{8c9fada4-c897-42c9-be1a-ebadc4586001}</Project>
       <Name>3DMapleSystem.Data.Models</Name>
