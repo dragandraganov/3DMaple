@@ -1,5 +1,9 @@
 namespace _3DMapleSystem.Data.Migrations
 {
+    using _3DMapleSystem.Common;
+    using _3DMapleSystem.Data.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -7,6 +11,8 @@ namespace _3DMapleSystem.Data.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<_3DMapleSystem.Data._3DMapleSystemDbContext>
     {
+        private UserManager<User> userManager;
+
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
@@ -14,20 +20,28 @@ namespace _3DMapleSystem.Data.Migrations
             this.AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(_3DMapleSystem.Data._3DMapleSystemDbContext context)
+        protected override void Seed(_3DMapleSystemDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            if (context.Users.FirstOrDefault(u => u.Email == "yabalcho@bg.bg") == null)
+            {
+                this.userManager = new UserManager<User>(new UserStore<User>(context));
+
+                if (context.Roles.FirstOrDefault(r => r.Name == GlobalConstants.AdminRole) == null)
+                {
+                    var adminRole = new IdentityRole(GlobalConstants.AdminRole);
+                    context.Roles.Add(adminRole);
+                    context.SaveChanges();
+                }
+
+                var user = new User();
+                user.UserName = "yabalcho";
+                user.Email = "yabalcho@bg.bg";
+                this.userManager.Create(user, "6totos@mpi4");
+                this.userManager.AddToRole(user.Id, GlobalConstants.AdminRole);
+                context.SaveChanges();
+            }
+
         }
     }
 }

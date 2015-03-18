@@ -20,11 +20,25 @@
                 @Html.ActionLink("3DMaple", "Index", "Home", new { area = string.Empty }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                @*<ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>*@
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole(_3DMapleSystem.Common.GlobalConstants.AdminRole))
+                        {
+                            <li>@*@Html.ActionLink("AdminPartyGames", "Index", "AdminPartyGames", new { area = "Administration" }, null)*@</li>
+                            <li>@Html.ActionLink("AdminCategories", "Index", "Categories", new { area = "Administration" }, null)</li>
+                        }
+
+                        @*else
+                        {
+                            <li>@Html.ActionLink("Manage my games", "Index", "ManagePartyGames", new { area = string.Empty, index = "ownGames" }, null)</li>
+                            <li>@Html.ActionLink("My favorite games", "Index", "ManagePartyGames", new { area = string.Empty, index = "favoriteGames" }, null)</li>
+                        }*@
+                    }
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

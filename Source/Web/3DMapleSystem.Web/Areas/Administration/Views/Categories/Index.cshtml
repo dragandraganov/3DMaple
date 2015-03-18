@@ -1,7 +1,56 @@
-﻿
+﻿@using _3DMapleSystem.Web.Areas.Administration.ViewModels
+@using GridMvc.Html
+@model IEnumerable<CategoryViewModel>
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@Html.ActionLink("Add new category", "Add", "Categories", null, new { @class = "btn btn-success" })
 
+@Html.Grid(Model).Columns(columns =>
+{
+    columns.Add()
+        .Sanitized(false)
+        .Encoded(false)
+        .Titled(string.Empty)
+        .RenderValueAs(model => CheckIfDeletedForEdit(model))
+        .Filterable(false).Sortable(false);
+    columns.Add(model => model.Name).Filterable(true).Sortable(true);
+    columns.Add()
+        .Sanitized(false)
+        .Encoded(false)
+        .Titled(string.Empty)
+        .RenderValueAs(model => CheckIfDeleted(model))
+        .Filterable(false)
+        .Sortable(false);
+    columns.Add()
+       .Sanitized(false)
+       .Encoded(false)
+       .Titled(string.Empty)
+       .RenderValueAs(model => Html.ActionLink("Hard Delete", "HardDelete", "Categories", new { Id = model.Id }, new { @class = "btn btn-danger btn-xs" }).ToHtmlString())
+       .Filterable(false)
+       .Sortable(false);
+
+}).Selectable(false)
+
+@helper CheckIfDeleted(CategoryViewModel category)
+{
+    if (category.IsDeleted)
+    {
+        <span class="text-danger">Deleted</span>
+    }
+
+    else
+    {
+        @Html.ActionLink("Delete", "Delete", "Categories", new { Id = category.Id }, new { @class = "btn btn-warning btn-sm" })
+    }
+}
+
+@helper CheckIfDeletedForEdit(CategoryViewModel category)
+{
+    if (!category.IsDeleted)
+    {
+        @Html.ActionLink("Edit", "Edit", "Categories", new { Id = category.Id }, new { @class = "btn btn-primary btn-sm" })
+    }
+}

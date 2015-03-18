@@ -63,6 +63,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\3DMapleSystem.Common\3DMapleSystem.Common.csproj">
+      <Project>{a53a6afe-08fa-4e45-ad3f-9ec9580f1f88}</Project>
+      <Name>3DMapleSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data\3DMapleSystem.Data.Common\3DMapleSystem.Data.Common.csproj">
       <Project>{f705fe7c-9c20-4efe-9771-f1866bb69cea}</Project>
       <Name>3DMapleSystem.Data.Common</Name>
