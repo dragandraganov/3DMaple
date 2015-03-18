@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{876D2013-F2D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3DMapleSystem.Data", "3DMapleSystem.Data\3DMapleSystem.Data.csproj", "{9580439F-98CF-4CF3-86F2-E7CD5BF88B4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3DMapleSystem.Web.Infrastructure", "Web\3DMapleSystem.Web.Infrastructure\3DMapleSystem.Web.Infrastructure.csproj", "{6DFFDEF1-4E29-43AA-B404-4139D69DE53A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{9580439F-98CF-4CF3-86F2-E7CD5BF88B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9580439F-98CF-4CF3-86F2-E7CD5BF88B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9580439F-98CF-4CF3-86F2-E7CD5BF88B4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DFFDEF1-4E29-43AA-B404-4139D69DE53A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DFFDEF1-4E29-43AA-B404-4139D69DE53A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DFFDEF1-4E29-43AA-B404-4139D69DE53A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DFFDEF1-4E29-43AA-B404-4139D69DE53A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,5 +58,6 @@ Global
 		{8C9FADA4-C897-42C9-BE1A-EBADC4586001} = {8EB1598A-7409-4446-BD3B-BE565A9EB53F}
 		{F705FE7C-9C20-4EFE-9771-F1866BB69CEA} = {8EB1598A-7409-4446-BD3B-BE565A9EB53F}
 		{9580439F-98CF-4CF3-86F2-E7CD5BF88B4B} = {8EB1598A-7409-4446-BD3B-BE565A9EB53F}
+		{6DFFDEF1-4E29-43AA-B404-4139D69DE53A} = {876D2013-F2DF-4C73-8274-C9D8DA8E4B13}
 	EndGlobalSection
 EndGlobal

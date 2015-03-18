@@ -16,6 +16,10 @@ namespace _3DMapleSystem.Data
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<_3DMapleSystemDbContext, Configuration>());
         }
 
+        public virtual IDbSet<Category> Categories { get; set; }
+
+        public virtual IDbSet<SubCategory> SubCategories { get; set; }
+
         public static _3DMapleSystemDbContext Create()
         {
             return new _3DMapleSystemDbContext();

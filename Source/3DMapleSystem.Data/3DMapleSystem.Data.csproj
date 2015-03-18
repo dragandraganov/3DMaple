@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="3DMapleSystemData.cs" />
     <Compile Include="3DMapleSystemDbContext.cs" />
     <Compile Include="I3DMapleSystemData.cs" />
     <Compile Include="Migrations\Configuration.cs" />

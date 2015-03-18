@@ -1,5 +1,6 @@
 ﻿using _3DMapleSystem.Data.Common.Models;
 using _3DMapleSystem.Data.Common.Repository;
+using _3DMapleSystem.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -26,13 +27,29 @@ namespace _3DMapleSystem.Data
             }
         }
 
-        //public IDeletableEntityRepository<User> Users
-        //{
-        //    get
-        //    {
-        //        return this.GetRepository<User>();
-        //    }
-        //}
+        public IDeletableEntityRepository<User> Users
+        {
+            get
+            {
+                return this.GetRepository<User>();
+            }
+        }
+
+        public IDeletableEntityRepository<Category> Categories
+        {
+            get
+            {
+                return this.GetRepository<Category>();
+            }
+        }
+
+        public IDeletableEntityRepository<SubCategory> SubCategories
+        {
+            get
+            {
+                return this.GetRepository<SubCategory>();
+            }
+        }
 
         public void Dispose()
         {
