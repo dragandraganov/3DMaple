@@ -43,7 +43,10 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
         {
             if (category != null && ModelState.IsValid)
             {
-                var categoryWithSameName = this.Data.Categories.All().Where(c => c.Name == category.Name).FirstOrDefault();
+                var categoryWithSameName = this.Data.Categories
+                    .All()
+                    .Where(c => c.Name == category.Name)
+                    .FirstOrDefault();
 
                 if (categoryWithSameName != null)
                 {
@@ -87,15 +90,28 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
         {
             if (category != null && ModelState.IsValid)
             {
-                var existingCategory = this.Data
-                    .Categories
-                    .GetById(category.Id);
-                Mapper.Map(category, existingCategory);
+                var otherCategoryWithSameName = this.Data.Categories
+                    .All()
+                    .Where(c => c.Name == category.Name&&c.Id!=category.Id)
+                    .FirstOrDefault();
 
-                this.Data.Categories.Update(existingCategory);
-                this.Data.SaveChanges();
-                TempData["Success"] = "The category '" + category.Name + "' was edited";
-                return RedirectToAction("Index", "Categories");
+                if (otherCategoryWithSameName != null)
+                {
+                    ModelState.AddModelError(string.Empty, "This category already exists !");
+                }
+
+                else
+                {
+                    var existingCategory = this.Data
+                        .Categories
+                        .GetById(category.Id);
+                    Mapper.Map(category, existingCategory);
+
+                    this.Data.Categories.Update(existingCategory);
+                    this.Data.SaveChanges();
+                    TempData["Success"] = "The category '" + category.Name + "' was edited";
+                    return RedirectToAction("Index", "Categories");
+                }
             }
 
             return View(category);

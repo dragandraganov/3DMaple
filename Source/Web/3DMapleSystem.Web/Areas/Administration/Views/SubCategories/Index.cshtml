@@ -26,6 +26,7 @@
         .RenderValueAs(model => CheckIfDeletedForEdit(model))
         .Filterable(false).Sortable(false);
     columns.Add(model => model.Name).Filterable(true).Sortable(true);
+    columns.Add(model => model.CategoryName).Titled("Category").Filterable(true).Sortable(true);
     columns.Add()
         .Sanitized(false)
         .Encoded(false)

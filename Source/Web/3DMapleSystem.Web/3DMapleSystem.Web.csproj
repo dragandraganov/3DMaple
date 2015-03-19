@@ -219,6 +219,12 @@
     <Content Include="Areas\Administration\Views\Categories\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Categories\HardDelete.cshtml" />
     <Content Include="Areas\Administration\Views\Categories\_CategorySingleView.cshtml" />
+    <Content Include="Areas\Administration\Views\SubCategories\_CategorySingleView.cshtml" />
+    <Content Include="Areas\Administration\Views\SubCategories\Add.cshtml" />
+    <Content Include="Areas\Administration\Views\SubCategories\Delete.cshtml" />
+    <Content Include="Areas\Administration\Views\SubCategories\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\SubCategories\HardDelete.cshtml" />
+    <Content Include="Areas\Administration\Views\SubCategories\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
@@ -276,7 +282,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Admin\" />
-    <Folder Include="Areas\Administration\Views\SubCategories\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
