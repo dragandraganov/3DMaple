@@ -17,12 +17,13 @@
                         <p><big>@Model.Categories[4 * r + c].Name</big></p>
                     </a>
                     <div class="row">
-                        <div class="col-md-12">
-                            @foreach (var subCategory in Model.Categories[4 * r + c].SubCategories)
-                            {
+                        @foreach (var subCategory in Model.Categories[4 * r + c].SubCategories)
+                        {
+                            <div class="col-md-12">
                                 <a href="#">@subCategory.Name</a>
-                            }
-                        </div>
+                            </div>
+                        }
+
                     </div>
                 </div>
             }
