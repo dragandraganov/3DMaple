@@ -20,6 +20,8 @@ namespace _3DMapleSystem.Data
 
         public virtual IDbSet<SubCategory> SubCategories { get; set; }
 
+        public virtual IDbSet<PolyModel> PolyModels { get; set; }
+
         public static _3DMapleSystemDbContext Create()
         {
             return new _3DMapleSystemDbContext();

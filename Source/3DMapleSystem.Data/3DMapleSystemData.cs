@@ -51,6 +51,14 @@ namespace _3DMapleSystem.Data
             }
         }
 
+        public IDeletableEntityRepository<PolyModel> PolyModels
+        {
+            get
+            {
+                return this.GetRepository<PolyModel>();
+            }
+        }
+
         public void Dispose()
         {
             this.Dispose(true);

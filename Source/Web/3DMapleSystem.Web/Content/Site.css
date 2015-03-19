@@ -26,3 +26,17 @@ textarea {
 #author-sign {
     font-size: 0.8em;
 }
+
+.category-title>p{
+    color:black;
+    padding-bottom:5px;
+    margin-bottom:0;
+}
+
+.category-title:hover{
+    color:gray;
+}
+
+.list-category-row{
+    margin-bottom:20px;
+}

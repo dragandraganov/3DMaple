@@ -16,6 +16,8 @@ namespace _3DMapleSystem.Data
 
         IDeletableEntityRepository<SubCategory> SubCategories { get; }
 
+        IDeletableEntityRepository<PolyModel> PolyModels { get; }
+
         void Dispose();
 
         int SaveChanges();

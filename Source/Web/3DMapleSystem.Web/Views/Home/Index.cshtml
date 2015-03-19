@@ -1,6 +1,31 @@
-﻿@{
+﻿@using _3DMapleSystem.Web.ViewModels;
+@model HomePageModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 
-    <h1>3DMaple</h1>
-    
+@{
+    var rows = Math.Ceiling((double)Model.Categories.Count / 4);
+    for (int r = 0; r < rows; r++)
+    {
+        <div class="row list-category-row">
+            @for (int c = 0; c < 4; c++)
+            {
+                <div class="col-md-3 pull-left ">
+                    <a href="#" class="category-title">
+                        <p><big>@Model.Categories[4 * r + c].Name</big></p>
+                    </a>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @foreach (var subCategory in Model.Categories[4 * r + c].SubCategories)
+                            {
+                                <a href="#">@subCategory.Name</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}
