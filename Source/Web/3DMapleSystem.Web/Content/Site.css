@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 70px;
     padding-bottom: 20px;
 }
 
@@ -21,4 +21,8 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+#author-sign {
+    font-size: 0.8em;
 }

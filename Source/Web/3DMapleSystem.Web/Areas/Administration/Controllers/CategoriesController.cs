@@ -39,14 +39,25 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(CategoryViewModel categoryViewModel)
+        public ActionResult Add(CategoryViewModel category)
         {
-            if (categoryViewModel != null && ModelState.IsValid)
+            if (category != null && ModelState.IsValid)
             {
-                var newCategory = Mapper.Map<Category>(categoryViewModel);
-                this.Data.Categories.Add(newCategory);
-                this.Data.SaveChanges();
-                return RedirectToAction("Index", "Categories");
+                var categoryWithSameName = this.Data.Categories.All().Where(c => c.Name == category.Name).FirstOrDefault();
+
+                if (categoryWithSameName != null)
+                {
+                    ModelState.AddModelError(string.Empty, "This category already exists !");
+                }
+
+                else
+                {
+                    var newCategory = Mapper.Map<Category>(category);
+                    this.Data.Categories.Add(newCategory);
+                    this.Data.SaveChanges();
+                    TempData["Success"] = "A new category '" + category.Name + "' was created";
+                    return RedirectToAction("Index", "Categories");
+                }
             }
 
             return View();
@@ -83,7 +94,7 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
 
                 this.Data.Categories.Update(existingCategory);
                 this.Data.SaveChanges();
-
+                TempData["Success"] = "The category '" + category.Name + "' was edited";
                 return RedirectToAction("Index", "Categories");
             }
 
@@ -119,7 +130,7 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
                     .GetById(category.Id);
                 this.Data.Categories.Delete(existingCategory);
                 this.Data.SaveChanges();
-
+                TempData["Success"] = "The category '" + category.Name + "' was deleted";
                 return RedirectToAction("Index", "Categories");
             }
 
@@ -143,7 +154,7 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
                 Mapper.Map(category, existingCategory);
                 this.Data.Categories.ActualDelete(existingCategory);
                 this.Data.SaveChanges();
-
+                TempData["Success"] = "The category '" + category.Name + "' was hard deleted";
                 return RedirectToAction("Index", "Categories");
             }
 

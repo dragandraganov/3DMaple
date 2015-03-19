@@ -1,11 +1,11 @@
 ﻿@using _3DMapleSystem.Web.Areas.Administration.ViewModels
-@model CategoryViewModel
+@model SubCategoryViewModel
 
 @{
     ViewBag.Title = "Add";
 }
 
-@using (Html.BeginForm("Add", "Categories", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Add", "SubCategories", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -20,8 +20,8 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-info" value="Save category" />
-            <a href="~/Administration/Categories/Index" class="btn btn-primary">Cancel</a>
+            <input type="submit" class="btn btn-info" value="Save sub-category" />
+            <a href="~/Administration/SubCategories/Index" class="btn btn-primary">Cancel</a>
         </div>
     </div>
 }
