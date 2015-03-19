@@ -1,17 +1,11 @@
-﻿using System.Collections.Generic;
-using _3DMapleSystem.Data.Common.Models;
+﻿using _3DMapleSystem.Data.Common.Models;
 using System;
 using System.Linq;
 
 namespace _3DMapleSystem.Data.Models
 {
-    public class SubCategory : IAuditInfo, IDeletableEntity
+    public class SubPlatform : IAuditInfo, IDeletableEntity
     {
-        public SubCategory()
-        {
-            this.PolyModels = new HashSet<PolyModel>();
-        }
-
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -26,10 +20,8 @@ namespace _3DMapleSystem.Data.Models
 
         public DateTime? DeletedOn { get; set; }
 
-        public int CategoryId { get; set; }
+        public int PlatformId { get; set; }
 
-        public virtual Category Category { get; set; }
-
-        public virtual ICollection<PolyModel> PolyModels { get; set; }
+        public virtual Category Platform { get; set; }
     }
 }
