@@ -16,8 +16,16 @@ namespace _3DMapleSystem.Data.Models
         {
             this.CreatedOn = DateTime.Now;
             this.PreserveCreatedOn = true;
-
+            this.OwnPolyModels = new HashSet<PolyModel>();
+            this.DownloadedPolyModels = new HashSet<PolyModel>();
+            this.Comments=new HashSet<Comment>();
         }
+
+        public virtual ICollection<PolyModel> OwnPolyModels { get; set; }
+
+        public virtual ICollection<PolyModel> DownloadedPolyModels { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
 
         public DateTime CreatedOn {get;set;}
 

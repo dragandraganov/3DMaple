@@ -6,18 +6,19 @@
 }
 
 @{
-    var rows = Math.Ceiling((double)Model.Categories.Count / 4);
+    var columns = _3DMapleSystem.Common.GlobalConstants.ColumnsInMainPage;
+    var rows = Math.Ceiling((double)Model.Categories.Count / columns );
     for (int r = 0; r < rows; r++)
     {
         <div class="row list-category-row">
-            @for (int c = 0; c < 4; c++)
+            @for (int c = 0; c < columns; c++)
             {
                 <div class="col-md-3 pull-left ">
                     <a href="#" class="category-title">
-                        <p><big>@Model.Categories[4 * r + c].Name</big></p>
+                        <p><big>@Model.Categories[columns * r + c].Name</big></p>
                     </a>
                     <div class="row">
-                        @foreach (var subCategory in Model.Categories[4 * r + c].SubCategories)
+                        @foreach (var subCategory in Model.Categories[columns * r + c].SubCategories)
                         {
                             <div class="col-md-12">
                                 <a href="#">@subCategory.Name</a>

@@ -22,6 +22,18 @@ namespace _3DMapleSystem.Data
 
         public virtual IDbSet<PolyModel> PolyModels { get; set; }
 
+        public virtual IDbSet<AppFile> AppFiles { get; set; }
+
+        public virtual IDbSet<Comment> Comments { get; set; }
+
+        public virtual IDbSet<Platform> Platforms { get; set; }
+
+        public virtual IDbSet<SubPlatform> SubPlatforms { get; set; }
+
+        public virtual IDbSet<Style> Styles { get; set; }
+
+        public virtual IDbSet<Tag> Tags { get; set; }
+
         public static _3DMapleSystemDbContext Create()
         {
             return new _3DMapleSystemDbContext();

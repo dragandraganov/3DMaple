@@ -18,6 +18,18 @@ namespace _3DMapleSystem.Data
 
         IDeletableEntityRepository<PolyModel> PolyModels { get; }
 
+        IDeletableEntityRepository<AppFile> AppFiles { get; }
+
+        IDeletableEntityRepository<Comment> Comments { get; }
+
+        IDeletableEntityRepository<Platform> Platforms { get; }
+
+        IDeletableEntityRepository<SubPlatform> SubPlatforms { get; }
+
+        IDeletableEntityRepository<Style> Styles { get; }
+
+        IDeletableEntityRepository<Tag> Tags { get; }
+
         void Dispose();
 
         int SaveChanges();

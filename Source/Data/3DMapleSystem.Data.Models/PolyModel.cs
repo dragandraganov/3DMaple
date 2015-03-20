@@ -3,6 +3,7 @@ using _3DMapleSystem.Data.Common.Models;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace _3DMapleSystem.Data.Models
 {
@@ -12,6 +13,7 @@ namespace _3DMapleSystem.Data.Models
         {
             this.Id = Guid.NewGuid();
             this.Tags=new HashSet<Tag>();
+            this.DownloadedByUsers=new HashSet<User>();
         }
 
         [Key]
@@ -40,6 +42,13 @@ namespace _3DMapleSystem.Data.Models
         public virtual SubPlatform SubPlatform { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }
+
+        public string AuthorId { get; set; }
+
+        [InverseProperty("OwnPolyModels")]
+        public virtual User Author { get; set; }
+
+        public virtual ICollection<User> DownloadedByUsers { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

@@ -59,6 +59,54 @@ namespace _3DMapleSystem.Data
             }
         }
 
+        public IDeletableEntityRepository<AppFile> AppFiles
+        {
+            get
+            {
+                return this.GetRepository<AppFile>();
+            }
+        }
+
+        public IDeletableEntityRepository<Comment> Comments
+        {
+            get
+            {
+                return this.GetRepository<Comment>();
+            }
+        }
+
+        public IDeletableEntityRepository<Platform> Platforms
+        {
+            get
+            {
+                return this.GetRepository<Platform>();
+            }
+        }
+
+        public IDeletableEntityRepository<SubPlatform> SubPlatforms
+        {
+            get
+            {
+                return this.GetRepository<SubPlatform>();
+            }
+        }
+
+        public IDeletableEntityRepository<Style> Styles
+        {
+            get
+            {
+                return this.GetRepository<Style>();
+            }
+        }
+
+        public IDeletableEntityRepository<Tag> Tags
+        {
+            get
+            {
+                return this.GetRepository<Tag>();
+            }
+        }
+
         public void Dispose()
         {
             this.Dispose(true);
