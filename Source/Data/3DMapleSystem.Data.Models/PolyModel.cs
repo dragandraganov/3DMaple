@@ -13,6 +13,7 @@ namespace _3DMapleSystem.Data.Models
         {
             this.Id = Guid.NewGuid();
             this.Tags=new HashSet<Tag>();
+            this.Comments=new HashSet<Comment>();
             this.DownloadedByUsers=new HashSet<User>();
         }
 
@@ -42,6 +43,8 @@ namespace _3DMapleSystem.Data.Models
         public virtual SubPlatform SubPlatform { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
 
         public string AuthorId { get; set; }
 

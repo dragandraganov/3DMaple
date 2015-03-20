@@ -14,6 +14,10 @@ namespace _3DMapleSystem.Data.Models
 
         public virtual User Author { get; set; }
 
+        public string PolyModelId { get; set; }
+
+        public virtual PolyModel PolyModel { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public bool PreserveCreatedOn { get; set; }
