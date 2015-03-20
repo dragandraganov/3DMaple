@@ -30,6 +30,8 @@ namespace _3DMapleSystem.Data
 
         IDeletableEntityRepository<Tag> Tags { get; }
 
+        IDeletableEntityRepository<ModelRank> ModelRanks { get; }
+
         void Dispose();
 
         int SaveChanges();

@@ -38,6 +38,10 @@ namespace _3DMapleSystem.Data.Models
 
         public virtual Style Style { get; set; }
 
+        public int RankId { get; set; }
+
+        public virtual ModelRank Rank { get; set; }
+
         public int SubPlatformId { get; set; }
 
         public virtual SubPlatform SubPlatform { get; set; }

@@ -107,6 +107,14 @@ namespace _3DMapleSystem.Data
             }
         }
 
+        public IDeletableEntityRepository<ModelRank> ModelRanks
+        {
+            get
+            {
+                return this.GetRepository<ModelRank>();
+            }
+        }
+
         public void Dispose()
         {
             this.Dispose(true);
