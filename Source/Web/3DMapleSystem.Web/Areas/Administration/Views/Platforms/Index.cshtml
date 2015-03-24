@@ -1,0 +1,65 @@
+﻿@using _3DMapleSystem.Web.Areas.Administration.ViewModels
+@using GridMvc.Html
+@model IEnumerable<PlatformViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            @TempData["Success"].ToString()
+        </div>
+    </div>
+}
+
+@Html.ActionLink("Add new platform", "Add", "Platforms", null, new { @class = "btn btn-success" })
+
+@Html.Grid(Model).Columns(columns =>
+{
+    columns.Add()
+        .Sanitized(false)
+        .Encoded(false)
+        .Titled(string.Empty)
+        .RenderValueAs(model => CheckIfDeletedForEdit(model))
+        .Filterable(false).Sortable(false);
+    columns.Add(model => model.Name).Filterable(true).Sortable(true);
+    columns.Add()
+        .Sanitized(false)
+        .Encoded(false)
+        .Titled(string.Empty)
+        .RenderValueAs(model => CheckIfDeleted(model))
+        .Filterable(false)
+        .Sortable(false);
+    columns.Add()
+       .Sanitized(false)
+       .Encoded(false)
+       .Titled(string.Empty)
+       .RenderValueAs(model => Html.ActionLink("Hard Delete", "HardDelete", "Platforms", new { Id = model.Id }, new { @class = "btn btn-danger btn-xs" }).ToHtmlString())
+       .Filterable(false)
+       .Sortable(false);
+
+}).Selectable(false)
+
+@helper CheckIfDeleted(PlatformViewModel platform)
+{
+    if (platform.IsDeleted)
+    {
+        <span class="text-danger">Deleted</span>
+    }
+
+    else
+    {
+        @Html.ActionLink("Delete", "Delete", "Platforms", new { Id = platform.Id }, new { @class = "btn btn-warning btn-sm" })
+    }
+}
+
+@helper CheckIfDeletedForEdit(PlatformViewModel platform)
+{
+    if (!platform.IsDeleted)
+    {
+        @Html.ActionLink("Edit", "Edit", "Platforms", new { Id = platform.Id }, new { @class = "btn btn-primary btn-sm" })
+    }
+}

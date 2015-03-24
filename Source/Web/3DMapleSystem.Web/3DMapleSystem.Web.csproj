@@ -236,12 +236,22 @@
     <Content Include="Areas\Administration\Views\Categories\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Categories\HardDelete.cshtml" />
     <Content Include="Areas\Administration\Views\Categories\_CategorySingleView.cshtml" />
-    <Content Include="Areas\Administration\Views\SubCategories\_CategorySingleView.cshtml" />
     <Content Include="Areas\Administration\Views\SubCategories\Add.cshtml" />
     <Content Include="Areas\Administration\Views\SubCategories\Delete.cshtml" />
     <Content Include="Areas\Administration\Views\SubCategories\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\SubCategories\HardDelete.cshtml" />
     <Content Include="Areas\Administration\Views\SubCategories\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\SubPlatforms\Add.cshtml" />
+    <Content Include="Areas\Administration\Views\SubPlatforms\Delete.cshtml" />
+    <Content Include="Areas\Administration\Views\SubPlatforms\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\SubPlatforms\HardDelete.cshtml" />
+    <Content Include="Areas\Administration\Views\SubPlatforms\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Platforms\_CategorySingleView.cshtml" />
+    <Content Include="Areas\Administration\Views\Platforms\Add.cshtml" />
+    <Content Include="Areas\Administration\Views\Platforms\Delete.cshtml" />
+    <Content Include="Areas\Administration\Views\Platforms\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Platforms\HardDelete.cshtml" />
+    <Content Include="Areas\Administration\Views\Platforms\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
@@ -300,9 +310,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="Areas\Administration\Views\Platform\" />
-    <Folder Include="Areas\Administration\Views\SubPlatforms\" />
-    <Folder Include="Areas\Administration\Views\SubPlatform\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
