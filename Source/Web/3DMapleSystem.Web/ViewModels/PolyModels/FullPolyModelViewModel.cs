@@ -31,6 +31,8 @@ namespace _3DMapleSystem.Web.ViewModels
 
         public string SubCategoryName { get; set; }
 
+        public int RankId { get; set; }
+
         public string RankName { get; set; }
 
         public int StyleId { get; set; }
@@ -85,8 +87,7 @@ namespace _3DMapleSystem.Web.ViewModels
                 .ForMember(m => m.SubPlatformName, opt => opt.MapFrom(t => t.SubPlatform.Name))
                 .ForMember(m => m.PlatformName, opt => opt.MapFrom(t => t.SubPlatform.Platform.Name))
                 .ForMember(m => m.StyleName, opt => opt.MapFrom(t => t.Style.Name))
-                //TODO implement rank
-                //.ForMember(m => m.RankName, opt => opt.MapFrom(t => t.Rank.Name))
+                .ForMember(m => m.RankName, opt => opt.MapFrom(t => t.Rank.Name))
                 .ForMember(m => m.AuthorName, opt => opt.MapFrom(t => t.Author.UserName))
                 .ForMember(m => m.DownloadedByUsersCount, opt => opt.MapFrom(t => t.DownloadedByUsers.Count))
                 .ReverseMap();

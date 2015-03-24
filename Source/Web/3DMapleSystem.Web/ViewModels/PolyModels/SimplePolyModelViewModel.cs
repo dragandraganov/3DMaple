@@ -24,7 +24,7 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<PolyModel, SimplePolyModelViewModel>()
-                //.ForMember(m => m.RankName, opt => opt.MapFrom(t => t.Rank.Name))
+                .ForMember(m => m.RankName, opt => opt.MapFrom(t => t.Rank.Name))
                 .ForMember(m => m.CommentsCount, opt => opt.MapFrom(t => t.Comments.Count))
                 .ForMember(m => m.DownloadedByUsersCount, opt => opt.MapFrom(t => t.DownloadedByUsers.Count))
                 .ReverseMap();

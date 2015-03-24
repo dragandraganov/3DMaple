@@ -10,16 +10,19 @@
             </figcaption>
         </figure>
     </a>
-    @*<div class="pro">@Model.RankName</div>*@
-    <div class="icons hover pull-right">
-        <a href="/3dmodels/show/polotientsa_m12" class="icon_downloads">
-            <span class="glyphicon glyphicon-download-alt"></span>
-            <span>@Model.DownloadedByUsersCount</span>
-        </a>
-        <a href="/3dmodels/show/polotientsa_m12" class="icon_comments ml10">
-            <span class="glyphicon glyphicon-comment"></span>
-            <span>@Model.CommentsCount</span>
-        </a>
+    
+    <div class="icons hover">
+        <div class="pull-left"><span>@Model.RankName</span></div>
+        <div class="pull-right">
+            <a href="/3dmodels/show/polotientsa_m12" class="icon_downloads">
+                <span class="glyphicon glyphicon-download-alt"></span>
+                <span>@Model.DownloadedByUsersCount</span>
+            </a>
+            <a href="/3dmodels/show/polotientsa_m12" class="icon_comments ml10">
+                <span class="glyphicon glyphicon-comment"></span>
+                <span>@Model.CommentsCount</span>
+            </a>
+        </div>
         @*<a href="/3dmodels/show/polotientsa_m12" class="icon_enter">
             39
         </a>*@

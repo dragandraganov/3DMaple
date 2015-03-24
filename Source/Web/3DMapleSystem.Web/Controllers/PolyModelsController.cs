@@ -42,11 +42,31 @@ namespace _3DMapleSystem.Web.Controllers
             if (complexModel != null && ModelState.IsValid)
             {
                 var newPolyModel = new PolyModel();
+
                 newPolyModel.Title = complexModel.PolyModel.Title;
                 newPolyModel.Description = complexModel.PolyModel.Description;
                 newPolyModel.StyleId = complexModel.PolyModel.StyleId;
                 newPolyModel.SubCategoryId = complexModel.PolyModel.SubCategoryId;
                 newPolyModel.SubPlatformId = complexModel.PolyModel.SubPlatformId;
+
+
+                //TODO remove in production mode - change the logic
+                var rank = new ModelRank();
+
+                if (this.Data.ModelRanks.All().Count() == 0 || this.Data.ModelRanks.All().FirstOrDefault(r => r.Name == "Free") == null)
+                {
+                    rank.Name = "Free";
+                    this.Data.ModelRanks.Add(rank);
+                    this.Data.SaveChanges();
+                }
+
+                else
+                {
+                    rank = this.Data.ModelRanks.All().FirstOrDefault(r => r.Name == "Free");
+                }
+
+                newPolyModel.Rank = rank;
+
                 using (var memory = new MemoryStream())
                 {
                     complexModel.PolyModel.Uploaded3DModel.InputStream.CopyTo(memory);
@@ -76,7 +96,7 @@ namespace _3DMapleSystem.Web.Controllers
                         .All()
                         .FirstOrDefault(t => t.Name == tag);
 
-                    if (existingTag!=null)
+                    if (existingTag != null)
                     {
                         var newTag = new Tag();
                         newTag.Name = tag;
@@ -89,7 +109,7 @@ namespace _3DMapleSystem.Web.Controllers
                     {
                         newPolyModel.Tags.Add(existingTag);
                     }
-                    
+
                 }
 
                 this.Data.PolyModels.Add(newPolyModel);
