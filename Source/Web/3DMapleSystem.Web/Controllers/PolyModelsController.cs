@@ -72,11 +72,24 @@ namespace _3DMapleSystem.Web.Controllers
                 var tags = complexModel.PolyModel.Tags.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var tag in tags)
                 {
-                    var newTag=new Tag();
-                    newTag.Name=tag;
-                    this.Data.Tags.Add(newTag);
-                    this.Data.SaveChanges();
-                    newPolyModel.Tags.Add(newTag);
+                    var existingTag = this.Data.Tags
+                        .All()
+                        .FirstOrDefault(t => t.Name == tag);
+
+                    if (existingTag!=null)
+                    {
+                        var newTag = new Tag();
+                        newTag.Name = tag;
+                        this.Data.Tags.Add(newTag);
+                        this.Data.SaveChanges();
+                        newPolyModel.Tags.Add(newTag);
+                    }
+
+                    else
+                    {
+                        newPolyModel.Tags.Add(existingTag);
+                    }
+                    
                 }
 
                 this.Data.PolyModels.Add(newPolyModel);

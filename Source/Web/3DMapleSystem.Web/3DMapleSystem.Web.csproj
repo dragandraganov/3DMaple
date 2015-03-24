@@ -222,6 +222,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\Images\table1.jpg" />
+    <Content Include="Content\Images\table2.jpg" />
+    <Content Include="Content\Images\table3.jog.jpg" />
+    <Content Include="Content\Images\table4.jpg" />
     <Content Include="Content\Images\TransparentHover45.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
