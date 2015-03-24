@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using _3DMapleSystem.Data;
 using _3DMapleSystem.Web.ViewModels;
+using AutoMapper.QueryableExtensions;
+using _3DMapleSystem.Web.ViewModels.PolyModels;
 
 namespace _3DMapleSystem.Web.Controllers
 {
@@ -17,9 +17,15 @@ namespace _3DMapleSystem.Web.Controllers
 
         public ActionResult Index()
         {
-            var homePageModel = new HomePageModel();
-            homePageModel.Categories = this.Data.Categories.All().ToList();
-            homePageModel.PolyModels = this.Data.PolyModels.All().ToList();
+            var homePageModel = new HomePageViewModel();
+            homePageModel.Categories = this.Data.Categories
+                .All()
+                .ToList();
+            homePageModel.PolyModels = this.Data.PolyModels
+                .All()
+                .Project()
+                .To<SimplePolyModelViewModel>()
+                .ToList();
             return View(homePageModel);
         }
 

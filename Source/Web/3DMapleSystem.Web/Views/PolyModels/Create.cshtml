@@ -1,0 +1,79 @@
+﻿@using _3DMapleSystem.Web.ViewModels.ComplexModels
+@model CreateModelComplexViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm("Create", "PolyModels", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h4>Create new model</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.PolyModel.Title, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.PolyModel.Title, new { @class = "form-control form-control-sm" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PolyModel.Description, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(m => m.PolyModel.Description, new { @class = "form-control form-control-sm", @rows = "5" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PolyModel.SubCategoryId,"Category", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.DropDownGroupListFor(m => m.PolyModel.SubCategoryId, Model.SubCategories, "-- Select --", new { @data_val = "true", @data_val_required = "The Category field is required." , @class = "form-control form-control-sm" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PolyModel.SubPlatformId, "Platform", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.DropDownGroupListFor(m => m.PolyModel.SubPlatformId, Model.SubPlatforms, "-- Select --", new { @data_val = "true", @data_val_required = "The Platform field is required.", @class = "form-control form-control-sm" })
+        </div>
+    </div>
+    @*<div class="form-group">
+        @Html.LabelFor(m => m.NecessaryItems, "Necessary Items", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(m => m.NecessaryItems, new { @class = "form-control form-control-sm" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MinPlayingPeople, "Minimal playing people", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.MinPlayingPeople, new { @class = "form-control form-control-sm", @type = "number" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MaxPlayingPeople, "Maximal playing people", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.MaxPlayingPeople, new { @class = "form-control form-control-sm", @type = "number" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UploadedImage, "Add image", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.UploadedImage, new { @class = "form-control form-control-sm", @type = "file" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UploadedAudio, "Add audio", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.UploadedAudio, new { @class = "form-control form-control-sm", @type = "file" })
+        </div>
+    </div>*@
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-info" value="Save model" />
+            <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

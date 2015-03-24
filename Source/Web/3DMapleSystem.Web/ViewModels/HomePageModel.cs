@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using _3DMapleSystem.Data.Models;
+using _3DMapleSystem.Web.ViewModels.PolyModels;
 
 namespace _3DMapleSystem.Web.ViewModels
 {
-    public class HomePageModel
+    public class HomePageViewModel
     {
 
         public IList<Category> Categories { get; set; }
 
-        public IList<PolyModel> PolyModels { get; set; }
+        public IList<SimplePolyModelViewModel> PolyModels { get; set; }
     }
 }
