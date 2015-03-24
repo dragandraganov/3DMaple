@@ -53,16 +53,16 @@ namespace _3DMapleSystem.Web.Controllers
                 //TODO remove in production mode - change the logic
                 var rank = new ModelRank();
 
-                if (this.Data.ModelRanks.All().Count() == 0 || this.Data.ModelRanks.All().FirstOrDefault(r => r.Name == "Free") == null)
+                if (this.Data.ModelRanks.All().Count() == 0 || this.Data.ModelRanks.All().FirstOrDefault(r => r.Name == "free") == null)
                 {
-                    rank.Name = "Free";
+                    rank.Name = "free";
                     this.Data.ModelRanks.Add(rank);
                     this.Data.SaveChanges();
                 }
 
                 else
                 {
-                    rank = this.Data.ModelRanks.All().FirstOrDefault(r => r.Name == "Free");
+                    rank = this.Data.ModelRanks.All().FirstOrDefault(r => r.Name == "free");
                 }
 
                 newPolyModel.Rank = rank;
@@ -89,14 +89,16 @@ namespace _3DMapleSystem.Web.Controllers
                         FileExtension = complexModel.PolyModel.UploadedPreview.FileName.Split(new[] { '.' }).Last()
                     };
                 }
+
                 var tags = complexModel.PolyModel.Tags.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
                 foreach (var tag in tags)
                 {
                     var existingTag = this.Data.Tags
                         .All()
                         .FirstOrDefault(t => t.Name == tag);
 
-                    if (existingTag != null)
+                    if (existingTag == null)
                     {
                         var newTag = new Tag();
                         newTag.Name = tag;
