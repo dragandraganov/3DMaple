@@ -18,14 +18,17 @@ namespace _3DMapleSystem.Web.Controllers
         public ActionResult Index()
         {
             var homePageModel = new HomePageViewModel();
+
             homePageModel.Categories = this.Data.Categories
                 .All()
                 .ToList();
+
             homePageModel.PolyModels = this.Data.PolyModels
                 .All()
                 .Project()
                 .To<SimplePolyModelViewModel>()
                 .ToList();
+
             return View(homePageModel);
         }
 

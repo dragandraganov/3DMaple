@@ -27,16 +27,40 @@ textarea {
     font-size: 0.8em;
 }
 
-.category-title>p{
-    color:black;
-    padding-bottom:5px;
-    margin-bottom:0;
+.category-title > p {
+    color: black;
+    padding-bottom: 5px;
+    margin-bottom: 0;
 }
 
-.category-title:hover{
-    color:gray;
+.category-title:hover {
+    color: gray;
 }
 
-.list-category-row{
-    margin-bottom:20px;
+.list-category-row {
+    margin-bottom: 20px;
+}
+
+.btn-add-model {
+    min-height:100px;
+    color:white;
+    background: rgb(191,110,78); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(191,110,78,1) 0%, rgba(240,183,161,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(191,110,78,1)), color-stop(100%,rgba(240,183,161,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(191,110,78,1) 0%,rgba(240,183,161,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(191,110,78,1) 0%,rgba(240,183,161,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(191,110,78,1) 0%,rgba(240,183,161,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(191,110,78,1) 0%,rgba(240,183,161,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bf6e4e', endColorstr='#f0b7a1',GradientType=0 ); /* IE6-9 */
+}
+
+.model-simple-img{
+    width:200px;
+}
+
+.model-item{
+    margin:5px;
+    float:left;
+    padding:5px;
+    background-color:lightgray;
 }

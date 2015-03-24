@@ -1,11 +1,11 @@
 ﻿@using _3DMapleSystem.Web.ViewModels.PolyModels
 @model SimplePolyModelViewModel
 
-<div class="item">
+<div class="model-item">
     <a href="#" rel="@Model.Title">
-        <img src="@Url.Action("File", "AppFiles", new { id = Model.PreviewId.Value })" alt="@Model.Title" class="img-responsive form-control-sm" />
+        <img src="@Url.Action("File", "AppFiles", new { id = Model.PreviewId.Value })" alt="@Model.Title" class="img-responsive form-control-sm model-simple-img" />
     </a>
-    <div class="pro">@Model.RankName</div>
+    @*<div class="pro">@Model.RankName</div>*@
     <div class="icons hover">
         <a href="/3dmodels/show/polotientsa_m12" class="icon_reiting">
             @Model.DownloadedByUsersCount
