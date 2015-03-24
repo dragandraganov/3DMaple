@@ -25,6 +25,7 @@ namespace _3DMapleSystem.Web.Controllers
 
             homePageModel.PolyModels = this.Data.PolyModels
                 .All()
+                .OrderByDescending(m => m.CreatedOn)
                 .Project()
                 .To<SimplePolyModelViewModel>()
                 .ToList();
