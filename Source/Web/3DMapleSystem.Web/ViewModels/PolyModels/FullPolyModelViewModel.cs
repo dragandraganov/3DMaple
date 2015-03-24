@@ -52,9 +52,11 @@ namespace _3DMapleSystem.Web.ViewModels
         public int DownloadedByUsersCount { get; set; }
 
         [DataType(DataType.Upload)]
+        [Required]
         public HttpPostedFileBase Uploaded3DModel { get; set; }
 
         [DataType(DataType.Upload)]
+        [Required]
         public HttpPostedFileBase UploadedPreview { get; set; }
 
         //public string AuthorId { get; set; }

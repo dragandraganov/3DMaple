@@ -187,9 +187,13 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminController.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Administration\Controllers\PlatformsController.cs" />
     <Compile Include="Areas\Administration\Controllers\SubCategoriesController.cs" />
+    <Compile Include="Areas\Administration\Controllers\SubPlatformsController.cs" />
     <Compile Include="Areas\Administration\ViewModels\CategoryViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\PlatformViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\SubCategoryViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\SubPlatformViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AppFilesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -296,6 +300,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
+    <Folder Include="Areas\Administration\Views\Platform\" />
+    <Folder Include="Areas\Administration\Views\SubPlatforms\" />
+    <Folder Include="Areas\Administration\Views\SubPlatform\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

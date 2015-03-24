@@ -42,6 +42,20 @@ namespace _3DMapleSystem.Web.Controllers
             return categories;
         }
 
+        public IEnumerable<SelectListItem> GetPlatforms()
+        {
+            var platforms = this.Data.Platforms
+                       .All()
+                       .Select(c => new SelectListItem
+                       {
+                           Value = c.Id.ToString(),
+                           Text = c.Name
+                       })
+                       .ToList();
+
+            return platforms;
+        }
+
         [Obsolete("Do not use the standard Json helpers to return JSON data to the client.  Use either JsonSuccess or JsonError instead.")]
         protected JsonResult Json<T>(T data)
         {

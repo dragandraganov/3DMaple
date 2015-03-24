@@ -1,16 +1,15 @@
-﻿using AutoMapper;
-using _3DMapleSystem.Data.Models;
+﻿using _3DMapleSystem.Data.Models;
 using _3DMapleSystem.Web.Infrastructure.Mapping;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using GridMvc.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
 namespace _3DMapleSystem.Web.Areas.Administration.ViewModels
 {
-    public class SubCategoryViewModel : IMapFrom<SubCategory>, IHaveCustomMappings
+    public class PlatformViewModel : IMapFrom<Platform>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -27,17 +26,9 @@ namespace _3DMapleSystem.Web.Areas.Administration.ViewModels
 
         public DateTime? DeletedOn { get; set; }
 
-        public int CategoryId { get; set; }
-
-        [GridColumn(Title = "Category")]
-        public string CategoryName { get; set; }
-
-        public IEnumerable<SelectListItem> Categories { get; set; }
-
         public void CreateMappings(IConfiguration configuration)
         {
-            configuration.CreateMap<SubCategory, SubCategoryViewModel>()
-                .ForMember(m => m.CategoryName, opt => opt.MapFrom(t => t.Category.Name))
+            configuration.CreateMap<Category, CategoryViewModel>()
                 .ReverseMap();
         }
     }

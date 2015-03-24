@@ -1,16 +1,16 @@
-﻿using AutoMapper;
-using _3DMapleSystem.Data.Models;
+﻿using _3DMapleSystem.Data.Models;
 using _3DMapleSystem.Web.Infrastructure.Mapping;
+using AutoMapper;
+using GridMvc.DataAnnotations;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
-using GridMvc.DataAnnotations;
-using System.ComponentModel.DataAnnotations;
 
 namespace _3DMapleSystem.Web.Areas.Administration.ViewModels
 {
-    public class SubCategoryViewModel : IMapFrom<SubCategory>, IHaveCustomMappings
+    public class SubPlatformViewModel : IMapFrom<SubPlatform>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -27,17 +27,17 @@ namespace _3DMapleSystem.Web.Areas.Administration.ViewModels
 
         public DateTime? DeletedOn { get; set; }
 
-        public int CategoryId { get; set; }
+        public int PlatformId { get; set; }
 
-        [GridColumn(Title = "Category")]
-        public string CategoryName { get; set; }
+        [GridColumn(Title = "Platform")]
+        public string PlatformName { get; set; }
 
-        public IEnumerable<SelectListItem> Categories { get; set; }
+        public IEnumerable<SelectListItem> Platforms { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {
-            configuration.CreateMap<SubCategory, SubCategoryViewModel>()
-                .ForMember(m => m.CategoryName, opt => opt.MapFrom(t => t.Category.Name))
+            configuration.CreateMap<SubPlatform, SubPlatformViewModel>()
+                .ForMember(m => m.PlatformName, opt => opt.MapFrom(t => t.Platform.Name))
                 .ReverseMap();
         }
     }
