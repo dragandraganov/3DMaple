@@ -208,6 +208,7 @@
     <Compile Include="ViewModels\HomePageModel.cs" />
     <Compile Include="ViewModels\PolyModels\FullPolyModelViewModel.cs" />
     <Compile Include="ViewModels\PolyModels\SimplePolyModelViewModel.cs" />
+    <Compile Include="ViewModels\StyleViewModel.cs" />
     <Compile Include="ViewModels\SubCategoryViewModel.cs" />
     <Compile Include="ViewModels\SubPlatformViewModel.cs" />
   </ItemGroup>

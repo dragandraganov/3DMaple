@@ -13,5 +13,8 @@ namespace _3DMapleSystem.Web.ViewModels.ComplexModels
         public IList<GroupedSelectListItem> SubCategories { get; set; }
 
         public IList<GroupedSelectListItem> SubPlatforms { get; set; }
+
+        public IList<SelectListItem> Styles { get; set; }
+
     }
 }

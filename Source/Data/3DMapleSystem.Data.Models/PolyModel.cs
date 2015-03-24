@@ -24,7 +24,9 @@ namespace _3DMapleSystem.Data.Models
 
         public string Description { get; set; }
 
-        public string ModelUrl { get; set; }
+        public int? File3DModelId { get; set; }
+
+        public virtual AppFile File3DModel { get; set; }
 
         public int? PreviewId { get; set; }
 

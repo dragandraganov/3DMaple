@@ -54,6 +54,17 @@ namespace _3DMapleSystem.Web.Controllers
                 })
                 .ToList();
 
+            newModel.Styles = this.Data.Styles
+                .All()
+                .Project()
+                .To<StyleViewModel>()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.Id.ToString(),
+                    Text = c.Name
+                })
+                .ToList();
+
             return View(newModel);
         }
 
@@ -61,7 +72,7 @@ namespace _3DMapleSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateModelComplexViewModel complexModel)
         {
-            
+
 
             return View();
         }

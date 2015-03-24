@@ -14,16 +14,6 @@ namespace _3DMapleSystem.Web.ViewModels
 
         public string Name { get; set; }
 
-        public DateTime CreatedOn { get; set; }
-
-        public bool PreserveCreatedOn { get; set; }
-
-        public DateTime? ModifiedOn { get; set; }
-
-        public bool IsDeleted { get; set; }
-
-        public DateTime? DeletedOn { get; set; }
-
         public int PlatformId { get; set; }
 
         public string PlatformName { get; set; }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace _3DMapleSystem.Web.ViewModels
 {
@@ -32,6 +33,8 @@ namespace _3DMapleSystem.Web.ViewModels
 
         public string RankName { get; set; }
 
+        public int StyleId { get; set; }
+
         public string StyleName { get; set; }
 
         public int PlatformId { get; set; }
@@ -42,11 +45,17 @@ namespace _3DMapleSystem.Web.ViewModels
 
         public string SubPlatformName { get; set; }
 
-        public ICollection<Tag> Tags { get; set; }
+        public string Tags { get; set; }
 
         public string AuthorName { get; set; }
 
         public int DownloadedByUsersCount { get; set; }
+
+        [DataType(DataType.Upload)]
+        public HttpPostedFileBase Uploaded3DModel { get; set; }
+
+        [DataType(DataType.Upload)]
+        public HttpPostedFileBase UploadedPreview { get; set; }
 
         //public string AuthorId { get; set; }
 
