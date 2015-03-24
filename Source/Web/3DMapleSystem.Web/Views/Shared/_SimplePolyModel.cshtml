@@ -2,19 +2,43 @@
 @model SimplePolyModelViewModel
 
 <div class="model-item">
-    <a href="#" rel="@Model.Title">
-        <img src="@Url.Action("File", "AppFiles", new { id = Model.PreviewId.Value })" alt="@Model.Title" class="img-responsive form-control-sm model-simple-img" />
+    <a href="#" rel="@Model.Title" class="model-item-link">
+        <figure>
+            <img src="@Url.Action("File", "AppFiles", new { id = Model.PreviewId.Value })" alt="@Model.Title" class="img-responsive form-control-sm model-simple-img" />
+            <figcaption class="model-title">
+                @Model.Title
+            </figcaption>
+        </figure>
     </a>
     @*<div class="pro">@Model.RankName</div>*@
-    <div class="icons hover">
-        <a href="/3dmodels/show/polotientsa_m12" class="icon_reiting">
-            @Model.DownloadedByUsersCount
+    <div class="icons hover pull-right">
+        <a href="/3dmodels/show/polotientsa_m12" class="icon_downloads">
+            <span class="glyphicon glyphicon-download-alt"></span>
+            <span>@Model.DownloadedByUsersCount</span>
         </a>
-        <a href="/3dmodels/show/polotientsa_m12" class="icon_views">
-            @Model.CommentsCount
+        <a href="/3dmodels/show/polotientsa_m12" class="icon_comments ml10">
+            <span class="glyphicon glyphicon-comment"></span>
+            <span>@Model.CommentsCount</span>
         </a>
         @*<a href="/3dmodels/show/polotientsa_m12" class="icon_enter">
             39
         </a>*@
     </div>
 </div>
+
+
+@*<figure class="articleImg articleMainImg">
+    <img src="http://m4.netinfo.bg/media/images/16947/16947306/624-400-tom-kruz.jpg" alt="Том Круз" itemprop="image" width="624" height="400">
+
+
+    <figcaption>
+        Том Круз
+    </figcaption>
+    <div class="sourceCommFav">
+        <div class="imgSource">
+            <strong>Снимка: </strong>
+            Getty/Guliver
+        </div>
+    </div>
+
+</figure>*@
