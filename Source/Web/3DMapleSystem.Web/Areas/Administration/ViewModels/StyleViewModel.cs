@@ -9,7 +9,7 @@ using System.Web;
 
 namespace _3DMapleSystem.Web.Areas.Administration.ViewModels
 {
-    public class PlatformViewModel : IMapFrom<Platform>, IHaveCustomMappings
+    public class StyleViewModel: IMapFrom<Style>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -28,7 +28,7 @@ namespace _3DMapleSystem.Web.Areas.Administration.ViewModels
 
         public void CreateMappings(IConfiguration configuration)
         {
-            configuration.CreateMap<Platform, PlatformViewModel>()
+            configuration.CreateMap<Style, StyleViewModel>()
                 .ReverseMap();
         }
     }

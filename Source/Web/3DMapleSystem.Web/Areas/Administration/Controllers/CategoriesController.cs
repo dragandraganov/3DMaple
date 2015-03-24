@@ -167,9 +167,10 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
                 var existingCategory = this.Data
                     .Categories
                     .GetById(category.Id);
-                Mapper.Map(category, existingCategory);
+
                 this.Data.Categories.ActualDelete(existingCategory);
                 this.Data.SaveChanges();
+
                 TempData["Success"] = "The category '" + category.Name + "' was hard deleted";
                 return RedirectToAction("Index", "Categories");
             }
