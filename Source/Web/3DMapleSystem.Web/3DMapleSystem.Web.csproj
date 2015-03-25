@@ -188,6 +188,7 @@
     <Compile Include="Areas\Administration\Controllers\AdminController.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Administration\Controllers\PlatformsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\PolyModelsController.cs" />
     <Compile Include="Areas\Administration\Controllers\RanksController.cs" />
     <Compile Include="Areas\Administration\Controllers\StylesController.cs" />
     <Compile Include="Areas\Administration\Controllers\SubCategoriesController.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Areas\Administration\ViewModels\CategoryViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\PlatformViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\ModelRankViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\PolyModelViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\StyleViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\SubCategoryViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\SubPlatformViewModel.cs" />
@@ -265,6 +267,7 @@
     <Content Include="Areas\Administration\Views\Ranks\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Ranks\HardDelete.cshtml" />
     <Content Include="Areas\Administration\Views\Ranks\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\PolyModels\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
