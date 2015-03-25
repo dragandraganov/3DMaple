@@ -8,6 +8,7 @@
 @using (Html.BeginForm("Edit", "PolyModels", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.PolyModel.Id)
 
     <h4>Edit 3D model</h4>
     <hr />
@@ -68,9 +69,9 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.PolyModel.TagsAsString, "Tags", new { @class = "col-sm-2 control-label" })
+        @Html.LabelFor(m => m.PolyModel.Tags, "Tags", new { @class = "col-sm-2 control-label" })
         <div class="col-sm-10">
-            @Html.TextBoxFor(m => m.PolyModel.TagsAsString, new { @class = "form-control form-control-sm" })
+            @Html.TextBoxFor(m => m.PolyModel.Tags, new { @class = "form-control form-control-sm", @Value = String.Join(", ", Model.PolyModel.Tags) })
             <p>separated by commas</p>
         </div>
     </div>
@@ -83,7 +84,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.PolyModel.IsApproved, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.CheckBoxFor(m => m.PolyModel.IsApproved.Value, new { @class = "checkbox-lg" })
+            @Html.CheckBoxFor(m => m.PolyModel.IsApproved, new { @class = "checkbox-lg" })
         </div>
     </div>
     <div class="form-group">

@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using _3DMapleSystem.Data;
 using _3DMapleSystem.Web.ViewModels;
 using _3DMapleSystem.Web.ViewModels.ComplexModels;
-using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using _3DMapleSystem.Data.Models;
 using System.IO;
@@ -24,7 +23,7 @@ namespace _3DMapleSystem.Web.Controllers
             return View();
         }
 
-
+        [Authorize]
         //GET: Create PolyModel
         public ActionResult Create()
         {
@@ -37,6 +36,7 @@ namespace _3DMapleSystem.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create(PolyModelComplexViewModel complexModel)
         {
             if (complexModel != null && ModelState.IsValid)
@@ -78,6 +78,7 @@ namespace _3DMapleSystem.Web.Controllers
                         FileExtension = complexModel.PolyModel.Uploaded3DModel.FileName.Split(new[] { '.' }).Last()
                     };
                 }
+
                 using (var memory = new MemoryStream())
                 {
                     complexModel.PolyModel.UploadedPreview.InputStream.CopyTo(memory);
@@ -90,7 +91,7 @@ namespace _3DMapleSystem.Web.Controllers
                     };
                 }
 
-                var tags = complexModel.PolyModel.Tags.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                var tags = complexModel.PolyModel.Tags.Split(new char[] { ',',' ' }, StringSplitOptions.RemoveEmptyEntries);
 
                 foreach (var tag in tags)
                 {

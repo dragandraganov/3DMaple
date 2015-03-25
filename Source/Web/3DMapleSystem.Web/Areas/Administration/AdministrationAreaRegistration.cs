@@ -17,7 +17,8 @@ namespace _3DMapleSystem.Web.Areas.Administration
             context.MapRoute(
                 "Administration_default",
                 "Administration/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", id = UrlParameter.Optional },
+                new[] { "_3DMapleSystem.Web.Areas.Administration.Controllers" }
             );
         }
     }

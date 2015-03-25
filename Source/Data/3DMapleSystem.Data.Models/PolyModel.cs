@@ -15,7 +15,6 @@ namespace _3DMapleSystem.Data.Models
             this.Tags = new HashSet<Tag>();
             this.Comments = new HashSet<Comment>();
             this.DownloadedByUsers = new HashSet<User>();
-            this.IsApproved = false;
         }
 
         [Key]
@@ -60,7 +59,7 @@ namespace _3DMapleSystem.Data.Models
 
         public virtual ICollection<User> DownloadedByUsers { get; set; }
 
-        public bool? IsApproved { get; set; }
+        public bool IsApproved { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
