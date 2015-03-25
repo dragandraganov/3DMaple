@@ -5,61 +5,38 @@
     ViewBag.Title = "Home Page";
 }
 
-@foreach (var category in Model.Categories)
-{
-    <div class="col-md-3 pull-left ">
-        <a href="#" class="category-title">
-            <p><big>@category.Name</big></p>
-        </a>
-        <div class="row">
-            @foreach (var subCategory in category.SubCategories)
-            {
-                <div class="col-md-12">
-                    <a href="#">@subCategory.Name</a>
-                </div>
-            }
-
-        </div>
-    </div>
-}
-<div class="clearfix"></div>
-<br />
-@*<div class="row">
+<div class="row">
     <div class="col-md-9">
-        @for (int r = 0; r < rows; r++)
+        @foreach (var category in Model.Categories)
         {
-            <div class="row list-category-row">
-                @for (int c = 0; c < columns; c++)
-                {
-                    <div class="col-md-3 pull-left ">
-                        <a href="#" class="category-title">
-                            <p><big>@Model.Categories[columns * r + c].Name</big></p>
-                        </a>
-                        <div class="row">
-                            @foreach (var subCategory in Model.Categories[columns * r + c].SubCategories)
-                            {
-                                <div class="col-md-12">
-                                    <a href="#">@subCategory.Name</a>
-                                </div>
-                            }
-
+            <div class="col-md-3 pull-left ">
+                <a href="#" class="category-title">
+                    <p><big>@category.Name</big></p>
+                </a>
+                <div class="row">
+                    @foreach (var subCategory in category.SubCategories)
+                    {
+                        <div class="col-md-12">
+                            <a href="#">@subCategory.Name</a>
                         </div>
-                    </div>
-                }
+                    }
+
+                </div>
             </div>
         }
     </div>
-
     <div class="col-md-3">
         <a href="\PolyModels\Create" class="btn btn-add-model">Add 3D Model</a>
     </div>
-</div>*@
+</div>
+<div class="clearfix"></div>
+<br />
 
 <div class="row">
     <div class="col-md-9">
         @foreach (var model in Model.PolyModels)
         {
-            @Html.Partial("_SimplePolyModel",model)
+            @Html.Partial("_SimplePolyModel", model)
         }
     </div>
 </div>
