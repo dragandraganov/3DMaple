@@ -4,7 +4,7 @@
 <div class="model-item model-item-@Model.Id">
     <a href="#" rel="@Model.Title" class="model-item-link">
         <figure>
-            <img src="@Url.Action("GetPreview", "AppFiles", new {area=string.Empty, id = Model.PreviewId.Value })" alt="@Model.Title" class="img-responsive form-control-sm model-simple-img" />
+            <img src="@Url.Action("GetPreview", "AppFiles", new {id = Model.PreviewId.Value })" alt="@Model.Title" class="img-responsive form-control-sm model-simple-img" />
             <figcaption class="model-title">
                 @Model.Title
             </figcaption>

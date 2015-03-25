@@ -7,12 +7,13 @@ using System.Web.Mvc;
 using AutoMapper.QueryableExtensions;
 using _3DMapleSystem.Web.Areas.Administration.ViewModels;
 using _3DMapleSystem.Data.Models;
+using _3DMapleSystem.Common;
 
 namespace _3DMapleSystem.Web.Areas.Administration.Controllers
 {
+    [Authorize(Roles = GlobalConstants.AdminRole)]
     public class SubPlatformsController : AdminController
     {
-
         public SubPlatformsController(_3DMapleSystemData data)
             : base(data)
         {

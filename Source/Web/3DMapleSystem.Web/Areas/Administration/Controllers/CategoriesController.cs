@@ -1,6 +1,5 @@
 ﻿using _3DMapleSystem.Data;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,9 +7,11 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using _3DMapleSystem.Web.Areas.Administration.ViewModels;
 using _3DMapleSystem.Data.Models;
+using _3DMapleSystem.Common;
 
 namespace _3DMapleSystem.Web.Areas.Administration.Controllers
 {
+    [Authorize(Roles = GlobalConstants.AdminRole)]
     public class CategoriesController : AdminController
     {
         public CategoriesController(_3DMapleSystemData data)

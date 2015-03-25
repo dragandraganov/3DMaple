@@ -8,9 +8,11 @@ using AutoMapper.QueryableExtensions;
 using _3DMapleSystem.Web.Areas.Administration.ViewModels;
 using AutoMapper;
 using _3DMapleSystem.Data.Models;
+using _3DMapleSystem.Common;
 
 namespace _3DMapleSystem.Web.Areas.Administration.Controllers
 {
+    [Authorize(Roles = GlobalConstants.AdminRole)]
     public class PlatformsController : AdminController
     {
         public PlatformsController(_3DMapleSystemData data)

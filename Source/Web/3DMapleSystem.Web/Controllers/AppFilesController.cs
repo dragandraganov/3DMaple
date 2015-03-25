@@ -3,11 +3,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using _3DMapleSystem.Data;
-using _3DMapleSystem.Common;
 
-namespace _3DMapleSystem.Web.Areas.Administration.Controllers
+namespace _3DMapleSystem.Web.Controllers
 {
-    public class AppFilesController : AdminController
+    public class AppFilesController : BaseController
     {
         public AppFilesController(_3DMapleSystemData data)
             : base(data)

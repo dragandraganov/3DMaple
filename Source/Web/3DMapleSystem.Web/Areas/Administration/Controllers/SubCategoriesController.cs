@@ -7,9 +7,11 @@ using AutoMapper.QueryableExtensions;
 using AutoMapper;
 using _3DMapleSystem.Data.Models;
 using System.Web;
+using _3DMapleSystem.Common;
 
 namespace _3DMapleSystem.Web.Areas.Administration.Controllers
 {
+    [Authorize(Roles = GlobalConstants.AdminRole)]
     public class SubCategoriesController : AdminController
     {
 
