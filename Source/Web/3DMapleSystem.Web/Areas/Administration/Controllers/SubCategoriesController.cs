@@ -151,6 +151,7 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
                 var existingsubCategory = this.Data
                     .SubCategories
                     .GetById(subCategory.Id);
+
                 this.Data.SubCategories.Delete(existingsubCategory);
                 this.Data.SaveChanges();
 
@@ -175,6 +176,7 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
                 var existingsubCategory = this.Data
                     .SubCategories
                     .GetById(subCategory.Id);
+
                 this.Data.SubCategories.ActualDelete(existingsubCategory);
                 this.Data.SaveChanges();
 

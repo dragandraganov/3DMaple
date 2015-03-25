@@ -272,6 +272,8 @@
     <Content Include="Areas\Administration\Views\Ranks\Index.cshtml" />
     <Content Include="Areas\Administration\Views\PolyModels\Index.cshtml" />
     <Content Include="Areas\Administration\Views\PolyModels\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\PolyModels\Delete.cshtml" />
+    <Content Include="Areas\Administration\Views\PolyModels\HardDelete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />

@@ -89,7 +89,7 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
                         existingPolyModel.Preview = new AppFile
                         {
                             Content = content,
-                            FileExtension = complexModel.PolyModel.UploadedPreview.FileName.Split(new[] { '.'}).Last()
+                            FileExtension = complexModel.PolyModel.UploadedPreview.FileName.Split(new[] { '.' }).Last()
                         };
                     }
                 }
@@ -98,8 +98,8 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
                     .FirstOrDefault()
                     .ToString();
 
-                var tagsArray=tags.Split(new char[] { ',',' ' }, StringSplitOptions.RemoveEmptyEntries);
-                
+                var tagsArray = tags.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
                 existingPolyModel.Tags.Clear();
 
                 foreach (var tag in tagsArray)
@@ -125,10 +125,78 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
 
                 this.Data.PolyModels.Update(existingPolyModel);
                 this.Data.SaveChanges();
+
+                TempData["Success"] = "The model '" + complexModel.PolyModel.Title + "' was hard deleted";
+                return RedirectToAction("Index", "PolyModels");
             }
 
             AttachPropertiesToComplexModel(complexModel);
             return View(complexModel);
+        }
+
+        //GET Admin pol model delete
+        public ActionResult Delete(Guid id)
+        {
+            var existingPolyModel = this.Data.PolyModels
+                .AllWithDeleted()
+                .Where(pm => pm.Id == id)
+                .Project()
+                .To<PolyModelViewModel>()
+                .FirstOrDefault();
+
+            if (existingPolyModel == null)
+            {
+                throw new HttpException(404, "Model not found");
+            }
+
+            return View(existingPolyModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(PolyModelViewModel model)
+        {
+            if (model != null && ModelState.IsValid)
+            {
+                var existingPolyModel = this.Data.PolyModels
+                .All()
+                .FirstOrDefault(pm => pm.Id == model.Id);
+
+                this.Data.PolyModels.Delete(existingPolyModel);
+                this.Data.SaveChanges();
+
+                TempData["Success"] = "The model '" + model.Title + "' was deleted";
+
+                return RedirectToAction("Index", "PolyModels");
+            }
+
+            return View(model);
+        }
+
+        //GET Admin pol model delete
+        public ActionResult HardDelete(Guid id)
+        {
+            return this.Delete(id);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult HardDelete(PolyModelViewModel model)
+        {
+            if (model != null && ModelState.IsValid)
+            {
+                var existingPolyModel = this.Data.PolyModels
+                .AllWithDeleted()
+                .FirstOrDefault(pm => pm.Id == model.Id);
+
+                this.Data.PolyModels.ActualDelete(existingPolyModel);
+                this.Data.SaveChanges();
+
+                TempData["Success"] = "The model '" + model.Title + "' was hard deleted";
+                return RedirectToAction("Index", "PolyModels");
+            }
+
+            return View(model);
         }
 
         private void AttachPropertiesToComplexModel(PolyModelComplexViewModel model)

@@ -1,0 +1,90 @@
+﻿@using _3DMapleSystem.Web.Areas.Administration.ViewModels
+@model PolyModelViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("Delete", "PolyModels", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+
+    <h4>Edit 3D model</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control form-control-sm", @readonly="readonly" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.SubCategoryName, "Category", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.SubCategoryName, new { @class = "form-control form-control-sm", @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.SubPlatformName, "Platform", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.SubPlatformName, new { @class = "form-control form-control-sm", @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.StyleName, "Style", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.StyleName, new { @class = "form-control form-control-sm", @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.RankName, "Rank", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.RankName, new { @class = "form-control form-control-sm", @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="currentImage">Preview</label>
+        <div class="col-md-10" id="currentImage">
+            @if (Model.PreviewId != null)
+            {
+                <img style="float:left" src="@Url.Action("GetPreview", "AppFiles", new { area = string.Empty, id = Model.PreviewId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
+            }
+            else
+            {
+                <span class="form-control form-control-sm">No preview</span>
+            }
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Tags, "Tags", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.Tags, new { @class = "form-control form-control-sm", @Value = String.Join(", ", Model.Tags) , @readonly="readonly" })
+            
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control form-control-sm", @rows = "5", @readonly="readonly" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.IsApproved, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(m => m.IsApproved, new { @class = "checkbox-lg", @disabled = "disabled" })
+        </div>
+    </div>
+    <div class="alert alert-danger">Are you sure you want to delete this paltform?</div>
+    <br />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-info" value="Delete" />
+            <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
