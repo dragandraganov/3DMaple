@@ -1,0 +1,99 @@
+﻿@using _3DMapleSystem.Web.Areas.Administration.ViewModels
+@model PolyModelComplexViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("Edit", "PolyModels", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h4>Edit 3D model</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.PolyModel.Title, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.PolyModel.Title, new { @class = "form-control form-control-sm" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PolyModel.SubCategoryId, "Category", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.DropDownGroupListFor(m => m.PolyModel.SubCategoryId, Model.SubCategories, "-- Select --", new { @data_val = "true", @data_val_required = "The Category field is required.", @class = "form-control form-control-sm" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PolyModel.SubPlatformId, "Platform", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.DropDownGroupListFor(m => m.PolyModel.SubPlatformId, Model.SubPlatforms, "-- Select --", new { @data_val = "true", @data_val_required = "The Platform field is required.", @class = "form-control form-control-sm" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PolyModel.StyleId, "Style", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.DropDownListFor(m => m.PolyModel.StyleId, Model.Styles, "-- Select --", new { @data_val = "true", @data_val_required = "The Style field is required.", @class = "form-control form-control-sm" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PolyModel.RankId, "Rank", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.DropDownListFor(m => m.PolyModel.RankId, Model.Ranks, "-- Select --", new { @data_val = "true", @data_val_required = "The Rank field is required.", @class = "form-control form-control-sm" })
+        </div>
+    </div>
+    @*<div class="form-group">
+            @Html.LabelFor(m => m.PolyModel.Uploaded3DModel, "3d Model", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.PolyModel.Uploaded3DModel, new { @class = "form-control form-control-sm", @type = "file" })
+            </div>
+        </div>*@
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="currentImage">Current preview</label>
+        <div class="col-md-10" id="currentImage">
+            @if (Model.PolyModel.PreviewId != null)
+            {
+                <img style="float:left" src="@Url.Action("GetPreview", "AppFiles", new { area = string.Empty, id = Model.PolyModel.PreviewId.Value })" alt="@Model.PolyModel.Title image" class="img-responsive form-control-sm" />
+            }
+            else
+            {
+                <span class="form-control form-control-sm">No preview</span>
+            }
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PolyModel.UploadedPreview, "Change preview", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.PolyModel.UploadedPreview, new { @class = "form-control form-control-sm", @type = "file" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PolyModel.TagsAsString, "Tags", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.PolyModel.TagsAsString, new { @class = "form-control form-control-sm" })
+            <p>separated by commas</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PolyModel.Description, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(m => m.PolyModel.Description, new { @class = "form-control form-control-sm", @rows = "5" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PolyModel.IsApproved, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(m => m.PolyModel.IsApproved.Value, new { @class = "checkbox-lg" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-info" value="Save changes" />
+            <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

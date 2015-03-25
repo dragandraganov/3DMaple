@@ -28,7 +28,7 @@ namespace _3DMapleSystem.Web.Controllers
         //GET: Create PolyModel
         public ActionResult Create()
         {
-            var model = new CreateModelComplexViewModel();
+            var model = new PolyModelComplexViewModel();
 
             AttachPropertiesToComplexModel(model);
 
@@ -37,7 +37,7 @@ namespace _3DMapleSystem.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateModelComplexViewModel complexModel)
+        public ActionResult Create(PolyModelComplexViewModel complexModel)
         {
             if (complexModel != null && ModelState.IsValid)
             {
@@ -119,10 +119,11 @@ namespace _3DMapleSystem.Web.Controllers
             }
 
             AttachPropertiesToComplexModel(complexModel);
+
             return View(complexModel);
         }
 
-        private void AttachPropertiesToComplexModel(CreateModelComplexViewModel model)
+        private void AttachPropertiesToComplexModel(PolyModelComplexViewModel model)
         {
             model.SubCategories = this.Data.SubCategories
                 .All()

@@ -99,3 +99,15 @@ textarea {
 .icons span {
     vertical-align: middle;
 }
+
+.form-control-sm {
+    max-width: 300px;
+}
+
+.checkbox-lg {
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    padding: 10px;
+}

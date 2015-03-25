@@ -43,13 +43,23 @@ namespace _3DMapleSystem.Web.Areas.Administration.ViewModels
 
         public string SubPlatformName { get; set; }
 
-        public IList<string> Tags { get; set; }
+        public string TagsAsString
+        {
+            get
+            {
+                return string.Join(", ", this.Tags);
+            }
+        }
+
+        public ICollection<string> Tags { get; set; }
 
         public string AuthorName { get; set; }
 
         public bool? IsApproved { get; set; }
 
         public int DownloadedByUsersCount { get; set; }
+
+        public int? PreviewId { get; set; }
 
         [DataType(DataType.Upload)]
         [Required]
@@ -82,7 +92,7 @@ namespace _3DMapleSystem.Web.Areas.Administration.ViewModels
                 .ForMember(m => m.RankName, opt => opt.MapFrom(t => t.Rank.Name))
                 .ForMember(m => m.AuthorName, opt => opt.MapFrom(t => t.Author.UserName))
                 .ForMember(m => m.DownloadedByUsersCount, opt => opt.MapFrom(t => t.DownloadedByUsers.Count))
-                .ForMember(m => m.Tags, opt => opt.MapFrom(m => m.Tags.Select(t=>t.Name)))
+                .ForMember(m => m.Tags, opt => opt.MapFrom(m => m.Tags.Select(t => t.Name)))
                 .ReverseMap();
         }
     }

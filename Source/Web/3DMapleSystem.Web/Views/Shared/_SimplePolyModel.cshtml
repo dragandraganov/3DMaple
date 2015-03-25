@@ -4,7 +4,7 @@
 <div class="model-item model-item-@Model.Id">
     <a href="#" rel="@Model.Title" class="model-item-link">
         <figure>
-            <img src="@Url.Action("File", "AppFiles", new { id = Model.PreviewId.Value })" alt="@Model.Title" class="img-responsive form-control-sm model-simple-img" />
+            <img src="@Url.Action("GetPreview", "AppFiles", new {area=string.Empty, id = Model.PreviewId.Value })" alt="@Model.Title" class="img-responsive form-control-sm model-simple-img" />
             <figcaption class="model-title">
                 @Model.Title
             </figcaption>
@@ -23,25 +23,7 @@
                 <span>@Model.CommentsCount</span>
             </a>
         </div>
-        @*<a href="/3dmodels/show/polotientsa_m12" class="icon_enter">
-            39
-        </a>*@
     </div>
 </div>
 
 
-@*<figure class="articleImg articleMainImg">
-    <img src="http://m4.netinfo.bg/media/images/16947/16947306/624-400-tom-kruz.jpg" alt="Том Круз" itemprop="image" width="624" height="400">
-
-
-    <figcaption>
-        Том Круз
-    </figcaption>
-    <div class="sourceCommFav">
-        <div class="imgSource">
-            <strong>Снимка: </strong>
-            Getty/Guliver
-        </div>
-    </div>
-
-</figure>*@
