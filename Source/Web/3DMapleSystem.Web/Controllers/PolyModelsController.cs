@@ -48,7 +48,7 @@ namespace _3DMapleSystem.Web.Controllers
                 newPolyModel.StyleId = complexModel.PolyModel.StyleId;
                 newPolyModel.SubCategoryId = complexModel.PolyModel.SubCategoryId;
                 newPolyModel.SubPlatformId = complexModel.PolyModel.SubPlatformId;
-
+                newPolyModel.Author = this.UserProfile;
 
                 //TODO remove in production mode - change the logic
                 var rank = new ModelRank();

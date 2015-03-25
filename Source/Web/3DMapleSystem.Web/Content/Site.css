@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 70px;
     padding-bottom: 20px;
-    font:normal 12px Arial,Helvetica,sans-serif;
+    font: normal 12px Arial,Helvetica,sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -43,8 +43,8 @@ textarea {
 }
 
 .btn-add-model {
-    min-height:100px;
-    color:white;
+    min-height: 100px;
+    color: white;
     background: rgb(191,110,78); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(191,110,78,1) 0%, rgba(240,183,161,1) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(191,110,78,1)), color-stop(100%,rgba(240,183,161,1))); /* Chrome,Safari4+ */
@@ -55,44 +55,47 @@ textarea {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bf6e4e', endColorstr='#f0b7a1',GradientType=0 ); /* IE6-9 */
 }
 
-.model-simple-img{
-    width:200px;
-    height:150px;
+.model-simple-img {
+    width: 200px;
+    height: 150px;
 }
 
-.model-item{
-    margin:5px;
-    float:left;
-    padding:5px;
-    background-color:#e9e9e9;
-    border:1px solid #c8c8c8;
+.model-item {
+    margin: 5px;
+    float: left;
+    padding: 5px;
+    background-color: #e9e9e9;
+    border: 1px solid #c8c8c8;
 }
 
-.model-title{
-    width:200px;
-    position:absolute;
-    bottom:0px;
-    padding:0 5px;
-    color:white;
-    font-size:0.9em;
-    background:url("Images/TransparentHover45.png") repeat;
+.model-title {
+    width: 200px;
+    position: absolute;
+    bottom: 0px;
+    padding: 0 5px;
+    color: white;
+    font-size: 0.9em;
+    background: url("Images/TransparentHover45.png") repeat;
 }
 
-.model-item-link{
-    position:relative;
-    width:100%;
-    display:block;
+.model-item-link {
+    position: relative;
+    width: 100%;
+    display: block;
 }
 
-.ml10{
-    margin-left:10px;
+.ml10 {
+    margin-left: 10px;
 }
 
-.icons a{
-    color:gray;
+.icons a {
+    color: gray;
 }
 
-.icons span{
-    vertical-align:middle;
-}
+    .icons a:hover {
+        text-decoration: none;
+    }
 
+.icons span {
+    vertical-align: middle;
+}

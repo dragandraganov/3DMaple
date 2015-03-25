@@ -12,9 +12,10 @@ namespace _3DMapleSystem.Data.Models
         public PolyModel()
         {
             this.Id = Guid.NewGuid();
-            this.Tags=new HashSet<Tag>();
-            this.Comments=new HashSet<Comment>();
-            this.DownloadedByUsers=new HashSet<User>();
+            this.Tags = new HashSet<Tag>();
+            this.Comments = new HashSet<Comment>();
+            this.DownloadedByUsers = new HashSet<User>();
+            this.IsApproved = false;
         }
 
         [Key]
@@ -58,6 +59,8 @@ namespace _3DMapleSystem.Data.Models
         public virtual User Author { get; set; }
 
         public virtual ICollection<User> DownloadedByUsers { get; set; }
+
+        public bool? IsApproved { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
