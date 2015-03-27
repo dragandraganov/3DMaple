@@ -69,12 +69,12 @@
             @Html.TextAreaFor(m => m.Description, new { @class = "form-control form-control-sm", @rows = "5", @readonly="readonly" })
         </div>
     </div>
-    <div class="form-group">
+    @*<div class="form-group">
         @Html.LabelFor(m => m.IsApproved, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.CheckBoxFor(m => m.IsApproved, new { @class = "checkbox-lg", @disabled = "disabled" })
         </div>
-    </div>
+    </div>*@
     <div class="alert alert-danger">Are you sure you want to delete this paltform?</div>
     <br />
     <div class="form-group">

@@ -49,7 +49,7 @@ namespace _3DMapleSystem.Web.Areas.Administration.ViewModels
 
         public string AuthorName { get; set; }
 
-        public bool IsApproved { get; set; }
+        public bool? IsApproved { get; set; }
 
         public int DownloadedByUsersCount { get; set; }
 
