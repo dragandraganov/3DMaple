@@ -2,6 +2,7 @@
     padding-top: 70px;
     padding-bottom: 20px;
     font: normal 12px Arial,Helvetica,sans-serif;
+    min-width:750px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -119,4 +120,12 @@ textarea {
 
 .menu-link{
     color:rgb(255, 78, 0);
+}
+
+.icon-bar{
+    background-color:black;
+}
+
+.category-box{
+    min-width:140px;
 }

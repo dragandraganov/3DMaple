@@ -64,6 +64,7 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
                     var newSubCategory = Mapper.Map<SubCategory>(subCategory);
                     this.Data.SubCategories.Add(newSubCategory);
                     this.Data.SaveChanges();
+                    TempData["Success"] = "A new sub-category '" + subCategory.Name + "' was created";
                     return RedirectToAction("Index", "SubCategories");
                 }
             }
@@ -116,7 +117,7 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
 
                     this.Data.SubCategories.Update(existingSubCategory);
                     this.Data.SaveChanges();
-
+                    TempData["Success"] = "The sub-category '" + subCategory.Name + "' was edited";
                     return RedirectToAction("Index", "SubCategories");
                 }
             }
@@ -156,6 +157,7 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
 
                 this.Data.SubCategories.Delete(existingsubCategory);
                 this.Data.SaveChanges();
+                TempData["Success"] = "The sub-category '" + subCategory.Name + "' was deleted";
 
                 return RedirectToAction("Index", "SubCategories");
             }
@@ -181,6 +183,7 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
 
                 this.Data.SubCategories.ActualDelete(existingsubCategory);
                 this.Data.SaveChanges();
+                TempData["Success"] = "The sub-category '" + subCategory.Name + "' was hard deleted";
 
                 return RedirectToAction("Index", "SubCategories");
             }

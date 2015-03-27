@@ -117,6 +117,8 @@ namespace _3DMapleSystem.Web.Controllers
 
                 this.Data.PolyModels.Add(newPolyModel);
                 this.Data.SaveChanges();
+                TempData["Success"] = "A new 3D model '" + newPolyModel.Title + "' was created";
+                return RedirectToAction("Index", "Home");
             }
 
             AttachPropertiesToComplexModel(complexModel);

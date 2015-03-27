@@ -6,10 +6,11 @@
 }
 
 <div class="row">
-    <div class="col-md-9">
-        @foreach (var category in Model.Categories)
+    <div class="col-md-12">
+        @for (int cat = 0; cat < Model.Categories.Count; cat++)
         {
-            <div class="col-md-3 pull-left ">
+            var category = Model.Categories[cat];
+            <div class="col-md-2 pull-left category-box">
                 <a href="#" class="category-title">
                     <p><big>@category.Name</big></p>
                 </a>
@@ -23,14 +24,50 @@
 
                 </div>
             </div>
+            if (cat % 4 == 3)
+            {
+                if (cat == 3)
+                {
+                    <div class="col-md-2 pull-right">
+                        <a href="\PolyModels\Create" class="btn btn-add-model">Add 3D Model</a>
+                    </div>
+                }
+                <div class="clearfix"></div>
+                <br />
+            }
         }
+
+        @*@foreach (var category in Model.Categories)
+            {
+                <div class="col-md-3 pull-left ">
+                    <a href="#" class="category-title">
+                        <p><big>@category.Name</big></p>
+                    </a>
+                    <div class="row">
+                        @foreach (var subCategory in category.SubCategories)
+                        {
+                            <div class="col-md-12">
+                                <a href="#">@subCategory.Name</a>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            }*@
     </div>
-    <div class="col-md-3">
-        <a href="\PolyModels\Create" class="btn btn-add-model">Add 3D Model</a>
-    </div>
+
 </div>
 <div class="clearfix"></div>
 <br />
+
+@if (TempData["Success"] != null)
+{
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            @TempData["Success"].ToString()
+        </div>
+    </div>
+}
 
 <div class="row">
     <div class="col-md-9">
