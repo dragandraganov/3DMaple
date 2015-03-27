@@ -22,13 +22,6 @@ namespace _3DMapleSystem.Data.Migrations
 
         protected override void Seed(_3DMapleSystemDbContext context)
         {
-            var allModels = context.PolyModels.ToList();
-            foreach (var model in allModels)
-            {
-                context.PolyModels.Remove(model);
-                context.SaveChanges();
-            }
-
             if (context.Users.FirstOrDefault(u => u.Email == "yabalcho@bg.bg") == null)
             {
                 this.userManager = new UserManager<User>(new UserStore<User>(context));
