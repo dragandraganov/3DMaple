@@ -105,10 +105,18 @@ textarea {
 }
 
 .checkbox-lg {
-    margin-left:7px !important;
+    margin-left: 7px !important;
     -ms-transform: scale(2); /* IE */
     -moz-transform: scale(2); /* FF */
     -webkit-transform: scale(2); /* Safari and Chrome */
     -o-transform: scale(2); /* Opera */
     padding: 10px;
+}
+
+.navbar-main {
+    background-color: #ededed;
+}
+
+.menu-link{
+    color:rgb(255, 78, 0);
 }
