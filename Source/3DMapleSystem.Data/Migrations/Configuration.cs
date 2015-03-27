@@ -22,7 +22,7 @@ namespace _3DMapleSystem.Data.Migrations
 
         protected override void Seed(_3DMapleSystemDbContext context)
         {
-            var allModels = context.PolyModels;
+            var allModels = context.PolyModels.ToList();
             foreach (var model in allModels)
             {
                 context.PolyModels.Remove(model);
