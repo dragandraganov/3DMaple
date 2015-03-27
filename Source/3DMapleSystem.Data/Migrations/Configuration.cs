@@ -22,6 +22,12 @@ namespace _3DMapleSystem.Data.Migrations
 
         protected override void Seed(_3DMapleSystemDbContext context)
         {
+            var allModels = context.PolyModels;
+            foreach (var model in allModels)
+            {
+                context.PolyModels.Remove(model);
+                context.SaveChanges();
+            }
 
             if (context.Users.FirstOrDefault(u => u.Email == "yabalcho@bg.bg") == null)
             {
