@@ -5,26 +5,32 @@ using _3DMapleSystem.Data;
 using _3DMapleSystem.Web.ViewModels;
 using AutoMapper.QueryableExtensions;
 using _3DMapleSystem.Web.ViewModels.PolyModels;
+using _3DMapleSystem.Web.Infrastructure.Popularizers;
 
 namespace _3DMapleSystem.Web.Controllers
 {
     public class HomeController : BaseController
     {
-        public HomeController(_3DMapleSystemData data)
+        private IListPopulator populator;
+
+        public HomeController(_3DMapleSystemData data, IListPopulator categories)
             : base(data)
         {
+            this.populator = categories;
         }
 
         public ActionResult Index()
         {
             var homePageModel = new HomePageViewModel();
 
-            homePageModel.Categories = this.Data.Categories
-                .All()
+            homePageModel.Categories = this.populator.GetCategories()
+                .AsQueryable()
+                .Project()
+                .To<CategoryViewModel>()
                 .ToList();
 
-            homePageModel.PolyModels = this.Data.PolyModels
-                .All()
+            homePageModel.PolyModels = this.populator.GetPolyModels()
+                .AsQueryable()
                 .OrderByDescending(m => m.CreatedOn)
                 .Project()
                 .To<SimplePolyModelViewModel>()

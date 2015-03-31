@@ -55,12 +55,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionResult\StandardJsonResult.cs" />
+    <Compile Include="Caching\ICacheService.cs" />
+    <Compile Include="Caching\InMemoryCache.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\IMapFrom.cs" />
+    <Compile Include="Popularizers\IListPopulator.cs" />
+    <Compile Include="Popularizers\ListPopulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\3DMapleSystem.Data\3DMapleSystem.Data.csproj">
+      <Project>{9580439f-98cf-4cf3-86f2-e7cd5bf88b4b}</Project>
+      <Name>3DMapleSystem.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\3DMapleSystem.Data.Common\3DMapleSystem.Data.Common.csproj">
+      <Project>{f705fe7c-9c20-4efe-9771-f1866bb69cea}</Project>
+      <Name>3DMapleSystem.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\3DMapleSystem.Data.Models\3DMapleSystem.Data.Models.csproj">
+      <Project>{8C9FADA4-C897-42C9-BE1A-EBADC4586001}</Project>
+      <Name>3DMapleSystem.Data.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

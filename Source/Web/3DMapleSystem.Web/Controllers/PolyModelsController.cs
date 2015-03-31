@@ -117,7 +117,7 @@ namespace _3DMapleSystem.Web.Controllers
 
                 this.Data.PolyModels.Add(newPolyModel);
                 this.Data.SaveChanges();
-                TempData["Success"] = "A new 3D model '" + newPolyModel.Title + "' was created";
+                TempData["Success"] = "Successfully uploaded model with title '" + newPolyModel.Title + "'. Expect approval by administrator.";
                 return RedirectToAction("Index", "Home");
             }
 

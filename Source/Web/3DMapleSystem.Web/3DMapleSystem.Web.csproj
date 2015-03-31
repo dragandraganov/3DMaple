@@ -220,7 +220,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\ComplexModels\PolyModelComplexViewModel.cs" />
-    <Compile Include="ViewModels\HomePageModel.cs" />
+    <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\PolyModels\FullPolyModelViewModel.cs" />
     <Compile Include="ViewModels\PolyModels\SimplePolyModelViewModel.cs" />
     <Compile Include="ViewModels\StyleViewModel.cs" />

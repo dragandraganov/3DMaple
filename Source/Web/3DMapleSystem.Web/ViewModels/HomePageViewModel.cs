@@ -10,7 +10,7 @@ namespace _3DMapleSystem.Web.ViewModels
     public class HomePageViewModel
     {
 
-        public IList<Category> Categories { get; set; }
+        public IList<CategoryViewModel> Categories { get; set; }
 
         public IList<SimplePolyModelViewModel> PolyModels { get; set; }
     }

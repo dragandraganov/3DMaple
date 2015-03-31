@@ -12,6 +12,8 @@ namespace _3DMapleSystem.Web.App_Start
     using Ninject.Web.Common;
     using System.Data.Entity;
     using _3DMapleSystem.Data;
+    using _3DMapleSystem.Web.Infrastructure.Popularizers;
+    using _3DMapleSystem.Web.Infrastructure.Caching;
 
     public static class NinjectWebCommon 
     {
@@ -64,6 +66,9 @@ namespace _3DMapleSystem.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<DbContext>().To<_3DMapleSystemDbContext>();
+            kernel.Bind<I3DMapleSystemData>().To<_3DMapleSystemData>();
+            kernel.Bind<IListPopulator>().To<ListPopulator>();
+            kernel.Bind<ICacheService>().To<InMemoryCache>();
         }        
     }
 }
