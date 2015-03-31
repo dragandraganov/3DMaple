@@ -1,0 +1,15 @@
+﻿@using _3DMapleSystem.Web.ViewModels.PolyModels;
+@model IEnumerable<SimplePolyModelViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-md-9">
+        @foreach (var model in Model)
+        {
+            @Html.Partial("_SimplePolyModel", model)
+        }
+    </div>
+</div>
+

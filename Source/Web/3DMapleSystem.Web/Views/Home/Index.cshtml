@@ -11,14 +11,14 @@
         {
             var category = Model.Categories[cat];
             <div class="col-md-2 pull-left category-box">
-                <a href="#" class="category-title">
+                <a href="\Categories\Index\@category.Id" class="category-title">
                     <p><big>@category.Name</big></p>
                 </a>
                 <div class="row">
                     @foreach (var subCategory in category.SubCategories)
                     {
                         <div class="col-md-12">
-                            <a href="#">@subCategory.Name</a>
+                            <a href="\Subcategories\Index\@subCategory.Id">@subCategory.Name</a>
                         </div>
                     }
 

@@ -6,10 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
+using _3DMapleSystem.Common;
+using System.IO;
 
 namespace _3DMapleSystem.Web.ViewModels.PolyModels
 {
-    public class FullPolyModelViewModel : IMapFrom<PolyModel>, IHaveCustomMappings
+    public class FullPolyModelViewModel : IMapFrom<PolyModel>, IHaveCustomMappings, IValidatableObject
     {
         public Guid Id { get; set; }
 
@@ -78,6 +80,35 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
         public DateTime? DeletedOn { get; set; }
 
         public IList<GroupedSelectListItem> SubCategories { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (this.UploadedPreview == null || this.UploadedPreview.ContentLength == 0)
+            {
+                yield return new ValidationResult("The preview is required.", new[] { "UploadedPreview" });
+            }
+
+            else if (!GlobalConstants.ValidPreviewTypes.Contains(this.UploadedPreview.ContentType))
+            {
+                yield return new ValidationResult("Please choose JPG/JPEG file for preview.", new[] { "UploadedPreview" });
+            }
+
+            else if (this.UploadedPreview.ContentLength > GlobalConstants.MaxPreviewFileLength)
+            {
+                yield return new ValidationResult("Preview file must be maximum 1MB", new[] { "UploadedPreview" });
+            }
+
+            if (Path.GetExtension(this.Uploaded3DModel.FileName).ToLower() != ".rar"
+                && Path.GetExtension(this.Uploaded3DModel.FileName).ToLower() != ".zip")
+            {
+                yield return new ValidationResult("Incorrect model file format - must be .zip or .rar format", new[] { "Uploaded3DModel" });
+                
+            }
+            else if (this.Uploaded3DModel.ContentLength > GlobalConstants.Max3DModelFileLength)
+            {
+                yield return new ValidationResult("3D Model file must be maximum 50MB", new[] { "Uploaded3DModel" });
+            }
+        }
 
         public void CreateMappings(IConfiguration configuration)
         {
