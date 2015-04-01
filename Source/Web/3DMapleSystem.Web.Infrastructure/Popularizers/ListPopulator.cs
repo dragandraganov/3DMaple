@@ -41,11 +41,17 @@ namespace _3DMapleSystem.Web.Infrastructure.Popularizers
                 {
                     return this.data.PolyModels
                        .All()
-                       .Where(pm=>pm.IsApproved)
+                       .Where(pm => pm.IsApproved)
                        .ToList();
                 });
 
             return polyModels;
+        }
+
+        public IEnumerable<AppFile> GetPreviews()
+        {
+            var previews = this.GetPolyModels().Select(pm => pm.Preview);
+            return previews;
         }
     }
 }

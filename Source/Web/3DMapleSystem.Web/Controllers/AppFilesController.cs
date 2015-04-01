@@ -3,14 +3,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using _3DMapleSystem.Data;
+using _3DMapleSystem.Web.Infrastructure.Popularizers;
 
 namespace _3DMapleSystem.Web.Controllers
 {
     public class AppFilesController : BaseController
     {
-        public AppFilesController(_3DMapleSystemData data)
+        private IListPopulator populator;
+
+        public AppFilesController(_3DMapleSystemData data,IListPopulator populator)
             : base(data)
         {
+            this.populator = populator;
         }
 
         // GET: Images

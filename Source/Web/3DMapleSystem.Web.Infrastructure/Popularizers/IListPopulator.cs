@@ -10,5 +10,8 @@ namespace _3DMapleSystem.Web.Infrastructure.Popularizers
         IEnumerable<Category> GetCategories();
 
         IEnumerable<PolyModel> GetPolyModels();
+
+        IEnumerable<AppFile> GetPreviews();
+
     }
 }

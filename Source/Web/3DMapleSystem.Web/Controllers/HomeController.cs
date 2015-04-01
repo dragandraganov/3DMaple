@@ -13,10 +13,10 @@ namespace _3DMapleSystem.Web.Controllers
     {
         private IListPopulator populator;
 
-        public HomeController(_3DMapleSystemData data, IListPopulator categories)
+        public HomeController(_3DMapleSystemData data, IListPopulator populator)
             : base(data)
         {
-            this.populator = categories;
+            this.populator = populator;
         }
 
         public ActionResult Index()

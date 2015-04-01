@@ -126,7 +126,7 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
                 this.Data.PolyModels.Update(existingPolyModel);
                 this.Data.SaveChanges();
 
-                TempData["Success"] = "The model '" + complexModel.PolyModel.Title + "' was hard deleted";
+                TempData["Success"] = "The model '" + complexModel.PolyModel.Title + "' was edited";
                 return RedirectToAction("Index", "PolyModels");
             }
 
