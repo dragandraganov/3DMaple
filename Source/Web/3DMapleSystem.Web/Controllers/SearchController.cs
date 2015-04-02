@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using _3DMapleSystem.Web.ViewModels.PolyModels;
+using _3DMapleSystem.Web.ViewModels.ComplexModels;
+using _3DMapleSystem.Web.ViewModels;
 
 namespace _3DMapleSystem.Web.Controllers
 {
@@ -22,17 +24,29 @@ namespace _3DMapleSystem.Web.Controllers
         // GET: Search
         public ActionResult Index(string query)
         {
+            var complexModel = new SearchComplexViewModel();
+
             var tagsMatchQuery = this.populizer.GetTags()
-                .Where(t => t.Name.StartsWith(query));
+                .Where(t => t.Name.StartsWith(query)).Select(tag => tag.Name);
 
             var polyModels = this.populizer.GetPolyModels()
-                .Where(pm=>pm.Tags.Intersect(tagsMatchQuery).Any())
-                .AsQueryable()
+                .Where(pm => pm.Tags.Select(tag => tag.Name).Intersect(tagsMatchQuery).Any())
+                .AsQueryable();
+
+            complexModel.PolyModels = polyModels
                 .Project()
                 .To<SimplePolyModelViewModel>()
                 .ToList();
 
-            return View(polyModels);
+            complexModel.SubCategories = polyModels
+                .Select(pm => pm.SubCategory)
+                .GroupBy(sc => sc.Id)
+                .Select(grp => grp.First())
+                .Project()
+                .To<SubCategoryViewModel>()
+                .ToList();
+
+            return View(complexModel);
         }
     }
 }

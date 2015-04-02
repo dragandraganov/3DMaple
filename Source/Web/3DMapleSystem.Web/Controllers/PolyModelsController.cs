@@ -7,6 +7,7 @@ using _3DMapleSystem.Web.ViewModels.ComplexModels;
 using AutoMapper.QueryableExtensions;
 using _3DMapleSystem.Data.Models;
 using System.IO;
+using _3DMapleSystem.Common;
 
 namespace _3DMapleSystem.Web.Controllers
 {
@@ -53,16 +54,16 @@ namespace _3DMapleSystem.Web.Controllers
                 //TODO remove in production mode - change the logic
                 var rank = new ModelRank();
 
-                if (this.Data.ModelRanks.All().Count() == 0 || this.Data.ModelRanks.All().FirstOrDefault(r => r.Name == "free") == null)
+                if (this.Data.ModelRanks.All().Count() == 0 || this.Data.ModelRanks.All().FirstOrDefault(r => r.Name == GlobalConstants.defaultRank) == null)
                 {
-                    rank.Name = "free";
+                    rank.Name = GlobalConstants.defaultRank;
                     this.Data.ModelRanks.Add(rank);
                     this.Data.SaveChanges();
                 }
 
                 else
                 {
-                    rank = this.Data.ModelRanks.All().FirstOrDefault(r => r.Name == "free");
+                    rank = this.Data.ModelRanks.All().FirstOrDefault(r => r.Name == GlobalConstants.defaultRank);
                 }
 
                 newPolyModel.Rank = rank;

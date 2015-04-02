@@ -25,6 +25,10 @@ textarea {
     max-width: 280px;
 }
 
+ul {
+    list-style-type: none;
+}
+
 #author-sign {
     font-size: 0.8em;
 }
@@ -132,7 +136,7 @@ textarea {
 
 .navbar-input-group {
     font-size: 0px; /*removes whitespace between button and input*/
-    overflow:visible;
+    overflow: visible;
 }
 
     .navbar-input-group input {
@@ -148,19 +152,18 @@ textarea {
 
 #tags-dropdown {
     font-size: initial;
-    border:1px solid gray;
+    border: 1px solid gray;
 }
 
-.navbar-collapse{
-    overflow:visible;
+.navbar-collapse {
+    overflow: visible;
 }
 
-.container{
-    overflow:visible;
-
+.container {
+    overflow: visible;
 }
 
-.navbar{
-    overflow:visible;
-    height:60px;
+.navbar {
+    overflow: visible;
+    height: 60px;
 }
