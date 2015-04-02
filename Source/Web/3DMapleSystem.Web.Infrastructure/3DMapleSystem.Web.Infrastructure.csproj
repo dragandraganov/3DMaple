@@ -61,8 +61,8 @@
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\IMapFrom.cs" />
-    <Compile Include="Popularizers\IListPopulator.cs" />
-    <Compile Include="Popularizers\ListPopulator.cs" />
+    <Compile Include="Popularizers\IListPopulizer.cs" />
+    <Compile Include="Popularizers\ListPopulizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

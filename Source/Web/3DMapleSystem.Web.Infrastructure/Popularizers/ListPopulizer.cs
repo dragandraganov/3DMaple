@@ -1,4 +1,5 @@
-﻿using _3DMapleSystem.Data;
+﻿using System.Web.Mvc;
+using _3DMapleSystem.Data;
 using _3DMapleSystem.Data.Models;
 using _3DMapleSystem.Web.Infrastructure.Caching;
 using System;
@@ -10,12 +11,12 @@ using AutoMapper.QueryableExtensions;
 
 namespace _3DMapleSystem.Web.Infrastructure.Popularizers
 {
-    public class ListPopulator : IListPopulator
+    public class ListPopulizer : IListPopulizer
     {
         private I3DMapleSystemData data;
         private ICacheService cache;
 
-        public ListPopulator(I3DMapleSystemData data, ICacheService cache)
+        public ListPopulizer(I3DMapleSystemData data, ICacheService cache)
         {
             this.data = data;
             this.cache = cache;
@@ -52,6 +53,19 @@ namespace _3DMapleSystem.Web.Infrastructure.Popularizers
         {
             var previews = this.GetPolyModels().Select(pm => pm.Preview);
             return previews;
+        }
+
+        public IEnumerable<Tag> GetTags()
+        {
+            var tags = this.cache.Get<IEnumerable<Tag>>("tags",
+                () =>
+                {
+                    return this.data.Tags
+                        .All()
+                        .ToList();
+                });
+
+            return tags;
         }
     }
 }

@@ -67,7 +67,7 @@ namespace _3DMapleSystem.Web.App_Start
         {
             kernel.Bind<DbContext>().To<_3DMapleSystemDbContext>();
             kernel.Bind<I3DMapleSystemData>().To<_3DMapleSystemData>();
-            kernel.Bind<IListPopulator>().To<ListPopulator>();
+            kernel.Bind<IListPopulizer>().To<ListPopulizer>();
             kernel.Bind<ICacheService>().To<InMemoryCache>();
         }        
     }

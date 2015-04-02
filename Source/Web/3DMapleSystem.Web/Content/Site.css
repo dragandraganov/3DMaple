@@ -2,7 +2,7 @@
     padding-top: 70px;
     padding-bottom: 20px;
     font: normal 12px Arial,Helvetica,sans-serif;
-    min-width:750px;
+    min-width: 750px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -118,29 +118,49 @@ textarea {
     background-color: #ededed;
 }
 
-.menu-link{
-    color:rgb(255, 78, 0);
+.menu-link {
+    color: rgb(255, 78, 0);
 }
 
-.icon-bar{
-    background-color:black;
+.icon-bar {
+    background-color: black;
 }
 
-.category-box{
-    min-width:140px;
+.category-box {
+    min-width: 140px;
 }
 
 .navbar-input-group {
-  font-size: 0px; /*removes whitespace between button and input*/
+    font-size: 0px; /*removes whitespace between button and input*/
+    overflow:visible;
 }
 
-.navbar-input-group input {
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
+    .navbar-input-group input {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    .navbar-input-group .btn {
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-left: 0px;
+    }
+
+#tags-dropdown {
+    font-size: initial;
+    border:1px solid gray;
 }
 
-.navbar-input-group .btn {
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  border-left: 0px;
+.navbar-collapse{
+    overflow:visible;
+}
+
+.container{
+    overflow:visible;
+
+}
+
+.navbar{
+    overflow:visible;
+    height:60px;
 }

@@ -9,9 +9,9 @@ namespace _3DMapleSystem.Web.Controllers
 {
     public class AppFilesController : BaseController
     {
-        private IListPopulator populator;
+        private IListPopulizer populator;
 
-        public AppFilesController(_3DMapleSystemData data,IListPopulator populator)
+        public AppFilesController(_3DMapleSystemData data,IListPopulizer populator)
             : base(data)
         {
             this.populator = populator;
