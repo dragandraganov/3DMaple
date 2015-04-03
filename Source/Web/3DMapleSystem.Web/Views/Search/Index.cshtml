@@ -8,7 +8,7 @@
 
 <h3>Search results '@ViewBag.SearchQuery'</h3>
 <br />
-<h5>3d Models (@Model.PolyModels.Count())</h5>
+<h5>3d Models (<span id="models-counter">@Model.PolyModels.Count()</span>)</h5>
 <hr />
 
 <div class="row">
@@ -19,7 +19,8 @@
         }
     </div>
     <div class="col-md-3">
-        <ul>
+        Select category
+        <ul class="subcategory-list">
             @foreach (var subcategory in Model.SubCategories)
             {
                 @Html.Partial("_SubCategoryInList", subcategory)

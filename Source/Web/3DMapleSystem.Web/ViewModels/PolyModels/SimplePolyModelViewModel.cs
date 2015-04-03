@@ -17,6 +17,8 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
 
         public string RankName { get; set; }
 
+        public int SubCategoryId { get; set; }
+
         public int CommentsCount { get; set; }
 
         public int DownloadedByUsersCount { get; set; }
