@@ -2,7 +2,7 @@
 @model SimplePolyModelViewModel
 
 <div class="model-item model-item-@Model.Id model-subcategory-@Model.SubCategoryId">
-    <a href="#" rel="@Model.Title" class="model-item-link">
+    <a href="\PolyModels\Details\@Model.Id" rel="@Model.Title" class="model-item-link">
         <figure>
             <img src="@Url.Action("GetPreview", "AppFiles", new {id = Model.PreviewId.Value })" alt="@Model.Title" class="img-responsive form-control-sm model-simple-img" />
             <figcaption class="model-title">

@@ -224,6 +224,7 @@
     <Compile Include="ViewModels\ComplexModels\SearchComplexViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\PolyModels\FullPolyModelViewModel.cs" />
+    <Compile Include="ViewModels\PolyModels\PolyModelDetailsViewModel.cs" />
     <Compile Include="ViewModels\PolyModels\SimplePolyModelViewModel.cs" />
     <Compile Include="ViewModels\StyleViewModel.cs" />
     <Compile Include="ViewModels\SubCategoryViewModel.cs" />
@@ -342,6 +343,7 @@
     <Content Include="Views\Shared\_Search.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Shared\_SubCategoryInList.cshtml" />
+    <Content Include="Views\PolyModels\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,6 +8,7 @@ using AutoMapper.QueryableExtensions;
 using _3DMapleSystem.Data.Models;
 using System.IO;
 using _3DMapleSystem.Common;
+using _3DMapleSystem.Web.ViewModels.PolyModels;
 
 namespace _3DMapleSystem.Web.Controllers
 {
@@ -125,6 +126,17 @@ namespace _3DMapleSystem.Web.Controllers
             AttachPropertiesToComplexModel(complexModel);
 
             return View(complexModel);
+        }
+
+        public ActionResult Details(Guid id)
+        {
+            var polyModel = this.Data.PolyModels
+                .All()
+                .Where(pm => pm.Id == id).Project()
+                .To<PolyModelDetailsViewModel>()
+                .FirstOrDefault();
+
+            return View(polyModel);
         }
 
         private void AttachPropertiesToComplexModel(PolyModelComplexViewModel model)

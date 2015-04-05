@@ -21,19 +21,17 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
         [Required]
         public string Description { get; set; }
 
+        public int? PreviewId { get; set; }
+
         //public string ModelUrl { get; set; }
 
         //public virtual AppFile Preview { get; set; }
-
-        public int CategoryId { get; set; }
-
-        public string CategoryName { get; set; }
 
         public int SubCategoryId { get; set; }
 
         public string SubCategoryName { get; set; }
 
-        public int RankId { get; set; }
+        public int? RankId { get; set; }
 
         public string RankName { get; set; }
 
@@ -41,9 +39,9 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
 
         public string StyleName { get; set; }
 
-        public int PlatformId { get; set; }
+        //public int PlatformId { get; set; }
 
-        public string PlatformName { get; set; }
+        //public string PlatformName { get; set; }
 
         public int SubPlatformId { get; set; }
 
@@ -114,9 +112,7 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
         {
             configuration.CreateMap<PolyModel, FullPolyModelViewModel>()
                 .ForMember(m => m.SubCategoryName, opt => opt.MapFrom(t => t.SubCategory.Name))
-                .ForMember(m => m.CategoryName, opt => opt.MapFrom(t => t.SubCategory.Category.Name))
                 .ForMember(m => m.SubPlatformName, opt => opt.MapFrom(t => t.SubPlatform.Name))
-                .ForMember(m => m.PlatformName, opt => opt.MapFrom(t => t.SubPlatform.Platform.Name))
                 .ForMember(m => m.StyleName, opt => opt.MapFrom(t => t.Style.Name))
                 .ForMember(m => m.RankName, opt => opt.MapFrom(t => t.Rank.Name))
                 .ForMember(m => m.AuthorName, opt => opt.MapFrom(t => t.Author.UserName))

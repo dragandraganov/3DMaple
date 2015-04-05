@@ -1,0 +1,25 @@
+﻿@using _3DMapleSystem.Web.ViewModels.PolyModels
+@model PolyModelDetailsViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9" >
+            @if (Model.PreviewId != null)
+            {
+                <img style="float:left" src="@Url.Action("GetPreview", 
+                "AppFiles", new { area = string.Empty, id = Model.PreviewId.Value })" 
+                     alt="@Model.Title image" class="img-responsive img-big img-thumbnail" />
+            }
+            else
+            {
+                <span class="form-control">No preview</span>
+            }
+        </div>
+        <div class="col-md-2">
+            <p>@Model.SubPlatformName</p>
+            <p>@Model.CreatedOn</p>
+            <p>@Model.StyleName</p>
+            <p>@String.Join(", ", Model.Tags)</p>
+        </div>
+    </div>
+</div>

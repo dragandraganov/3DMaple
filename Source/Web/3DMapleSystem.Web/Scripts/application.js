@@ -32,6 +32,25 @@
         var countShownModels = $('.model-item:visible').size();
         $('#models-counter').text(countShownModels);
     })
+
+    $('.rowspan').each(function () {
+        var that = $(this);
+        var classNames = $(this).attr('class').split(' ');
+        $.each(classNames, function (index, item) {
+            // Find class that starts with btn-
+            if (item.indexOf("rowspan-") === 0) {
+                var numberOfRows = item.split('-')[1];
+                console.log(that);
+                var template = that.next().find('.col-template').first();
+                var templateHeight = template.height();
+                var height = numberOfRows * templateHeight;
+                console.log(height);
+                console.log(that);
+                // Store it
+                that.height(height);
+            }
+        });
+    })
 })
 
 $.fn.clearSelect = function () {
