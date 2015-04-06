@@ -50,6 +50,8 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
 
         public string AuthorName { get; set; }
 
+        public int AuthorPhotoId { get; set; }
+
         public bool IsApproved { get; set; }
 
         public int DownloadedByUsersCount { get; set; }
@@ -84,6 +86,7 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
                 .ForMember(m => m.AuthorName, opt => opt.MapFrom(t => t.Author.UserName))
                 .ForMember(m => m.DownloadedByUsersCount, opt => opt.MapFrom(t => t.DownloadedByUsers.Count))
                 .ForMember(m => m.Tags, opt => opt.MapFrom(m => m.Tags.Select(t => t.Name)))
+                .ForMember(m => m.AuthorPhotoId, opt => opt.MapFrom(m => m.Author.PhotoId))
                 .ReverseMap();
         }
     }

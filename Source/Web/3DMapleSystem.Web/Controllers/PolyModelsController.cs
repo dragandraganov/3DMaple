@@ -140,8 +140,6 @@ namespace _3DMapleSystem.Web.Controllers
 
             complexModel.PolyModel = Mapper.Map<PolyModelDetailsViewModel>(polyModel);
 
-            complexModel.User = Mapper.Map<UserViewModel>(this.UserProfile);
-
             if (polyModel.File3DModel.Size == null)
             {
                 complexModel.SizeOfFileModel = String.Format("{0:0.00}", 0);

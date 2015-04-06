@@ -30,6 +30,7 @@
     columns.Add(model => model.Title).Filterable(true).Sortable(true);
     columns.Add(model => model.CategoryName).Titled("Category").Filterable(true).Sortable(true);
     columns.Add(model => model.AuthorName).Titled("Author").Filterable(true).Sortable(true);
+    columns.Add(model => model.ApprovedDisplay).Titled("Approved").Filterable(true).Sortable(true);
     columns.Add()
         .Sanitized(false)
         .Encoded(false)
