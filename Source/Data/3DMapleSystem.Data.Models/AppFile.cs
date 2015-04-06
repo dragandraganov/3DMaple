@@ -7,8 +7,17 @@ namespace _3DMapleSystem.Data.Models
 {
     public class AppFile : IAuditInfo, IDeletableEntity
     {
+        public AppFile()
+        {
+            this.CreatedOn = DateTime.Now;
+        }
+
         [Key]
         public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public int? Size { get; set; }
 
         public byte[] Content { get; set; }
 

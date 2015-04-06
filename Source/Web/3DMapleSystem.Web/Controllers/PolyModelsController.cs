@@ -9,6 +9,7 @@ using _3DMapleSystem.Data.Models;
 using System.IO;
 using _3DMapleSystem.Common;
 using _3DMapleSystem.Web.ViewModels.PolyModels;
+using AutoMapper;
 
 namespace _3DMapleSystem.Web.Controllers
 {
@@ -77,7 +78,8 @@ namespace _3DMapleSystem.Web.Controllers
                     newPolyModel.File3DModel = new AppFile
                     {
                         Content = content,
-                        FileExtension = complexModel.PolyModel.Uploaded3DModel.FileName.Split(new[] { '.' }).Last()
+                        FileExtension = complexModel.PolyModel.Uploaded3DModel.FileName.Split(new[] { '.' }).Last(),
+                        Size = complexModel.PolyModel.Uploaded3DModel.ContentLength
                     };
                 }
 
@@ -89,11 +91,11 @@ namespace _3DMapleSystem.Web.Controllers
                     newPolyModel.Preview = new AppFile
                     {
                         Content = content,
-                        FileExtension = complexModel.PolyModel.UploadedPreview.FileName.Split(new[] { '.' }).Last()
+                        FileExtension = complexModel.PolyModel.UploadedPreview.FileName.Split(new[] { '.' }).Last(),
                     };
                 }
 
-                var tags = complexModel.PolyModel.Tags.Split(new char[] { ',',' ' }, StringSplitOptions.RemoveEmptyEntries);
+                var tags = complexModel.PolyModel.Tags.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
                 foreach (var tag in tags)
                 {
@@ -130,13 +132,27 @@ namespace _3DMapleSystem.Web.Controllers
 
         public ActionResult Details(Guid id)
         {
+            var complexModel = new DetailsComplexModel();
+
             var polyModel = this.Data.PolyModels
                 .All()
-                .Where(pm => pm.Id == id).Project()
-                .To<PolyModelDetailsViewModel>()
-                .FirstOrDefault();
+                .FirstOrDefault(pm => pm.Id == id);
 
-            return View(polyModel);
+            complexModel.PolyModel = Mapper.Map<PolyModelDetailsViewModel>(polyModel);
+
+            complexModel.User = Mapper.Map<UserViewModel>(this.UserProfile);
+
+            if (polyModel.File3DModel.Size == null)
+            {
+                complexModel.SizeOfFileModel = String.Format("{0:0.00}", 0);
+            }
+
+            else
+            {
+                complexModel.SizeOfFileModel = String.Format("{0:0.00}", (double)polyModel.File3DModel.Size.Value / (1024 * 1024));
+            }
+
+            return View(complexModel);
         }
 
         private void AttachPropertiesToComplexModel(PolyModelComplexViewModel model)

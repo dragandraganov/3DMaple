@@ -1,5 +1,6 @@
 namespace _3DMapleSystem.Data.Migrations
 {
+    using System.Web;
     using _3DMapleSystem.Common;
     using _3DMapleSystem.Data.Models;
     using Microsoft.AspNet.Identity;
@@ -7,6 +8,7 @@ namespace _3DMapleSystem.Data.Migrations
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.IO;
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<_3DMapleSystem.Data._3DMapleSystemDbContext>
@@ -22,6 +24,8 @@ namespace _3DMapleSystem.Data.Migrations
 
         protected override void Seed(_3DMapleSystemDbContext context)
         {
+
+            //Add manager
             if (context.Users.FirstOrDefault(u => u.Email == "yabalcho@bg.bg") == null)
             {
                 this.userManager = new UserManager<User>(new UserStore<User>(context));
@@ -41,6 +45,34 @@ namespace _3DMapleSystem.Data.Migrations
                 context.SaveChanges();
             }
 
+            //Create Default Image
+            if (context.AppFiles.FirstOrDefault(f=>f.Name=="Default")==null)
+            {
+                this.AddDefaultImage(context);
+            }
+        }
+
+        private void AddDefaultImage(_3DMapleSystemDbContext context)
+        {
+            using (var memory = new MemoryStream())
+            {
+                string path = HttpContext.Current.Server.MapPath(GlobalConstants.PathDefaultImage);
+
+                using (var file = new FileStream(path, FileMode.Open))
+                {
+                    file.CopyTo(memory);
+                    var content = memory.GetBuffer();
+                    var defaultImage = new AppFile
+                    {
+                        Content = content,
+                        FileExtension = "png",
+                        Name="Default"
+                    };
+
+                    context.AppFiles.Add(defaultImage);
+                    context.SaveChanges();
+                }
+            }
         }
     }
 }

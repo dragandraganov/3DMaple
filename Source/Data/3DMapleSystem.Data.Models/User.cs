@@ -1,12 +1,14 @@
-﻿using _3DMapleSystem.Data.Common.Models;
+﻿using _3DMapleSystem.Common;
+using _3DMapleSystem.Data.Common.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace _3DMapleSystem.Data.Models
 {
@@ -20,6 +22,10 @@ namespace _3DMapleSystem.Data.Models
             this.DownloadedPolyModels = new HashSet<PolyModel>();
             this.Comments=new HashSet<Comment>();
         }
+
+        public int? PhotoId { get; set; }
+
+        public virtual AppFile Photo { get; set; }
 
         public virtual ICollection<PolyModel> OwnPolyModels { get; set; }
 

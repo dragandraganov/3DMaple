@@ -220,6 +220,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\ComplexModels\DetailsComplexModel.cs" />
     <Compile Include="ViewModels\ComplexModels\PolyModelComplexViewModel.cs" />
     <Compile Include="ViewModels\ComplexModels\SearchComplexViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
@@ -229,12 +230,15 @@
     <Compile Include="ViewModels\StyleViewModel.cs" />
     <Compile Include="ViewModels\SubCategoryViewModel.cs" />
     <Compile Include="ViewModels\SubPlatformViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.icon-large.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Gridmvc.css" />
     <Content Include="Content\Images\favicon.ico" />
+    <Content Include="Content\Images\defaultPhoto.jpg" />
     <Content Include="Content\Images\LogoRender.png" />
     <Content Include="Content\Images\TransparentHover45.png" />
     <Content Include="favicon.ico" />

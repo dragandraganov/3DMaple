@@ -5,6 +5,8 @@ namespace _3DMapleSystem.Common
 {
     public class GlobalConstants
     {
+        public const string PathDefaultImage = "~/Content/Images/defaultPhoto.jpg";
+
         public const string AdminRole = "Admin";
 
         //public const string ValidPreviewType = "image/jpeg";
