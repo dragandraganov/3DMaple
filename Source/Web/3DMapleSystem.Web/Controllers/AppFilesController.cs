@@ -30,7 +30,7 @@ namespace _3DMapleSystem.Web.Controllers
 
             if (file.FileExtension=="rar" || file.FileExtension=="zip")
             {
-                throw new HttpException(404, "You have no permission");
+                throw new HttpException(403, "You have no permission");
             }
 
             if (file == null)
