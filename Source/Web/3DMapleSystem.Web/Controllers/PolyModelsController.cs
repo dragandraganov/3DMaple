@@ -79,7 +79,8 @@ namespace _3DMapleSystem.Web.Controllers
                     {
                         Content = content,
                         FileExtension = complexModel.PolyModel.Uploaded3DModel.FileName.Split(new[] { '.' }).Last(),
-                        Size = complexModel.PolyModel.Uploaded3DModel.ContentLength
+                        Size = complexModel.PolyModel.Uploaded3DModel.ContentLength,
+                        OriginalName = complexModel.PolyModel.Uploaded3DModel.FileName.Split(new[] { '.' }).First()
                     };
                 }
 

@@ -56,6 +56,8 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
 
         public int DownloadedByUsersCount { get; set; }
 
+        public int? File3DModelId { get; set; }
+
         public int? PreviewId { get; set; }
 
         //[DataType(DataType.Upload)]

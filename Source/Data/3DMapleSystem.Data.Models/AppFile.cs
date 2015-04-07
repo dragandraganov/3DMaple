@@ -15,7 +15,9 @@ namespace _3DMapleSystem.Data.Models
         [Key]
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string OriginalName { get; set; }
+
+        public string NameInDb { get; set; }
 
         public int? Size { get; set; }
 

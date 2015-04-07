@@ -10,7 +10,7 @@
             </a>
         </div>
         <h4 class="mb10 pt5">
-            <span class="rank-name mr10">@Model.PolyModel.RankName</span>
+            <span class="rank-name rank-name-@Model.PolyModel.RankName mr10">@Model.PolyModel.RankName</span>
             <span>@Model.PolyModel.Title </span>
         </h4>
         <h4>
@@ -39,7 +39,7 @@
             <p title="Platform"><span class="glyphicon glyphicon-cog mr10"></span>@Model.PolyModel.SubPlatformName</p>
             <p title="Added On"><span class="glyphicon glyphicon-time mr10"></span>@Model.PolyModel.CreatedOn</p>
             <p title="Style"><span class="glyphicon glyphicon-leaf mr10"></span>@Model.PolyModel.StyleName</p>
-            <p title="File Size"><span class="glyphicon glyphicon-compressed mr10"></span>@Model.SizeOfFileModel<span> MB</span></p>
+            <p title="3D Model File Size"><span class="glyphicon glyphicon-compressed mr10"></span>@Model.SizeOfFileModel<span> MB</span></p>
             <p title="Tags">
                 <span class="glyphicon glyphicon-tags mr10"></span>
                 @foreach (var tag in @Model.PolyModel.Tags)
@@ -53,6 +53,7 @@
             </p>
             <br />
             <p title="Description"><span class="glyphicon glyphicon-pencil mr10"></span>@Model.PolyModel.Description</p>
+            @Html.ActionLink("Download", "Download", "AppFiles", new { area = string.Empty, id = @Model.PolyModel.File3DModelId }, new { @class = "btn btn-lg btn-info" })
         </div>
     </div>
 </div>

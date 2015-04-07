@@ -46,7 +46,7 @@ namespace _3DMapleSystem.Data.Migrations
             }
 
             //Create Default Image
-            if (context.AppFiles.FirstOrDefault(f=>f.Name=="Default")==null)
+            if (context.AppFiles.FirstOrDefault(f=>f.NameInDb=="Default")==null)
             {
                 this.AddDefaultImage(context);
             }
@@ -66,7 +66,7 @@ namespace _3DMapleSystem.Data.Migrations
                     {
                         Content = content,
                         FileExtension = "png",
-                        Name="Default"
+                        NameInDb="Default"
                     };
 
                     context.AppFiles.Add(defaultImage);
