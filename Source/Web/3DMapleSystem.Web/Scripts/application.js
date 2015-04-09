@@ -69,9 +69,16 @@
 
 function downloadModel(url, modelId) {
     $.ajax({
-        url: url,
-        method:"POST",
-        data: {modelId:modelId}
+        url: this.href,
+        method: "GET",
+        data: [],
+        success: function () {
+            $.ajax({
+                url: url,
+                method: "POST",
+                data: { modelId: modelId }
+            })
+        }
     })
 }
 

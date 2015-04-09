@@ -28,7 +28,7 @@ namespace _3DMapleSystem.Web.Controllers
         {
             var file = this.Data.AppFiles.GetById(id);
 
-            if (file.FileExtension=="rar" || file.FileExtension=="zip")
+            if (file.FileExtension == "rar" || file.FileExtension == "zip")
             {
                 throw new HttpException(403, "You have no permission");
             }
@@ -42,16 +42,37 @@ namespace _3DMapleSystem.Web.Controllers
         }
 
         [Authorize(Roles = GlobalConstants.AdminRole)]
-        public ActionResult Download(int id)
+        public ActionResult Download(int id, Guid modelId)
         {
-            var file = this.Data.AppFiles.GetById(id);
 
-            if (file == null)
+            if (this.UserProfile == null || !this.HttpContext.User.IsInRole(GlobalConstants.AdminRole))
             {
-                throw new HttpException(404, "File not found");
+                return RedirectToAction("Login", "Account");
             }
 
-            return File(file.Content, "application/zip", file.OriginalName + "." + file.FileExtension);
+            var polyModel = this.Data.PolyModels
+            .All()
+            .FirstOrDefault(pm => pm.Id == modelId);
+
+            var rankName = polyModel.Rank.Name;
+
+            if ((rankName == "free" && this.UserProfile.AvailableFreeModels <= 0) || (rankName == "pro" && this.UserProfile.AvailableProModels <= 0))
+            {
+                TempData["Rank"] = rankName;
+                return RedirectToAction("Details", "PolyModels", new { polyModel.Id });
+            }
+
+            else
+            {
+                var file = this.Data.AppFiles.GetById(id);
+
+                if (file == null)
+                {
+                    throw new HttpException(404, "File not found");
+                }
+
+                return File(file.Content, "application/zip", file.OriginalName + "." + file.FileExtension);
+            }
         }
     }
 }

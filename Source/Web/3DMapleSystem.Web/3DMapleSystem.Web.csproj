@@ -355,6 +355,7 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Shared\_SubCategoryInList.cshtml" />
     <Content Include="Views\PolyModels\Details.cshtml" />
+    <Content Include="Views\Shared\_DownloadLimits.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

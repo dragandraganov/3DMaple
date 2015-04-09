@@ -156,14 +156,41 @@ namespace _3DMapleSystem.Web.Controllers
             return View(complexModel);
         }
 
-        public void DownloadSuccess(string modelId)
+        [Authorize(Roles = GlobalConstants.AdminRole)]
+        public ActionResult DownloadSuccess(string modelId)
         {
-            var polyModel = this.Data.PolyModels.All().FirstOrDefault(pm => pm.Id == new Guid(modelId));
-            var downloadModelUser = new DownloadedPolyModelsUsers();
-            downloadModelUser.PolyModel = polyModel;
-            downloadModelUser.User = this.UserProfile;
-            this.Data.ModelsUsers.Add(downloadModelUser);
-            this.Data.SaveChanges();
+            if (this.UserProfile != null)
+            {
+                var polyModel = this.Data.PolyModels
+                    .All()
+                    .FirstOrDefault(pm => pm.Id == new Guid(modelId));
+                var downloadModelUser = new DownloadedPolyModelsUsers();
+                downloadModelUser.PolyModel = polyModel;
+                downloadModelUser.User = this.UserProfile;
+
+                if (polyModel.Rank.Name == "free")
+                {
+                    if (this.UserProfile.AvailableFreeModels > 0)
+                    {
+                        this.UserProfile.AvailableFreeModels--;
+                    }
+                }
+
+                if (polyModel.Rank.Name == "pro")
+                {
+                    if (this.UserProfile.AvailableProModels > 0)
+                    {
+                        this.UserProfile.AvailableProModels--;
+                    }
+                }
+                this.Data.Users.Update(this.UserProfile);
+                this.Data.ModelsUsers.Add(downloadModelUser);
+                this.Data.SaveChanges();
+
+                return PartialView("_DownloadLimits");
+            }
+
+            return RedirectToAction("Login", "Account");
         }
 
         private void AttachPropertiesToComplexModel(PolyModelComplexViewModel model)

@@ -62,30 +62,52 @@
             <p title="Description"><span class="glyphicon glyphicon-pencil mr10"></span>@Model.PolyModel.Description</p>
             <hr />
             <div class="row">
-                <div class="col-md-5">
-                    @Html.ActionLink("Download", "Download", "AppFiles",
-                new { area = string.Empty, id = @Model.PolyModel.File3DModelId },
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="col-md-5">
+                        @Html.ActionLink("Download", "Download", "AppFiles",
+                new { area = string.Empty, id = @Model.PolyModel.File3DModelId, modelId=@Model.PolyModel.Id },
                 new
                     {
                         @class = "btn btn-sm btn-info btn-download-model",
                         onclick = string.Format("downloadModel('" + @Url.Action("DownloadSuccess", "PolyModels") + "','{0}')", @Model.PolyModel.Id)
                     })
-                </div>
-                <div class="col-md-6">
-                    @Html.ActionLink("Add to favorites", "AddToFavorties", "PolyModels",
+                    </div>
+                    <div class="col-md-6">
+                        @Html.ActionLink("Add to favorites", "AddToFavorties", "PolyModels",
                 new { area = string.Empty, id = @Model.PolyModel.Id },
                 new
                     {
                         @class = "btn btn-sm btn-default btn-favorites-model pull-left",
                     })
-                </div>
+                    </div>
+                }
+
+
+                else
+                {
+                    <div class="col-md-5">
+                        @Html.ActionLink("Download", "Login", "Account", null, 
+                        new
+                    {
+                        @class = "btn btn-sm btn-info btn-download-model"
+                    })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.ActionLink("Add to favorites", "Login", "Account", null, 
+                        new
+                    {
+                        @class = "btn btn-sm btn-default btn-favorites-model pull-left",
+                    })
+                    </div>
+                }
+
             </div>
             <hr />
             @if (User.Identity.IsAuthenticated)
             {
-                <p class="mb2">You can download</p>
-                <p class="mb2"><span class="rank-name rank-name-free">Free</span> 3d models - <span>@Model.CurrentUser.AvailableFreeModels</span></p>
-                <p><span class="rank-name rank-name-pro">Pro</span> 3d models - <span>@Model.CurrentUser.AvailableProModels</span></p>
+                @Html.Partial("_DownloadLimits",@Model.CurrentUser)
+               
             }
         </div>
     </div>
