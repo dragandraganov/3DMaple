@@ -60,7 +60,13 @@
             </p>
             <br />
             <p title="Description"><span class="glyphicon glyphicon-pencil mr10"></span>@Model.PolyModel.Description</p>
-            @Html.ActionLink("Download", "Download", "AppFiles", new { area = string.Empty, id = @Model.PolyModel.File3DModelId }, new { @class = "btn btn-lg btn-info" })
+            @Html.ActionLink("Download", "Download", "AppFiles",
+                new { area = string.Empty, id = @Model.PolyModel.File3DModelId },
+                new
+                    {
+                        @class = "btn btn-lg btn-info btn-download-model",
+                        onclick = string.Format("downloadModel('" + @Url.Action("DownloadSuccess", "PolyModels") + "','{0}')", @Model.PolyModel.Id)
+                    })
         </div>
     </div>
 </div>

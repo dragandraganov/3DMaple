@@ -19,7 +19,7 @@ namespace _3DMapleSystem.Data.Models
             this.CreatedOn = DateTime.Now;
             this.PreserveCreatedOn = true;
             this.OwnPolyModels = new HashSet<PolyModel>();
-            this.DownloadedPolyModels = new HashSet<PolyModel>();
+            this.DownloadedPolyModels = new HashSet<DownloadedPolyModelsUsers>();
             this.Comments=new HashSet<Comment>();
         }
 
@@ -29,7 +29,7 @@ namespace _3DMapleSystem.Data.Models
 
         public virtual ICollection<PolyModel> OwnPolyModels { get; set; }
 
-        public virtual ICollection<PolyModel> DownloadedPolyModels { get; set; }
+        public virtual ICollection<DownloadedPolyModelsUsers> DownloadedPolyModels { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
 

@@ -32,6 +32,8 @@ namespace _3DMapleSystem.Data
 
         IDeletableEntityRepository<ModelRank> ModelRanks { get; }
 
+        IDeletableEntityRepository<DownloadedPolyModelsUsers> ModelsUsers { get; }
+
         void Dispose();
 
         int SaveChanges();

@@ -1,4 +1,18 @@
 ﻿$(document).ready(function () {
+    //$(document).on('click', '.btn-download-model', function (data) {
+    //    console.log(data)
+    //    $.ajax(this.href, {
+    //        url: "",
+    //        method: "GET",
+    //        data: {},
+    //        success: function () {
+    //        },
+    //        error: function (error) {
+    //            console.log("error")
+    //        }
+    //    })
+    //})
+
     //$('#search-data-input').keyup(function () {
     //    var query = $(this).val().trim();
     //    if (query.length >= 4) {
@@ -52,6 +66,14 @@
     //    });
     //})
 })
+
+function downloadModel(url, modelId) {
+    $.ajax({
+        url: url,
+        method:"POST",
+        data: {modelId:modelId}
+    })
+}
 
 $.fn.clearSelect = function () {
     return this.each(function () {

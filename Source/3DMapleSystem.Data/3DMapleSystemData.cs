@@ -115,6 +115,14 @@ namespace _3DMapleSystem.Data
             }
         }
 
+        public IDeletableEntityRepository<DownloadedPolyModelsUsers> ModelsUsers
+        {
+            get
+            {
+                return this.GetRepository<DownloadedPolyModelsUsers>();
+            }
+        }
+
         public void Dispose()
         {
             this.Dispose(true);

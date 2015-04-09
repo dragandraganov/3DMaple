@@ -154,6 +154,16 @@ namespace _3DMapleSystem.Web.Controllers
             return View(complexModel);
         }
 
+        public void DownloadSuccess(string modelId)
+        {
+            var polyModel = this.Data.PolyModels.All().FirstOrDefault(pm => pm.Id == new Guid(modelId));
+            var downloadModelUser = new DownloadedPolyModelsUsers();
+            downloadModelUser.PolyModel = polyModel;
+            downloadModelUser.User = this.UserProfile;
+            this.Data.ModelsUsers.Add(downloadModelUser);
+            this.Data.SaveChanges();
+        }
+
         private void AttachPropertiesToComplexModel(PolyModelComplexViewModel model)
         {
             model.SubCategories = this.Data.SubCategories

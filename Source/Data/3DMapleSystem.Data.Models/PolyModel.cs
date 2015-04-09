@@ -14,7 +14,7 @@ namespace _3DMapleSystem.Data.Models
             this.Id = Guid.NewGuid();
             this.Tags = new HashSet<Tag>();
             this.Comments = new HashSet<Comment>();
-            this.DownloadedByUsers = new HashSet<User>();
+            this.DownloadedByUsers = new HashSet<DownloadedPolyModelsUsers>();
         }
 
         [Key]
@@ -57,7 +57,7 @@ namespace _3DMapleSystem.Data.Models
         [InverseProperty("OwnPolyModels")]
         public virtual User Author { get; set; }
 
-        public virtual ICollection<User> DownloadedByUsers { get; set; }
+        public virtual ICollection<DownloadedPolyModelsUsers> DownloadedByUsers { get; set; }
 
         public bool IsApproved { get; set; }
 

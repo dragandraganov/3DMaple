@@ -36,6 +36,8 @@ namespace _3DMapleSystem.Data
 
         public virtual IDbSet<ModelRank> ModelRanks { get; set; }
 
+        public virtual IDbSet<DownloadedPolyModelsUsers> ModelsUsers { get; set; }
+
         public static _3DMapleSystemDbContext Create()
         {
             return new _3DMapleSystemDbContext();
