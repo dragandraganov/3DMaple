@@ -201,20 +201,27 @@ ul {
     font-size: 2em;
 }
 
-.rank-name{
+.rank-name {
     font-weight: bold;
     color: white;
     padding: 1px 3px;
-    border-radius: 5px;
     font-size: 0.8em;
 }
 
 .rank-name-free {
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
     background-color: #5bc0de;
 }
 
 .rank-name-pro {
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     background-color: rgb(255, 78, 0);
+}
+
+.rank-name-wrapper{
+    margin-top:3px;
 }
 
 @font-face {

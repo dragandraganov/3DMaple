@@ -29,6 +29,7 @@ namespace _3DMapleSystem.Web.Infrastructure.Popularizers
                 {
                     return this.data.Categories
                        .All()
+                       .OrderBy(c => c.Name)
                        .ToList();
                 });
 
@@ -43,6 +44,7 @@ namespace _3DMapleSystem.Web.Infrastructure.Popularizers
                     return this.data.PolyModels
                        .All()
                        .Where(pm => pm.IsApproved)
+                       .OrderByDescending(pm => pm.CreatedOn)
                        .ToList();
                 });
 
@@ -51,7 +53,9 @@ namespace _3DMapleSystem.Web.Infrastructure.Popularizers
 
         public IEnumerable<AppFile> GetPreviews()
         {
-            var previews = this.GetPolyModels().Select(pm => pm.Preview);
+            var previews = this.GetPolyModels()
+                .Select(pm => pm.Preview);
+
             return previews;
         }
 

@@ -19,8 +19,8 @@
         }
     </div>
     <div class="col-md-3">
-        Select category
         <ul class="subcategory-list">
+            Select category
             @foreach (var subcategory in Model.SubCategories)
             {
                 @Html.Partial("_SubCategoryInList", subcategory)

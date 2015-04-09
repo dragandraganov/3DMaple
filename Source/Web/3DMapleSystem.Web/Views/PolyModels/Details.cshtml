@@ -5,8 +5,15 @@
     <div>
         <div class="avatar-wrapper mr10">
             <a href="#">
-                <img src="@Url.Action("GetPreview", "AppFiles", new {id = Model.PolyModel.AuthorPhotoId })"
-                     alt="@Model.PolyModel.AuthorName" class=" img-responsive form-control-sm model-simple-img user-avatar" />
+                @if (Model.PolyModel.AuthorPhotoId == 0)
+                {
+                    <img class=" img-responsive form-control-sm model-simple-img user-avatar" src="~/Content/Images/defaultPhoto.jpg" />
+                }
+                else
+                {
+                    <img src="@Url.Action("GetPreview", "AppFiles", new {id = Model.PolyModel.AuthorPhotoId })"
+                         alt="@Model.PolyModel.AuthorName" class=" img-responsive form-control-sm model-simple-img user-avatar" />
+                }
             </a>
         </div>
         <h4 class="mb10 pt5">
