@@ -42,7 +42,7 @@
                 <span class="form-control">No preview</span>
             }
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <p title="Platform"><span class="glyphicon glyphicon-cog mr10"></span>@Model.PolyModel.SubPlatformName</p>
             <p title="Added On"><span class="glyphicon glyphicon-time mr10"></span>@Model.PolyModel.CreatedOn</p>
             <p title="Style"><span class="glyphicon glyphicon-leaf mr10"></span>@Model.PolyModel.StyleName</p>
@@ -60,13 +60,30 @@
             </p>
             <br />
             <p title="Description"><span class="glyphicon glyphicon-pencil mr10"></span>@Model.PolyModel.Description</p>
-            @Html.ActionLink("Download", "Download", "AppFiles",
+            <hr />
+            <div class="row">
+                <div class="col-md-5">
+                    @Html.ActionLink("Download", "Download", "AppFiles",
                 new { area = string.Empty, id = @Model.PolyModel.File3DModelId },
                 new
                     {
-                        @class = "btn btn-lg btn-info btn-download-model",
+                        @class = "btn btn-sm btn-info btn-download-model",
                         onclick = string.Format("downloadModel('" + @Url.Action("DownloadSuccess", "PolyModels") + "','{0}')", @Model.PolyModel.Id)
                     })
+                </div>
+                <div class="col-md-6">
+                    @Html.ActionLink("Add to favorites", "AddToFavorties", "PolyModels",
+                new { area = string.Empty, id = @Model.PolyModel.Id },
+                new
+                    {
+                        @class = "btn btn-sm btn-default btn-favorites-model pull-left",
+                    })
+                </div>
+            </div>
+            <hr />
+            <p class="mb2">You can download</p>
+            <p class="mb2"><span class="rank-name rank-name-free">Free</span> 3d models - <span></span></p>
+            <p><span class="rank-name rank-name-pro">Pro</span> 3d models - <span></span></p>
         </div>
     </div>
 </div>

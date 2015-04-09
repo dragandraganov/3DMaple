@@ -197,6 +197,10 @@ ul {
     margin-bottom: 20px;
 }
 
+.mb2 {
+    margin-bottom: 2px;
+}
+
 .details {
     font-size: 2em;
 }
@@ -220,9 +224,33 @@ ul {
     background-color: rgb(255, 78, 0);
 }
 
-.rank-name-wrapper{
-    margin-top:3px;
+.rank-name-wrapper {
+    margin-top: 3px;
 }
+
+.btn-favorites-model {
+    border: 1px solid rgba(251,223,147,1);
+    background: rgb(252,234,187); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(252,234,187,1) 0%, rgba(251,223,147,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,234,187,1)), color-stop(100%,rgba(251,223,147,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(252,234,187,1) 0%,rgba(251,223,147,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(252,234,187,1) 0%,rgba(251,223,147,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(252,234,187,1) 0%,rgba(251,223,147,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(252,234,187,1) 0%,rgba(251,223,147,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', endColorstr='#fbdf93',GradientType=0 ); /* IE6-9 */
+}
+
+    .btn-favorites-model:hover {
+        border: 1px solid rgba(251,223,147,1);
+        background: rgb(255,183,107); /* Old browsers */
+        background: -moz-linear-gradient(top, rgba(255,183,107,1) 0%, rgba(255,127,4,1) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,183,107,1)), color-stop(100%,rgba(255,127,4,1))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, rgba(255,183,107,1) 0%,rgba(255,127,4,1) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, rgba(255,183,107,1) 0%,rgba(255,127,4,1) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, rgba(255,183,107,1) 0%,rgba(255,127,4,1) 100%); /* IE10+ */
+        background: linear-gradient(to bottom, rgba(255,183,107,1) 0%,rgba(255,127,4,1) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb76b', endColorstr='#ff7f04',GradientType=0 ); /* IE6-9 */
+    }
 
 @font-face {
     font-family: 'Glyphicons Halflings';
