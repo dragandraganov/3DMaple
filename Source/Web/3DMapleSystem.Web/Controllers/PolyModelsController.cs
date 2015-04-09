@@ -56,16 +56,16 @@ namespace _3DMapleSystem.Web.Controllers
                 //TODO remove in production mode - change the logic
                 var rank = new ModelRank();
 
-                if (this.Data.ModelRanks.All().Count() == 0 || this.Data.ModelRanks.All().FirstOrDefault(r => r.Name == GlobalConstants.defaultRank) == null)
+                if (this.Data.ModelRanks.All().Count() == 0 || this.Data.ModelRanks.All().FirstOrDefault(r => r.Name == GlobalConstants.DefaultRank) == null)
                 {
-                    rank.Name = GlobalConstants.defaultRank;
+                    rank.Name = GlobalConstants.DefaultRank;
                     this.Data.ModelRanks.Add(rank);
                     this.Data.SaveChanges();
                 }
 
                 else
                 {
-                    rank = this.Data.ModelRanks.All().FirstOrDefault(r => r.Name == GlobalConstants.defaultRank);
+                    rank = this.Data.ModelRanks.All().FirstOrDefault(r => r.Name == GlobalConstants.DefaultRank);
                 }
 
                 newPolyModel.Rank = rank;
@@ -150,6 +150,8 @@ namespace _3DMapleSystem.Web.Controllers
             {
                 complexModel.SizeOfFileModel = String.Format("{0:0.00}", (double)polyModel.File3DModel.Size.Value / (1024 * 1024));
             }
+
+            complexModel.CurrentUser = Mapper.Map<UserViewModel>(this.UserProfile);
 
             return View(complexModel);
         }

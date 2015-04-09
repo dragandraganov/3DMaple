@@ -20,7 +20,9 @@ namespace _3DMapleSystem.Data.Models
             this.PreserveCreatedOn = true;
             this.OwnPolyModels = new HashSet<PolyModel>();
             this.DownloadedPolyModels = new HashSet<DownloadedPolyModelsUsers>();
-            this.Comments=new HashSet<Comment>();
+            this.Comments = new HashSet<Comment>();
+            this.AvailableFreeModels = GlobalConstants.DefaultFreeModels;
+            this.AvailableProModels = GlobalConstants.DefaultProModels;
         }
 
         public int? PhotoId { get; set; }
@@ -33,7 +35,11 @@ namespace _3DMapleSystem.Data.Models
 
         public virtual ICollection<Comment> Comments { get; set; }
 
-        public DateTime CreatedOn {get;set;}
+        public int AvailableFreeModels { get; set; }
+
+        public int AvailableProModels { get; set; }
+
+        public DateTime CreatedOn { get; set; }
 
         public bool PreserveCreatedOn { get; set; }
 

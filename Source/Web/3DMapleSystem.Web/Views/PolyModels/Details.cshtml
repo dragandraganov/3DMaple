@@ -81,9 +81,12 @@
                 </div>
             </div>
             <hr />
-            <p class="mb2">You can download</p>
-            <p class="mb2"><span class="rank-name rank-name-free">Free</span> 3d models - <span></span></p>
-            <p><span class="rank-name rank-name-pro">Pro</span> 3d models - <span></span></p>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <p class="mb2">You can download</p>
+                <p class="mb2"><span class="rank-name rank-name-free">Free</span> 3d models - <span>@Model.CurrentUser.AvailableFreeModels</span></p>
+                <p><span class="rank-name rank-name-pro">Pro</span> 3d models - <span>@Model.CurrentUser.AvailableProModels</span></p>
+            }
         </div>
     </div>
 </div>

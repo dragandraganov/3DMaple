@@ -19,7 +19,11 @@ namespace _3DMapleSystem.Web.ViewModels
 
         public ICollection<SimplePolyModelViewModel> OwnPolyModels { get; set; }
 
-        public ICollection<SimplePolyModelViewModel> DownloadedPolyModels { get; set; }
+        public ICollection<DownloadedPolyModelsUsers> DownloadedPolyModels { get; set; }
+
+        public int AvailableFreeModels { get; set; }
+
+        public int AvailableProModels { get; set; }
 
         //public virtual ICollection<Comment> Comments { get; set; }
 

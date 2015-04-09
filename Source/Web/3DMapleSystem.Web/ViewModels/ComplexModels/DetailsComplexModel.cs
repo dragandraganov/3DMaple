@@ -12,5 +12,7 @@ namespace _3DMapleSystem.Web.ViewModels.ComplexModels
         public PolyModelDetailsViewModel PolyModel { get; set; }
 
         public string SizeOfFileModel { get; set; }
+
+        public UserViewModel CurrentUser { get; set; }
     }
 }
