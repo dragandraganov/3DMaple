@@ -84,6 +84,7 @@
     <Compile Include="AppFile.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Comment.cs" />
+    <Compile Include="DownloadedPolyModelsUsers.cs" />
     <Compile Include="ModelRank.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="PolyModel.cs" />
