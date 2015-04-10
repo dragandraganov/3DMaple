@@ -66,20 +66,26 @@
                 {
                     <div class="col-md-5">
                         @Html.ActionLink("Download", "Download", "AppFiles",
-                new { area = string.Empty, id = @Model.PolyModel.File3DModelId, modelId=@Model.PolyModel.Id },
+                 new { area = string.Empty, id = @Model.PolyModel.File3DModelId, modelId = @Model.PolyModel.Id },
                 new
                     {
-                        @class = "btn btn-sm btn-info btn-download-model",
-                        onclick = string.Format("downloadModel('" + @Url.Action("DownloadSuccess", "PolyModels") + "','{0}')", @Model.PolyModel.Id)
+                        rank = @Model.PolyModel.RankName,
+                        id = "modelId_" + @Model.PolyModel.Id,
+                        @class = "btn btn-sm btn-info btn-download-model downloadLink",
+                        onclick = "return false;"
                     })
                     </div>
+
                     <div class="col-md-6">
-                        @Html.ActionLink("Add to favorites", "AddToFavorties", "PolyModels",
-                new { area = string.Empty, id = @Model.PolyModel.Id },
+                        @Ajax.ActionLink("Add to favorites", "AddToFavorties", "PolyModels",
+                new { area = string.Empty, id = @Model.PolyModel.Id }, null,
                 new
                     {
                         @class = "btn btn-sm btn-default btn-favorites-model pull-left",
                     })
+                    </div>
+                    <div id="dialog-confirm" title="Download confirmation">
+                        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Download model '@Model.PolyModel.Title'</p>
                     </div>
                 }
 
@@ -87,14 +93,14 @@
                 else
                 {
                     <div class="col-md-5">
-                        @Html.ActionLink("Download", "Login", "Account", null, 
+                        @Html.ActionLink("Download", "Login", "Account", null,
                         new
                     {
                         @class = "btn btn-sm btn-info btn-download-model"
                     })
                     </div>
                     <div class="col-md-6">
-                        @Html.ActionLink("Add to favorites", "Login", "Account", null, 
+                        @Html.ActionLink("Add to favorites", "Login", "Account", null,
                         new
                     {
                         @class = "btn btn-sm btn-default btn-favorites-model pull-left",
@@ -108,6 +114,11 @@
             {
                 <div id="download-limits-wrapper">
                     @Html.Partial("_DownloadLimits", @Model.CurrentUser)
+                </div>
+                <div class="panel panel-danger limits-error">
+                    <div class="panel-heading text-center">
+                        The limit of <span class="rank-name"></span> models is exhausted.
+                    </div>
                 </div>
             }
         </div>

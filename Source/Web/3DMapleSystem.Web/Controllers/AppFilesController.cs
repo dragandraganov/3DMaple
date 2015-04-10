@@ -41,6 +41,12 @@ namespace _3DMapleSystem.Web.Controllers
             return File(file.Content, "file/" + file.FileExtension);
         }
 
+        /// <summary>
+        /// Downloads the specified id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <param name="modelId">The model id.</param>
+        /// <returns></returns>
         [Authorize(Roles = GlobalConstants.AdminRole)]
         public ActionResult Download(int id, Guid modelId)
         {
@@ -59,7 +65,8 @@ namespace _3DMapleSystem.Web.Controllers
             if ((rankName == "free" && this.UserProfile.AvailableFreeModels <= 0) || (rankName == "pro" && this.UserProfile.AvailableProModels <= 0))
             {
                 TempData["Rank"] = rankName;
-                return RedirectToAction("Details", "PolyModels", new { polyModel.Id });
+                return new HttpStatusCodeResult(400);
+                //return RedirectToAction("Details", "PolyModels", new { polyModel.Id });
             }
 
             else

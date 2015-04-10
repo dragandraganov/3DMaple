@@ -252,6 +252,14 @@ ul {
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb76b', endColorstr='#ff7f04',GradientType=0 ); /* IE6-9 */
     }
 
+#dialog-confirm {
+    display: none;
+}
+
+.limits-error{
+    display:none;
+}
+
 @font-face {
     font-family: 'Glyphicons Halflings';
     src: url('/fonts/glyphicons-halflings-regular.eot');

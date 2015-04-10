@@ -9,8 +9,13 @@ namespace _3DMapleSystem.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js", 
-                        "~/Scripts/jquery.unobtrusive-ajax.min"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery.unobtrusive-ajax.min.js", 
+                        "~/Scripts/jquery-ui.js"
+                        ));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryConfirm").Include(
+                        "~/Scripts/jquery.confirm.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -29,8 +34,9 @@ namespace _3DMapleSystem.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css", 
-                      "~/Content/bootstrap.icon-large.min.css"));
+                      "~/Content/site.css",
+                      "~/Content/bootstrap.icon-large.min.css", 
+                      "~/Content/jquery-ui.css"));
         }
     }
 }

@@ -1,17 +1,75 @@
 ﻿$(document).ready(function () {
-    //$(document).on('click', '.btn-download-model', function (data) {
-    //    console.log(data)
-    //    $.ajax(this.href, {
-    //        url: "",
-    //        method: "GET",
-    //        data: {},
-    //        success: function () {
-    //        },
-    //        error: function (error) {
-    //            console.log("error")
+    //$('#btn-download').confirm();
+
+    //$(document).on('click', '.btn-download-model', function () {
+    //    var $that = $(this);
+    //    $that.confirm({
+    //        confirm: function () {
+    //            $.ajax({
+    //                url: $that.href,
+    //                method: "GET",
+    //                data: [],
+    //                success: function () {
+    //                    $.ajax({
+    //                        url: "/PolyModels/DownloadSuccess",
+    //                        method: "POST",
+    //                        data: { modelId: $that.attr('id') },
+    //                        success: function (data) {
+    //                            $('#download-limits-wrapper').html(data);
+    //                        }
+    //                    })
+    //                }
+    //            })
     //        }
     //    })
     //})
+
+    $("#dialog-confirm").dialog({
+        autoOpen: false,
+        modal: true,
+        resizable: false,
+        height: 180,
+    });
+
+    $(".downloadLink").click(function (e) {
+        e.preventDefault();
+        var targetUrl = $(this).attr("href");
+        var modelId = ($(this).attr("id")).split("_")[1];
+        var rank = $(this).attr("rank");
+
+        $("#dialog-confirm").dialog({
+            buttons: {
+                "Confirm": function () {
+                    $(this).dialog("close");
+                    $.ajax({
+                        url: targetUrl,
+                        method: 'GET',
+                        data: [],
+                        success: function () {
+                            window.location.href = targetUrl;
+                            $.ajax({
+                                url: "/PolyModels/DownloadSuccess",
+                                method: 'POST',
+                                data: { modelId: modelId },
+                                success: function (data) {
+                                    $('#download-limits-wrapper').html(data);
+                                }
+                            })
+                        },
+                        error: function () {
+                            $('.limits-error').find('.rank-name').addClass("rank-name-" + rank).text(rank);
+                            $('.limits-error').show();
+                        }
+                    })
+                },
+                "Cancel": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+        $("#dialog-confirm").dialog("open");
+    });
 
     //$('#search-data-input').keyup(function () {
     //    var query = $(this).val().trim();
@@ -67,23 +125,37 @@
     //})
 })
 
-function downloadModel(url, modelId) {
+function successfulDownload(modelId) {
     $.ajax({
-        url: this.href,
-        method: "GET",
-        data: [],
-        success: function () {
-            $.ajax({
-                url: url,
-                method: "POST",
-                data: { modelId: modelId },
-                success: function (data) {
-                    $('#download-limits-wrapper').html(data);
-                }
-            })
+        url: "/PolyModels/DownloadSuccess",
+        method: "POST",
+        data: { modelId: modelId },
+        success: function (data) {
+            $('#download-limits-wrapper').html(data);
         }
     })
 }
+
+//function downloadModel(url, modelId) {
+//    var $that = $(this);
+//    if (confirm("Are you sure you want download this model")) {
+//        $.ajax({
+//            url: $that.href,
+//            method: "GET",
+//            data: [],
+//            success: function () {
+//                $.ajax({
+//                    url: url,
+//                    method: "POST",
+//                    data: { modelId: modelId },
+//                    success: function (data) {
+//                        $('#download-limits-wrapper').html(data);
+//                    }
+//                })
+//            }
+//        })
+//    }
+//}
 
 $.fn.clearSelect = function () {
     return this.each(function () {

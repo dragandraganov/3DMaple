@@ -3,12 +3,3 @@
 <p class="mb2">You can download</p>
 <p class="mb2"><span class="rank-name rank-name-free">Free</span> 3d models - <span>@Model.AvailableFreeModels</span></p>
 <p><span class="rank-name rank-name-pro">Pro</span> 3d models - <span>@Model.AvailableProModels</span></p>
-@if (TempData["Rank"] != null)
-{
-    var rankName = TempData["Rank"].ToString();
-    <div class="panel panel-danger">
-        <div class="panel-heading text-center">
-            The limit of <span class="rank-name rank-name-@rankName">@rankName</span> models is exhausted.
-        </div>
-    </div>
-}
