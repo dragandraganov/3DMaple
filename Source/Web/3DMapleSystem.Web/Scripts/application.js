@@ -76,7 +76,10 @@ function downloadModel(url, modelId) {
             $.ajax({
                 url: url,
                 method: "POST",
-                data: { modelId: modelId }
+                data: { modelId: modelId },
+                success: function (data) {
+                    $('#download-limits-wrapper').html(data);
+                }
             })
         }
     })

@@ -187,7 +187,9 @@ namespace _3DMapleSystem.Web.Controllers
                 this.Data.ModelsUsers.Add(downloadModelUser);
                 this.Data.SaveChanges();
 
-                return PartialView("_DownloadLimits");
+                var userViewModel = Mapper.Map<UserViewModel>(this.UserProfile);
+
+                return PartialView("_DownloadLimits", userViewModel);
             }
 
             return RedirectToAction("Login", "Account");

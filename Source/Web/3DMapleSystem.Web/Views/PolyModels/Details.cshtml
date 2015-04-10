@@ -106,8 +106,9 @@
             <hr />
             @if (User.Identity.IsAuthenticated)
             {
-                @Html.Partial("_DownloadLimits",@Model.CurrentUser)
-               
+                <div id="download-limits-wrapper">
+                    @Html.Partial("_DownloadLimits", @Model.CurrentUser)
+                </div>
             }
         </div>
     </div>
