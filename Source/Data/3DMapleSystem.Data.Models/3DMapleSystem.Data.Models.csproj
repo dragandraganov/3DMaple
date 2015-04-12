@@ -89,6 +89,7 @@
     <Compile Include="Platform.cs" />
     <Compile Include="PolyModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rating.cs" />
     <Compile Include="Style.cs" />
     <Compile Include="SubCategory.cs" />
     <Compile Include="SubPlatform.cs" />

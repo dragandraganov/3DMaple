@@ -34,6 +34,8 @@ namespace _3DMapleSystem.Data
 
         IDeletableEntityRepository<DownloadedPolyModelsUsers> ModelsUsers { get; }
 
+        IDeletableEntityRepository<Rating> Ratings { get; }
+
         void Dispose();
 
         int SaveChanges();

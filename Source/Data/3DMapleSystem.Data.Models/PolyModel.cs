@@ -15,6 +15,7 @@ namespace _3DMapleSystem.Data.Models
             this.Tags = new HashSet<Tag>();
             this.Comments = new HashSet<Comment>();
             this.DownloadedByUsers = new HashSet<DownloadedPolyModelsUsers>();
+            this.Ratings = new HashSet<Rating>();
         }
 
         [Key]
@@ -51,6 +52,8 @@ namespace _3DMapleSystem.Data.Models
         public virtual ICollection<Tag> Tags { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<Rating> Ratings { get; set; }
 
         public string AuthorId { get; set; }
 

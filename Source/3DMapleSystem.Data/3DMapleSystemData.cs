@@ -123,6 +123,14 @@ namespace _3DMapleSystem.Data
             }
         }
 
+        public IDeletableEntityRepository<Rating> Ratings
+        {
+            get
+            {
+                return this.GetRepository<Rating>();
+            }
+        }
+
         public void Dispose()
         {
             this.Dispose(true);
