@@ -14,10 +14,8 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
     {
         public Guid Id { get; set; }
 
-        [Required]
         public string Title { get; set; }
 
-        [Required]
         public string Description { get; set; }
 
         public int CategoryId { get; set; }
@@ -44,8 +42,6 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
 
         public string SubPlatformName { get; set; }
 
-        //public string TagsAsString { get; set; }
-
         public ICollection<string> Tags { get; set; }
 
         public string AuthorName { get; set; }
@@ -59,10 +55,6 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
         public int? File3DModelId { get; set; }
 
         public int? PreviewId { get; set; }
-
-        //[DataType(DataType.Upload)]
-        //[Required]
-        //public HttpPostedFileBase Uploaded3DModel { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

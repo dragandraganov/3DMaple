@@ -66,7 +66,6 @@ namespace _3DMapleSystem.Web.Controllers
             {
                 TempData["Rank"] = rankName;
                 return new HttpStatusCodeResult(400);
-                //return RedirectToAction("Details", "PolyModels", new { polyModel.Id });
             }
 
             else

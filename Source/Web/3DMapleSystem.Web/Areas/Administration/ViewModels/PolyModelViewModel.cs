@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace _3DMapleSystem.Web.Areas.Administration.ViewModels
 {
@@ -14,9 +15,15 @@ namespace _3DMapleSystem.Web.Areas.Administration.ViewModels
         public Guid Id { get; set; }
 
         [Required]
+        [MinLength(3, ErrorMessage = "The minimum length of title is 3 characters")]
+        [MaxLength(20, ErrorMessage = "The maximum length of title is 20 characters")]
+        [RegularExpression("([a-zA-Z0-9 ]+)", ErrorMessage = "The title must contain only letters and numbers")]
         public string Title { get; set; }
 
         [Required]
+        [MinLength(3, ErrorMessage = "The minimum length of description is 3 characters")]
+        [MaxLength(200, ErrorMessage = "The maximum length of description is 200 characters")]
+        [AllowHtml]
         public string Description { get; set; }
 
         public int CategoryId { get; set; }
@@ -43,8 +50,9 @@ namespace _3DMapleSystem.Web.Areas.Administration.ViewModels
 
         public string SubPlatformName { get; set; }
 
-        //public string TagsAsString { get; set; }
-
+        [MinLength(3, ErrorMessage = "The minimum length of tags is 3 characters")]
+        [MaxLength(40, ErrorMessage = "The maximum length of tags is 40 characters")]
+        [RegularExpression("([a-zA-Z0-9,]+)", ErrorMessage = "The tags must contain only alphabets, numbers and comma separator")]
         public ICollection<string> Tags { get; set; }
 
         public string AuthorName { get; set; }
@@ -62,10 +70,6 @@ namespace _3DMapleSystem.Web.Areas.Administration.ViewModels
         public int DownloadedByUsersCount { get; set; }
 
         public int? PreviewId { get; set; }
-
-        //[DataType(DataType.Upload)]
-        //[Required]
-        //public HttpPostedFileBase Uploaded3DModel { get; set; }
 
         [DataType(DataType.Upload)]
         public HttpPostedFileBase UploadedPreview { get; set; }

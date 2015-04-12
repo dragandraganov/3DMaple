@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web;
 using _3DMapleSystem.Common;
 using System.IO;
+using System.Web.Mvc;
 
 namespace _3DMapleSystem.Web.ViewModels.PolyModels
 {
@@ -16,9 +17,15 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
         public Guid Id { get; set; }
 
         [Required]
+        [MinLength(3, ErrorMessage = "The minimum length of title is 3 characters")]
+        [MaxLength(20, ErrorMessage = "The maximum length of title is 20 characters")]
+        [RegularExpression("([a-zA-Z0-9 ]+)", ErrorMessage = "The title must contain only letters and numbers")]
         public string Title { get; set; }
 
         [Required]
+        [MinLength(3, ErrorMessage = "The minimum length of description is 3 characters")]
+        [MaxLength(200, ErrorMessage = "The maximum length of description is 200 characters")]
+        [AllowHtml]
         public string Description { get; set; }
 
         public int? PreviewId { get; set; }
@@ -47,6 +54,9 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
 
         public string SubPlatformName { get; set; }
 
+        [MinLength(3, ErrorMessage = "The minimum length of tags is 3 characters")]
+        [MaxLength(40, ErrorMessage = "The maximum length of tags is 40 characters")]
+        [RegularExpression("([a-zA-Z0-9,]+)", ErrorMessage = "The tags must contain only alphabets, numbers and comma separator")]
         public string Tags { get; set; }
 
         public string AuthorName { get; set; }
@@ -100,7 +110,7 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
                 && Path.GetExtension(this.Uploaded3DModel.FileName).ToLower() != ".zip")
             {
                 yield return new ValidationResult("Incorrect model file format - must be .zip or .rar format", new[] { "Uploaded3DModel" });
-                
+
             }
             else if (this.Uploaded3DModel.ContentLength > GlobalConstants.Max3DModelFileLength)
             {
