@@ -123,6 +123,35 @@
     //        }
     //    });
     //})
+
+    //Rating implementation section
+    $(document).on('mouseenter', ".rating-star", function () {
+        $(this).prevUntil(".rating-area").addClass('filled');
+        $(this).addClass('filled');
+    })
+    $(document).on('mouseleave', ".rating-star", function () {
+        if ($(this).parent().find(".rating-star").hasClass('selected')) {
+            var selected = $(this).parent().find('.selected').first();
+            selected.nextUntil('input :submit').removeClass('filled')
+        }
+        else {
+            $(this).prevUntil(".rating-area").removeClass('filled');
+            $(this).removeClass('filled');
+        }
+    })
+    $(document).on('click', ".rating-star", function () {
+        $(this).parent().find(".rating-star").removeClass('filled selected');
+        $(this).prevUntil(".rating-area").addClass('filled');
+        $(this).addClass('filled selected');
+        var radioChecked = $(this).next();
+        radioChecked.attr('checked', true);
+        var $selectedStar = $(this).parent().find(".selected").first().next();
+        var $rating = $selectedStar.val();
+        $(this).parent().find('#rating-value').val($rating);
+    })
+    $(document).on('click', '.btn-clear-rating', function () {
+        $(this).parent().prev().find('.rating-star').removeClass('filled selected');
+    })
 })
 
 function successfulDownload(modelId) {

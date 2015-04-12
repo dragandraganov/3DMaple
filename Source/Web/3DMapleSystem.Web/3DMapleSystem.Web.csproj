@@ -212,6 +212,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PolyModelsController.cs" />
+    <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SubCategoriesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -241,6 +242,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Gridmvc.css" />
     <Content Include="Content\Images\animated-overlay.gif" />
+    <Content Include="Content\Images\color_star.png" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\defaultPhoto.jpg" />
     <Content Include="Content\Images\LogoRender.png" />
@@ -383,6 +385,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
+    <Folder Include="Views\Ratings\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>

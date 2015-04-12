@@ -60,6 +60,31 @@
             </p>
             <br />
             <p title="Description"><span class="glyphicon glyphicon-pencil mr10"></span>@Model.PolyModel.Description</p>
+            <br />
+            @using (Ajax.BeginForm("Vote", "Ratings", new
+            {
+                modelId = Model.PolyModel.Id @*, ratingId = Model.CurrentUserRating == null ? -1 : Model.CurrentUserRating.Id*@ },
+            new AjaxOptions
+            {
+                //UpdateTargetId = "game-section-" + Model.Id
+            },
+            new { @class = "rating-panel" }))
+            {
+                <div class="rating-area">
+                    <label class="rating-star"></label>
+                    <input type="radio" name="rating" value="1">
+                    <label class="rating-star"></label>
+                    <input type="radio" name="rating" value="2">
+                    <label class="rating-star"></label>
+                    <input type="radio" name="rating" value="3">
+                    <label class="rating-star"></label>
+                    <input type="radio" name="rating" value="4">
+                    <label class="rating-star"></label>
+                    <input type="radio" name="rating" value="5">
+                </div>
+                <div class="btn btn-xs btn-default btn-clear-rating mr55">Clear</div>
+                <input type="submit" value="Rate" class="btn btn-xs btn-success submit-rating" />
+            }
             <hr />
             <div class="row">
                 @if (User.Identity.IsAuthenticated)

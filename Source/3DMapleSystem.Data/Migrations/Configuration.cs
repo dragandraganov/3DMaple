@@ -18,7 +18,7 @@ namespace _3DMapleSystem.Data.Migrations
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
-            // TODO: Remove in production
+            // TODO: Return to false in production
             this.AutomaticMigrationDataLossAllowed = true;
         }
 
