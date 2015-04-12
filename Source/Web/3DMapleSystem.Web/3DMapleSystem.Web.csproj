@@ -195,6 +195,7 @@
     <Compile Include="Areas\Administration\Controllers\StylesController.cs" />
     <Compile Include="Areas\Administration\Controllers\SubCategoriesController.cs" />
     <Compile Include="Areas\Administration\Controllers\SubPlatformsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
     <Compile Include="Areas\Administration\ViewModels\CategoryViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\PlatformViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\ModelRankViewModel.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="Areas\Administration\ViewModels\StyleViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\SubCategoryViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\SubPlatformViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AppFilesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -306,6 +308,10 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Administration\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Users\Delete.cshtml" />
+    <Content Include="Areas\Administration\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Users\HardDelete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />

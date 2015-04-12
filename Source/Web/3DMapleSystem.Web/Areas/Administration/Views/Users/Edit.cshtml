@@ -1,0 +1,42 @@
+﻿@using _3DMapleSystem.Web.Areas.Administration.ViewModels
+@model UserViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @*@Html.HiddenFor(pg => pg.CreatedOn)
+    @Html.HiddenFor(pg => pg.ModifiedOn)
+    @Html.HiddenFor(pg => pg.DeletedOn)
+    @Html.HiddenFor(pg => pg.IsDeleted)
+    @Html.HiddenFor(pg => pg.PreserveCreatedOn)*@
+
+    <h4>Edit sub-platform "@Model.UserName"</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(u=>u.AvailableFreeModels, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(u => u.AvailableFreeModels, new { @class = "form-control form-control-sm" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(u => u.AvailableProModels, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(u => u.AvailableProModels, new { @class = "form-control form-control-sm" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-info" value="Save changes" />
+            <a href="~/Administration/Users/Index" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
