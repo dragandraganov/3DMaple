@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using _3DMapleSystem.Data;
+using _3DMapleSystem.Web.Infrastructure.Popularizers;
 using _3DMapleSystem.Web.ViewModels;
 using _3DMapleSystem.Web.ViewModels.ComplexModels;
 using AutoMapper.QueryableExtensions;
@@ -10,13 +11,14 @@ using System.IO;
 using _3DMapleSystem.Common;
 using _3DMapleSystem.Web.ViewModels.PolyModels;
 using AutoMapper;
+using _3DMapleSystem.Web.Infrastructure.Helpers;
 
 namespace _3DMapleSystem.Web.Controllers
 {
     public class PolyModelsController : BaseController
     {
-        public PolyModelsController(_3DMapleSystemData data)
-            : base(data)
+        public PolyModelsController(_3DMapleSystemData data, IListPopulizer populizer)
+            : base(data, populizer)
         {
         }
 

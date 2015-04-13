@@ -1,8 +1,9 @@
-﻿@using _3DMapleSystem.Web.ViewModels.PolyModels
+﻿@using _3DMapleSystem.Web.Infrastructure.Helpers
+@using _3DMapleSystem.Web.ViewModels.PolyModels
 @model SimplePolyModelViewModel
 
 <div class="model-item model-item-@Model.Id model-subcategory-@Model.SubCategoryId">
-    <a href="\PolyModels\Details\@Model.Id" rel="@Model.Title" class="model-item-link">
+    <a href="@Url.Action("Details", "PolyModels", new { id = @Model.Id, title = @Model.Title.ToSeoUrl()})" rel="@Model.Title" class="model-item-link">
         <figure>
             <img src="@Url.Action("GetPreview", "AppFiles", new {id = Model.PreviewId.Value })" alt="@Model.Title" class="img-responsive form-control-sm model-simple-img" />
             <figcaption class="model-title">

@@ -12,14 +12,15 @@
             {
                 var category = Model.Categories[cat];
                 <div class="col-md-2 pull-left category-box">
-                    <a href="\Categories\Index\@category.Id" class="category-title">
+                    <a href="@Url.Action("Index", "Categories", new { name = category.Name })" class="category-title">
                         <p><big>@category.Name</big></p>
                     </a>
                     <div class="row">
                         @foreach (var subCategory in category.SubCategories)
                         {
                             <div class="col-md-12">
-                                <a href="\Subcategories\Index\@subCategory.Id">@subCategory.Name</a>
+                                <a href="@Url.Action("Index", "SubCategories", 
+                                new {categoryName=category.Name, subCategoryName = @subCategory.Name })">@subCategory.Name</a>
                             </div>
                         }
 
@@ -33,7 +34,7 @@
             }
         </div>
         <div class="col-md-2 pull-right">
-            <a href="\PolyModels\Create" class="btn btn-add-model">Add 3D Model</a>
+            <a href="@Url.Action("Create","PolyModels")" class="btn btn-add-model">Add 3D Model</a>
         </div>
 
     </div>

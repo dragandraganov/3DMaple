@@ -1,8 +1,12 @@
-﻿@using _3DMapleSystem.Web.ViewModels.PolyModels;
+﻿@using _3DMapleSystem.Web.Infrastructure.Helpers
+@using _3DMapleSystem.Web.ViewModels.PolyModels;
 @model IEnumerable<SimplePolyModelViewModel>
-@{
-    ViewBag.Title = "Index";
-}
+
+<h2>
+    <a href="@Url.Action("Index","Home")">3DModels</a>
+    >
+    <a href="javascript:void(0)">@ViewContext.RouteData.Values["name"].ToString().ToTitleCase()</a>
+</h2>
 
 <div class="row">
     <div class="col-md-9">
@@ -12,4 +16,3 @@
         }
     </div>
 </div>
-

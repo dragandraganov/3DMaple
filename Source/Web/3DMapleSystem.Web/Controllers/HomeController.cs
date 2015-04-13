@@ -11,25 +11,22 @@ namespace _3DMapleSystem.Web.Controllers
 {
     public class HomeController : BaseController
     {
-        private readonly IListPopulizer populizer;
-
-        public HomeController(_3DMapleSystemData data, IListPopulizer populator)
-            : base(data)
+        public HomeController(_3DMapleSystemData data, IListPopulizer populizer)
+            : base(data,populizer)
         {
-            this.populizer = populator;
         }
 
         public ActionResult Index()
         {
             var homePageModel = new HomePageViewModel();
 
-            homePageModel.Categories = this.populizer.GetCategories()
+            homePageModel.Categories = this.Populizer.GetCategories()
                 .AsQueryable()
                 .Project()
                 .To<CategoryViewModel>()
                 .ToList();
 
-            homePageModel.PolyModels = this.populizer.GetPolyModels()
+            homePageModel.PolyModels = this.Populizer.GetPolyModels()
                 .AsQueryable()
                 .OrderByDescending(m => m.CreatedOn)
                 .Project()

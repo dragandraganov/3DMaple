@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using _3DMapleSystem.Web.Infrastructure.Popularizers;
 
 namespace _3DMapleSystem.Web.Controllers
 {
@@ -14,11 +15,14 @@ namespace _3DMapleSystem.Web.Controllers
     {
         protected _3DMapleSystemData Data { get; private set; }
 
+        protected IListPopulizer Populizer { get; set; }
+
         protected User UserProfile { get; private set; }
 
-        public BaseController(_3DMapleSystemData data)
+        public BaseController(_3DMapleSystemData data, IListPopulizer populizer)
         {
             this.Data = data;
+            this.Populizer = populizer;
         }
 
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
@@ -27,6 +31,11 @@ namespace _3DMapleSystem.Web.Controllers
 
             return base.BeginExecute(requestContext, callback, state);
         }
+
+        //protected override void OnActionExecuted(ActionExecutedContext filterContext)
+        //{
+        //    base.OnActionExecuted(filterContext);
+        //}
 
         public IEnumerable<SelectListItem> GetCategories()
         {

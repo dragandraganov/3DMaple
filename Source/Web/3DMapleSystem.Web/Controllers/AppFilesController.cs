@@ -10,12 +10,9 @@ namespace _3DMapleSystem.Web.Controllers
 {
     public class AppFilesController : BaseController
     {
-        private IListPopulizer populator;
-
-        public AppFilesController(_3DMapleSystemData data, IListPopulizer populator)
-            : base(data)
+        public AppFilesController(_3DMapleSystemData data, IListPopulizer populizer)
+            : base(data, populizer)
         {
-            this.populator = populator;
         }
 
         // GET: Images

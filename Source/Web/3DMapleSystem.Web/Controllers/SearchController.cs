@@ -1,4 +1,5 @@
-﻿using _3DMapleSystem.Web.Infrastructure.Popularizers;
+﻿using _3DMapleSystem.Data;
+using _3DMapleSystem.Web.Infrastructure.Popularizers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,11 @@ using _3DMapleSystem.Web.ViewModels;
 
 namespace _3DMapleSystem.Web.Controllers
 {
-    public class SearchController : Controller
+    public class SearchController : BaseController
     {
-        private readonly IListPopulizer populizer;
-
-        public SearchController(IListPopulizer populizer)
+        public SearchController(_3DMapleSystemData data, IListPopulizer populizer)
+            : base(data, populizer)
         {
-            this.populizer = populizer;
         }
 
         // GET: Search
@@ -26,10 +25,10 @@ namespace _3DMapleSystem.Web.Controllers
         {
             var complexModel = new SearchComplexViewModel();
 
-            var tagsMatchQuery = this.populizer.GetTags()
+            var tagsMatchQuery = this.Populizer.GetTags()
                 .Where(t => t.Name.StartsWith(query)).Select(tag => tag.Name);
 
-            var polyModels = this.populizer.GetPolyModels()
+            var polyModels = this.Populizer.GetPolyModels()
                 .Where(pm => pm.Tags.Select(tag => tag.Name).Intersect(tagsMatchQuery).Any())
                 .AsQueryable();
 

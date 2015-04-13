@@ -5,13 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using _3DMapleSystem.Data;
 using _3DMapleSystem.Data.Models;
+using _3DMapleSystem.Web.Infrastructure.Popularizers;
 
 namespace _3DMapleSystem.Web.Controllers
 {
     public class RatingsController : BaseController
     {
-        public RatingsController(_3DMapleSystemData data)
-            : base(data)
+
+        public RatingsController(_3DMapleSystemData data, IListPopulizer populizer)
+            : base(data, populizer)
         {
         }
 
