@@ -1,6 +1,7 @@
 ﻿@using _3DMapleSystem.Web.ViewModels.ComplexModels
 @model DetailsComplexModel
 
+
 <div class="container">
     <div>
         <div class="avatar-wrapper mr10">
@@ -71,19 +72,29 @@
             new { @class = "rating-panel" }))
             {
                 <div class="rating-area">
-                    <label class="rating-star"></label>
-                    <input type="radio" name="rating" value="1">
-                    <label class="rating-star"></label>
-                    <input type="radio" name="rating" value="2">
-                    <label class="rating-star"></label>
-                    <input type="radio" name="rating" value="3">
-                    <label class="rating-star"></label>
-                    <input type="radio" name="rating" value="4">
-                    <label class="rating-star"></label>
-                    <input type="radio" name="rating" value="5">
+                    <span class="rating-text">Your rating:</span>
+                    <div class="rating-area-stars">
+                        <label class="rating-star"></label>
+                        <input type="radio" name="rating" value="1">
+                        <label class="rating-star"></label>
+                        <input type="radio" name="rating" value="2">
+                        <label class="rating-star"></label>
+                        <input type="radio" name="rating" value="3">
+                        <label class="rating-star"></label>
+                        <input type="radio" name="rating" value="4">
+                        <label class="rating-star"></label>
+                        <input type="radio" name="rating" value="5">
+                        <span class="rating-dynamic-value">-</span>
+                        <span class="rating-static-value">/5</span>
+                        <span class="btn-clear-rating glyphicon glyphicon-remove-circle" title="Clear Rating"></span>
+                    </div>
                 </div>
-                <div class="btn btn-xs btn-default btn-clear-rating mr55">Clear</div>
-                <input type="submit" value="Rate" class="btn btn-xs btn-success submit-rating" />
+                <script type="text/javascript">
+                    displayCurrentUserRating(@Model.PolyModel.CurrentUserRating);
+                </script>
+                <div id="rating-result">
+                    @Html.Partial("_RatingResult", @Model.PolyModel)
+                </div>
             }
             <hr />
             <div class="row">

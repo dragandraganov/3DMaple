@@ -143,6 +143,8 @@ namespace _3DMapleSystem.Web.Controllers
 
             complexModel.PolyModel = Mapper.Map<PolyModelDetailsViewModel>(polyModel);
 
+            this.AttachRatingProperties(polyModel, complexModel.PolyModel);
+
             if (polyModel.File3DModel.Size == null)
             {
                 complexModel.SizeOfFileModel = String.Format("{0:0.00}", 0);
@@ -157,6 +159,8 @@ namespace _3DMapleSystem.Web.Controllers
 
             return View(complexModel);
         }
+
+       
 
         [Authorize(Roles = GlobalConstants.AdminRole)]
         public ActionResult DownloadSuccess(string modelId)

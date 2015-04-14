@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using _3DMapleSystem.Web.Infrastructure.Popularizers;
+using _3DMapleSystem.Web.ViewModels.PolyModels;
 
 namespace _3DMapleSystem.Web.Controllers
 {
@@ -97,5 +98,34 @@ namespace _3DMapleSystem.Web.Controllers
             return new StandardJsonResult<T> { Data = data };
         }
 
+        protected void AttachRatingProperties(PolyModel polyModel, PolyModelDetailsViewModel polyModelView)
+        {
+            var sumOfAllRatings = polyModel.Ratings
+                .Where(r => !r.IsDeleted)
+                .Sum(r => r.Value);
+
+            var countRatings = polyModel.Ratings
+                .Where(r => !r.IsDeleted)
+                .Count();
+
+            if (countRatings > 0)
+            {
+                polyModelView.AverageRating = Math.Round((double)sumOfAllRatings / countRatings, 1);
+            }
+
+            polyModelView.CountRatings = countRatings;
+
+            if (this.UserProfile != null)
+            {
+                var currentUserRating = this.Data.Ratings
+                    .All()
+                    .FirstOrDefault(r => r.PolyModel.Id == polyModel.Id && r.User.Id == this.UserProfile.Id);
+
+                if (currentUserRating != null)
+                {
+                    polyModelView.CurrentUserRating = currentUserRating.Value;
+                }
+            }
+        }
     }
 }

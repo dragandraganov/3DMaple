@@ -246,6 +246,7 @@
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\defaultPhoto.jpg" />
     <Content Include="Content\Images\LogoRender.png" />
+    <Content Include="Content\Images\small-color_star.png" />
     <Content Include="Content\Images\TransparentHover45.png" />
     <Content Include="Content\Images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\Images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -381,6 +382,7 @@
     <Content Include="Views\Shared\_SubCategoryInList.cshtml" />
     <Content Include="Views\PolyModels\Details.cshtml" />
     <Content Include="Views\Shared\_DownloadLimits.cshtml" />
+    <Content Include="Views\Shared\_RatingResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

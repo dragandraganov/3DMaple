@@ -68,6 +68,12 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
 
         public IList<GroupedSelectListItem> SubCategories { get; set; }
 
+        public int? CurrentUserRating { get; set; }
+
+        public double AverageRating { get; set; }
+
+        public int CountRatings { get; set; }
+
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<PolyModel, PolyModelDetailsViewModel>()

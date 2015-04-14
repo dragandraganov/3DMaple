@@ -18,8 +18,15 @@ namespace _3DMapleSystem.Web
 
             routes.MapRoute(
                 name: "Categories",
-                url: "{controller}/{name}",
+                url: "Categories/{name}",
                 defaults: new { controller = "Categories", action = "Index" },
+                namespaces: new[] { "_3DMapleSystem.Web.Controllers" }
+                );
+
+            routes.MapRoute(
+                name: "Rating",
+                url: "Ratings/{action}",
+                defaults: new { controller = "Ratings", action = "Vote" },
                 namespaces: new[] { "_3DMapleSystem.Web.Controllers" }
                 );
 

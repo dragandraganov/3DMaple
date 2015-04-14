@@ -6,9 +6,12 @@ using System.Web.Mvc;
 using _3DMapleSystem.Data;
 using _3DMapleSystem.Data.Models;
 using _3DMapleSystem.Web.Infrastructure.Popularizers;
+using AutoMapper;
+using _3DMapleSystem.Web.ViewModels.PolyModels;
 
 namespace _3DMapleSystem.Web.Controllers
 {
+    [Authorize]
     public class RatingsController : BaseController
     {
 
@@ -17,41 +20,66 @@ namespace _3DMapleSystem.Web.Controllers
         {
         }
 
-        // GET: Ratings
-        public void Vote(Guid modelId)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Vote(string modelId, string rating)
         {
-
             if (!this.Request.IsAjaxRequest())
             {
                 throw new HttpException();
                 //return PartialView("_PartyGameSingleView"); //TODO Return appropriate message
             }
 
+            var existingRating = this.Data.Ratings
+                    .All()
+                    .FirstOrDefault(r => r.PolyModelId == new Guid(modelId) && r.UserId == this.UserProfile.Id);
+
             var existingPolyModel = this.Data.PolyModels
-                .All()
-                .FirstOrDefault(pm => pm.Id == modelId);
+                   .All()
+                   .FirstOrDefault(pm => pm.Id == new Guid(modelId));
 
-            string rating = this.Request["rating"];
-
-            if (rating != null)
+            if (rating == null)
             {
-                //return PartialView("_PartyGameSingleView", votedGame);
-
-                int ratingValue = int.Parse(rating);
-
-                var existingRating = this.Data.Ratings.All().FirstOrDefault(r => r.PolyModelId == modelId && r.UserId == this.UserProfile.Id);
-
                 if (existingRating != null)
                 {
-                    this.ModifyRating(ratingValue, existingRating);
+                    this.Data.Ratings.Delete(existingRating);
+                    this.Data.SaveChanges();
                 }
 
-                else
+                var polyModelViewModel = Mapper.Map<PolyModelDetailsViewModel>(existingPolyModel);
+
+                this.AttachRatingProperties(existingPolyModel, polyModelViewModel);
+
+                return PartialView("_RatingResult", polyModelViewModel);
+            }
+
+            else
+            {
+                if (rating != null)
                 {
-                    this.AddNewRating(ratingValue, existingPolyModel);
+                    //return PartialView("_PartyGameSingleView", votedGame);
+
+                    int ratingValue = int.Parse(rating);
+
+                    if (existingRating != null)
+                    {
+                        this.ModifyRating(ratingValue, existingRating);
+                    }
+
+                    else
+                    {
+                        this.AddNewRating(ratingValue, existingPolyModel);
+                    }
+
+                    var polyModelViewModel = Mapper.Map<PolyModelDetailsViewModel>(existingPolyModel);
+
+                    this.AttachRatingProperties(existingPolyModel, polyModelViewModel);
+
+                    return PartialView("_RatingResult", polyModelViewModel);
                 }
             }
-            //return View();
+
+            throw new HttpException();
         }
 
         private void ModifyRating(int ratingValue, Rating ratingEntity)

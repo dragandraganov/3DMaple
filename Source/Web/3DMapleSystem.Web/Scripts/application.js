@@ -126,32 +126,77 @@
 
     //Rating implementation section
     $(document).on('mouseenter', ".rating-star", function () {
+        $('.rating-star').removeClass('filled');
         $(this).prevUntil(".rating-area").addClass('filled');
         $(this).addClass('filled');
+        $(this).attr('title', 'Click to rate: ' + $(this).next('input').val());
+        $('.rating-dynamic-value').text($(this).next('input').val());
     })
+
     $(document).on('mouseleave', ".rating-star", function () {
-        if ($(this).parent().find(".rating-star").hasClass('selected')) {
-            var selected = $(this).parent().find('.selected').first();
-            selected.nextUntil('input :submit').removeClass('filled')
-        }
-        else {
-            $(this).prevUntil(".rating-area").removeClass('filled');
-            $(this).removeClass('filled');
-        }
+        returnUserRating();
+
+        //if ($(this).parent().find(".rating-star").hasClass('selected')) {
+        //    var selected = $(this).parent().find('.selected').first();
+        //    selected.nextUntil('input :submit').removeClass('filled')
+        //}
+        //else {
+        //    $(this).prevUntil(".rating-area").removeClass('filled');
+        //    $(this).removeClass('filled');
+        //}
     })
-    $(document).on('click', ".rating-star", function () {
-        $(this).parent().find(".rating-star").removeClass('filled selected');
-        $(this).prevUntil(".rating-area").addClass('filled');
-        $(this).addClass('filled selected');
-        var radioChecked = $(this).next();
-        radioChecked.attr('checked', true);
-        var $selectedStar = $(this).parent().find(".selected").first().next();
-        var $rating = $selectedStar.val();
-        $(this).parent().find('#rating-value').val($rating);
+
+    $(document).on('click', ".rating-star", function (data, status, xhr) {
+        var checkedStar = $(this).next('input');
+        var checkedValue = parseInt(checkedStar.val());
+        var modelId = window.location.href.split("/")[4];
+        $.ajax({
+            url: "/ratings/vote?modelId=" + modelId + "&rating=" + checkedValue,
+            method: "POST",
+            data: AddAntiForgeryToken({}),
+            success: function (data, status, xhr) {
+                if (xhr.getResponseHeader("X-Responded-JSON")) {
+                    if ($.parseJSON(xhr.getResponseHeader("X-Responded-JSON")).status === 401) {
+                        window.location.href = "/Account/Login";
+                    }
+                }
+               
+                else {
+                    $('input[name="rating"]').prop('checked', false);
+                    checkedStar.prop('checked', true);
+                    $('.rating-star').removeClass('filled');
+                    $('.rating-star').slice(0, checkedValue).each(function () {
+                        $(this).addClass('filled');
+                    });
+                    $('.rating-dynamic-value').text(checkedStar.val());
+                    $('#rating-result').html(data);
+                }
+            }
+        })
     })
+
     $(document).on('click', '.btn-clear-rating', function () {
-        $(this).parent().prev().find('.rating-star').removeClass('filled selected');
+        if ($('input[name="rating"]:checked').length > 0) {
+            var modelId = window.location.href.split("/")[4];
+            $.ajax({
+                url: "/ratings?modelId=" + modelId,
+                method: "POST",
+                success: function (data) {
+                    $('#rating-result').html(data);
+                }
+            })
+        }
+        $('.rating-star').removeClass('filled');
+        $('input[name="rating"]').prop('checked', false);
+        $('.rating-dynamic-value').text('-');
     })
+
+    $(document).ajaxError(function (event, jqxhr, settings, exception) {
+        if (jqxhr.status === 401) {
+            // unauthorized
+            window.location.href = '/Account/Login';
+        }
+    });
 })
 
 function successfulDownload(modelId) {
@@ -163,6 +208,27 @@ function successfulDownload(modelId) {
             $('#download-limits-wrapper').html(data);
         }
     })
+}
+
+function displayCurrentUserRating(value) {
+    $('input[name="rating"][value="' + value + '"]').attr('checked', true);
+    returnUserRating();
+}
+
+function returnUserRating() {
+    var checkedStar = $('input[name="rating"]:checked');
+    var checkedValue = parseInt(checkedStar.val());
+    $('.rating-star').removeClass('filled');
+    if (checkedValue > 0) {
+        $('.rating-star').slice(0, checkedValue).each(function () {
+            $(this).addClass('filled');
+        });
+        $('.rating-dynamic-value').text(checkedStar.val());
+    }
+    else {
+        $('.rating-dynamic-value').text('-');
+
+    }
 }
 
 //function downloadModel(url, modelId) {
@@ -207,3 +273,8 @@ $.fn.fillSelect = function (data) {
         }
     });
 }
+
+AddAntiForgeryToken = function (data) {
+    data.__RequestVerificationToken = $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val();
+    return data;
+};

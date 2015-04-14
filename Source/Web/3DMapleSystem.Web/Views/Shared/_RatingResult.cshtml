@@ -1,0 +1,9 @@
+﻿@using _3DMapleSystem.Web.ViewModels.PolyModels
+@model PolyModelDetailsViewModel
+
+@{
+    var averageRating = @Model.AverageRating;
+}
+
+<div>Ratings: <span><b>@(averageRating == 0 ? "-" : averageRating.ToString("F1"))</b></span>/5 from <span>@Model.CountRatings</span> users</div>
+
