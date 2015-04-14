@@ -50,9 +50,6 @@ namespace _3DMapleSystem.Web.Areas.Administration.ViewModels
 
         public string SubPlatformName { get; set; }
 
-        [MinLength(3, ErrorMessage = "The minimum length of tags is 3 characters")]
-        [MaxLength(40, ErrorMessage = "The maximum length of tags is 40 characters")]
-        [RegularExpression("([a-zA-Z0-9,]+)", ErrorMessage = "The tags must contain only alphabets, numbers and comma separator")]
         public ICollection<string> Tags { get; set; }
 
         public string AuthorName { get; set; }

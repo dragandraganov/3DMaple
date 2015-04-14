@@ -12,6 +12,7 @@
 
     <h4>Hard delete 3D model</h4>
     <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(m => m.Title, new { @class = "col-sm-2 control-label" })
         <div class="col-sm-10">

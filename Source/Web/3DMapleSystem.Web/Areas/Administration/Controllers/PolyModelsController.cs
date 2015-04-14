@@ -156,7 +156,7 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(PolyModelViewModel model)
         {
-            if (model != null && ModelState.IsValid)
+            if (model != null)
             {
                 var existingPolyModel = this.Data.PolyModels
                 .All()
@@ -183,7 +183,7 @@ namespace _3DMapleSystem.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult HardDelete(PolyModelViewModel model)
         {
-            if (model != null && ModelState.IsValid)
+            if (model != null)
             {
                 var existingPolyModel = this.Data.PolyModels
                 .AllWithDeleted()
