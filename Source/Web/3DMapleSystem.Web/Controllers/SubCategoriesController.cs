@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using _3DMapleSystem.Data;
 using AutoMapper.QueryableExtensions;
+using _3DMapleSystem.Web.Infrastructure.Helpers;
 using _3DMapleSystem.Web.ViewModels.PolyModels;
 using _3DMapleSystem.Web.Infrastructure.Popularizers;
 
@@ -16,7 +17,7 @@ namespace _3DMapleSystem.Web.Controllers
         }
 
         // GET: SubCategories
-        public ActionResult Index(string categoryName, string subCategoryName)
+        public ActionResult Index( string categoryName, string subCategoryName)
         {
             var allModelsInSubCategory = this.Populizer.GetPolyModels()
                 .AsQueryable()

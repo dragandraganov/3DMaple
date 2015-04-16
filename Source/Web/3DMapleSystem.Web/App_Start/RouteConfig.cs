@@ -31,7 +31,7 @@ namespace _3DMapleSystem.Web
                 );
 
             routes.MapRoute(
-                name:"SubCategories",
+                name: "SubCategories",
                 url: "Categories/{categoryName}/{subCategoryName}",
                 defaults: new { controller = "SubCategories", action = "Index" },
                 namespaces: new[] { "_3DMapleSystem.Web.Controllers" }

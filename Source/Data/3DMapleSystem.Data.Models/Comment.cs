@@ -14,7 +14,7 @@ namespace _3DMapleSystem.Data.Models
 
         public virtual User Author { get; set; }
 
-        public string PolyModelId { get; set; }
+        public Guid PolyModelId { get; set; }
 
         public virtual PolyModel PolyModel { get; set; }
 

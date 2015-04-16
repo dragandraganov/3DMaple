@@ -1,0 +1,59 @@
+﻿@using _3DMapleSystem.Web.ViewModels
+@model CommentViewModel
+
+<div class="panel panel-tasks comment" id="comment-@Model.Id">
+    <div class="panel-body">
+        <div class="media overflow-visible">
+            <div class="col-md-11">
+                <div class="row-fluid">
+                    <i class="glyphicon glyphicon-user"></i> <span class="text-success">@Model.AuthorName</span>
+                    <div class="pull-right mb5">
+                        <p><small><em>@Model.CreatedOn.ToString("dddd, dd MMMM yyyy, HH:mm")</em></small></p>
+                    </div>
+                </div>
+
+                <div class="row-fluid pt5 content" id="comment-content-@Model.Id">@Model.Content</div>
+                <div id="comment-content-edit-@Model.Id"></div>
+            </div>
+            @if ((User.Identity.IsAuthenticated && Model.AuthorName == System.Web.HttpContext.Current.User.Identity.Name) || User.IsInRole(_3DMapleSystem.Common.GlobalConstants.AdminRole))
+            {
+                <div class="col-md-1 text-right">
+
+                    @using (Ajax.BeginForm("Edit", "Comments",
+                    new { commentId = @Model.Id },
+                    new AjaxOptions
+                    {
+                        HttpMethod = "GET",
+                        UpdateTargetId = "comment-content-edit-" + @Model.Id,
+                        InsertionMode = InsertionMode.ReplaceWith,
+
+                    },
+                    new { @class = "form-horizontal inline-forms", role = "form" }))
+                    {
+                        <button type="submit" class="no-border btn-edit-comment">
+                            <i class="glyphicon glyphicon glyphicon-pencil"></i>
+                        </button>
+                    }
+
+                    @using (Ajax.BeginForm("Delete", "Comments",
+                    new { commentId = @Model.Id },
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "comment-content-" + @Model.Id,
+                        InsertionMode = InsertionMode.ReplaceWith,
+                        OnSuccess = "successDeleteComment(this)",
+                    },
+                    new { @class = "form-horizontal inline-forms", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="no-border ">
+                            <i class="glyphicon glyphicon glyphicon-remove"></i>
+                        </button>
+                    }
+                </div>
+            }
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+

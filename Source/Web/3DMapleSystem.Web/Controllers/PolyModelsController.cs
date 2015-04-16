@@ -12,6 +12,7 @@ using _3DMapleSystem.Common;
 using _3DMapleSystem.Web.ViewModels.PolyModels;
 using AutoMapper;
 using _3DMapleSystem.Web.Infrastructure.Helpers;
+using System.Collections.Generic;
 
 namespace _3DMapleSystem.Web.Controllers
 {
@@ -137,22 +138,23 @@ namespace _3DMapleSystem.Web.Controllers
         {
             var complexModel = new DetailsComplexModel();
 
-            var polyModel = this.Data.PolyModels
+            var existingPolyModel = this.Data.PolyModels
                 .All()
                 .FirstOrDefault(pm => pm.Id == id);
 
-            complexModel.PolyModel = Mapper.Map<PolyModelDetailsViewModel>(polyModel);
+            complexModel.PolyModel = Mapper.Map<PolyModel, PolyModelDetailsViewModel>(existingPolyModel);
+            complexModel.PolyModel.Comments = Mapper.Map<ICollection<Comment>, IList<CommentViewModel>>(existingPolyModel.Comments);
 
-            this.AttachRatingProperties(polyModel, complexModel.PolyModel);
+            this.AttachRatingProperties(existingPolyModel, complexModel.PolyModel);
 
-            if (polyModel.File3DModel.Size == null)
+            if (existingPolyModel.File3DModel.Size == null)
             {
                 complexModel.SizeOfFileModel = String.Format("{0:0.00}", 0);
             }
 
             else
             {
-                complexModel.SizeOfFileModel = String.Format("{0:0.00}", (double)polyModel.File3DModel.Size.Value / (1024 * 1024));
+                complexModel.SizeOfFileModel = String.Format("{0:0.00}", (double)existingPolyModel.File3DModel.Size.Value / (1024 * 1024));
             }
 
             complexModel.CurrentUser = Mapper.Map<UserViewModel>(this.UserProfile);
@@ -160,7 +162,7 @@ namespace _3DMapleSystem.Web.Controllers
             return View(complexModel);
         }
 
-       
+
 
         [Authorize(Roles = GlobalConstants.AdminRole)]
         public ActionResult DownloadSuccess(string modelId)

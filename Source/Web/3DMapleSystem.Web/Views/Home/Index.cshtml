@@ -1,63 +1,67 @@
-﻿@using _3DMapleSystem.Web.ViewModels;
-@model HomePageViewModel
+﻿@using _3DMapleSystem.Web.Infrastructure.Helpers
+    @using _3DMapleSystem.Web.ViewModels;
+    @model HomePageViewModel
 
-@{
-    ViewBag.Title = "Home Page";
-}
+    @{
+        ViewBag.Title = "Home Page";
+    }
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="col-md-10">
-            @for (int cat = 0; cat < Model.Categories.Count; cat++)
-            {
-                var category = Model.Categories[cat];
-                <div class="col-md-2 pull-left category-box">
-                    <a href="@Url.Action("Index", "Categories", new { name = category.Name })" class="category-title">
-                        <p><big>@category.Name</big></p>
-                    </a>
-                    <div class="row">
-                        @foreach (var subCategory in category.SubCategories)
-                        {
-                            <div class="col-md-12">
-                                <a href="@Url.Action("Index", "SubCategories", 
-                                new {categoryName=category.Name, subCategoryName = @subCategory.Name })">@subCategory.Name</a>
-                            </div>
-                        }
-
-                    </div>
-                </div>
-                if (cat % 4 == 3)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-10">
+                @for (int cat = 0; cat < Model.Categories.Count; cat++)
                 {
-                    <div class="clearfix"></div>
-                    <br />
+                    var category = Model.Categories[cat];
+                    <div class="col-md-2 pull-left category-box">
+                        <a href="@Url.Action("Index", "Categories", new { name = category.Name })" class="category-title">
+                            <p><big>@category.Name</big></p>
+                        </a>
+                        <div class="row">
+                            @foreach (var subCategory in category.SubCategories)
+                            {
+                                <div class="col-md-12">
+                                    <a href="@Url.Action("Index", "SubCategories",
+                        new
+                        {
+                            categoryName = category.Name,
+                            subCategoryName = @subCategory.Name
+                        })">@subCategory.Name</a>
+                    </div>
+                            }
+
+                        </div>
+                    </div>
+                    if (cat % 4 == 3)
+                    {
+                        <div class="clearfix"></div>
+                        <br />
+                    }
                 }
+            </div>
+            <div class="col-md-2 pull-right">
+                <a href="@Url.Action("Create","PolyModels")" class="btn btn-add-model">Add 3D Model</a>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+    <br />
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                @TempData["Success"].ToString()
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-9">
+            @foreach (var model in Model.PolyModels)
+            {
+                @Html.Partial("_SimplePolyModel", model)
             }
         </div>
-        <div class="col-md-2 pull-right">
-            <a href="@Url.Action("Create","PolyModels")" class="btn btn-add-model">Add 3D Model</a>
-        </div>
-
     </div>
-
-</div>
-<div class="clearfix"></div>
-<br />
-
-@if (TempData["Success"] != null)
-{
-    <div class="panel panel-success">
-        <div class="panel-heading">
-            @TempData["Success"].ToString()
-        </div>
-    </div>
-}
-
-<div class="row">
-    <div class="col-md-9">
-        @foreach (var model in Model.PolyModels)
-        {
-            @Html.Partial("_SimplePolyModel", model)
-        }
-    </div>
-</div>
-

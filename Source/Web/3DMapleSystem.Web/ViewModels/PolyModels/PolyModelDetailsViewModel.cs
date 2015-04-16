@@ -74,6 +74,8 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
 
         public int CountRatings { get; set; }
 
+        public IList<CommentViewModel> Comments { get; set; }
+
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<PolyModel, PolyModelDetailsViewModel>()

@@ -1,0 +1,35 @@
+﻿@using _3DMapleSystem.Web.ViewModels
+@model CommentViewModel
+
+<div class="panel panel-default">
+        <div class="panel-heading panel-heading-add">Add comment section</div>
+        <div class="panel-body media overflow-visible">
+            <div class="row">
+                <div class="col-md-12">
+                    @using (Ajax.BeginForm("Add", "Comments",
+                    new { polyModelId = Model.PolyModelId },
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "all-comments",
+                        InsertionMode = InsertionMode.InsertAfter,
+                        OnSuccess = "successAddedComment(this)",
+                        OnFailure = "showCommentError"
+                    },
+                    new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { id = "comment-error", @class = "text-danger" })
+                        <div class="row">
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(c => c.Content, new { @class = "form-control", id = "comment-content", @rows=5 })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="col-md-2 col-md-offset-10 pr0">
+                            <input type="submit" class="btn btn-sm btn-block btn-success mt5 mb5" value="Add comment" id="btn-add-comment" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+</div>

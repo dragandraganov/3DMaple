@@ -159,4 +159,31 @@
             }
         </div>
     </div>
+    <div class="panel panel-tasks p0">
+        @if (@Model.PolyModel.Comments.Count() == 0)
+        {
+            <div class="panel-heading panel-heading-add text-warning" id="comments-label">
+                There are no comments
+            </div>
+            <div class="panel panel-body panel-comments-content" id="panel-comments-content">
+                <div id="all-comments"></div>
+            </div>
+        }
+        else
+        {
+            <div class="panel-body panel-comments-content" id="panel-comments-content">
+                <div id="all-comments">
+                    @foreach (var comment in @Model.PolyModel.Comments)
+                    {
+                        @Html.Partial("_CommentPartialView", comment)
+                    }
+                </div>
+            </div>
+        }
+    </div>
+    <br />
+    @if ((User.Identity.IsAuthenticated ))
+    {
+        @Html.Partial("~/Views/Shared/_AddComment.cshtml", new _3DMapleSystem.Web.ViewModels.CommentViewModel(Model.PolyModel.Id))
+    }
 </div>
