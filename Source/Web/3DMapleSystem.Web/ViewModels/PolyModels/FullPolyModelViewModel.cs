@@ -56,7 +56,7 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
 
         [MinLength(3, ErrorMessage = "The minimum length of tags is 3 characters")]
         [MaxLength(40, ErrorMessage = "The maximum length of tags is 40 characters")]
-        [RegularExpression("([a-zA-Z0-9,]+)", ErrorMessage = "The tags must contain only alphabets, numbers and comma separator")]
+        [RegularExpression("([a-zA-Z0-9, ]+)", ErrorMessage = "The tags must contain only alphabets, numbers and comma separator")]
         public string Tags { get; set; }
 
         public string AuthorName { get; set; }
