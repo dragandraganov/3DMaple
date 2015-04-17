@@ -283,16 +283,15 @@ function showCommentError(data) {
 }
 
 function successAddedComment(data) {
-    var newReminderDate = $(data).find('#ReminderDate').val();
-    $('#comment-next-action-date').text(newReminderDate);
     $('#comment-error>ul>li').hide();
     $('#comment-content').val('');
-    $('#ReminderDate').val('');
     $('#comments-label').html('');
+    $('#comments-counter').text(parseInt($('#comments-counter').text()) + 1);
 }
 
 function successDeleteComment(data) {
     $(data).parents('.comment').remove();
+    $('#comments-counter').text(parseInt($('#comments-counter').text()) - 1);
 }
 
 $.fn.clearSelect = function () {

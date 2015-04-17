@@ -143,7 +143,7 @@ namespace _3DMapleSystem.Web.Controllers
                 .FirstOrDefault(pm => pm.Id == id);
 
             complexModel.PolyModel = Mapper.Map<PolyModel, PolyModelDetailsViewModel>(existingPolyModel);
-            complexModel.PolyModel.Comments = Mapper.Map<ICollection<Comment>, IList<CommentViewModel>>(existingPolyModel.Comments);
+            complexModel.PolyModel.Comments = Mapper.Map<ICollection<Comment>, IList<CommentViewModel>>(existingPolyModel.Comments.Where(c=>!c.IsDeleted).ToList());
 
             this.AttachRatingProperties(existingPolyModel, complexModel.PolyModel);
 

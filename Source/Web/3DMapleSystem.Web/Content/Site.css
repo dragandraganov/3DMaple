@@ -213,6 +213,10 @@ a:hover {
     margin-bottom: 20px;
 }
 
+.mb5 {
+    margin-bottom: 5px;
+}
+
 .mb2 {
     margin-bottom: 2px;
 }
@@ -362,4 +366,46 @@ a:hover {
 
 #rating-result {
     margin-top: 3px;
+}
+
+.inline-forms {
+    display: inline-block;
+}
+
+ .inline-forms > button {
+        color: #428bca;
+    }
+
+.panel-tasks {
+    border: 1px solid #DAE1E8;
+    box-shadow: -2px -2px 3px rgba(224,226,228,0.4);
+}
+
+.overflow-visible {
+    overflow: visible;
+}
+
+#comment-content{
+    max-width:550px;
+}
+
+.no-border {
+    border: 0;
+    background-color: transparent;
+}
+
+.pr0 {
+    padding-right: 0px;
+}
+
+.buttons-editable{
+    padding:0;
+}
+
+.text-italic{
+    font-style:italic;
+}
+
+.opacity05{
+    opacity:0.5;
 }

@@ -387,6 +387,7 @@
     <Content Include="Views\Shared\_RatingResult.cshtml" />
     <Content Include="Views\Shared\_CommentPartialView.cshtml" />
     <Content Include="Views\Shared\_AddComment.cshtml" />
+    <Content Include="Views\Shared\_EditComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,7 +20,7 @@
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary("", new { id = "comment-error", @class = "text-danger" })
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-8 col-md-offset-2">
                                 @Html.TextAreaFor(c => c.Content, new { @class = "form-control", id = "comment-content", @rows=5 })
                             </div>
                         </div>

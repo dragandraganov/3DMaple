@@ -26,8 +26,7 @@ namespace _3DMapleSystem.Web.Controllers
         {
             if (!this.Request.IsAjaxRequest())
             {
-                throw new HttpException();
-                //return PartialView("_PartyGameSingleView"); //TODO Return appropriate message
+                throw new HttpException();//TODO Return appropriate message
             }
 
             var existingRating = this.Data.Ratings

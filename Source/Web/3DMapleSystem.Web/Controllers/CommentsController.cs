@@ -6,6 +6,7 @@ using _3DMapleSystem.Web.Infrastructure.Popularizers;
 using _3DMapleSystem.Data;
 using _3DMapleSystem.Web.ViewModels;
 using _3DMapleSystem.Data.Models;
+using System.Web;
 
 namespace _3DMapleSystem.Web.Controllers
 {
@@ -30,6 +31,11 @@ namespace _3DMapleSystem.Web.Controllers
         [Authorize]
         public ActionResult Add(Guid polyModelId, CommentViewModel comment)
         {
+            if (!this.Request.IsAjaxRequest())
+            {
+                throw new HttpException(); //TODO Return appropriate message
+            }
+
             if (comment != null && ModelState.IsValid)
             {
                 var newComment = new Comment();
@@ -49,7 +55,7 @@ namespace _3DMapleSystem.Web.Controllers
                 return PartialView("_CommentPartialView", comment);
             }
 
-            return this.JsonError("Unexpexted error");
+            return this.JsonError("Unexpected error");
         }
 
         //GET Edit comment
@@ -68,8 +74,12 @@ namespace _3DMapleSystem.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit(int taskId, CommentViewModel comment)
+        public ActionResult Edit(Guid polyModelId, CommentViewModel comment)
         {
+            if (!this.Request.IsAjaxRequest())
+            {
+                throw new HttpException(); //TODO Return appropriate message
+            }
 
             if (comment != null && ModelState.IsValid)
             {
@@ -85,7 +95,7 @@ namespace _3DMapleSystem.Web.Controllers
                 return PartialView("_CommentPartialView", comment);
             }
 
-            return this.JsonError("Unexpexted error");
+            return this.JsonError("Unexpected error");
         }
 
         [HttpPost]
@@ -93,6 +103,11 @@ namespace _3DMapleSystem.Web.Controllers
         [Authorize]
         public ActionResult Delete(int commentId)
         {
+            if (!this.Request.IsAjaxRequest())
+            {
+                throw new HttpException(); //TODO Return appropriate message
+            }
+
             var existingComment = this.Data.Comments
                    .All()
                    .FirstOrDefault(c => c.Id == commentId);
@@ -105,7 +120,7 @@ namespace _3DMapleSystem.Web.Controllers
                 return new EmptyResult();
             }
 
-            return this.JsonError("Unexpexted error");
+            return this.JsonError("Unexpected error");
         }
 
         public bool ValidateReminderDate(DateTime reminderDate, DateTime requiredByDate)

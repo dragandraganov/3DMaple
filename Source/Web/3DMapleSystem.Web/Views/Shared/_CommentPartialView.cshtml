@@ -3,11 +3,11 @@
 
 <div class="panel panel-tasks comment" id="comment-@Model.Id">
     <div class="panel-body">
-        <div class="media overflow-visible">
-            <div class="col-md-11">
+        <div class="media overflow-visible row-fluid">
+            <div class="col-md-11 col-sm-11 col-xs-11">
                 <div class="row-fluid">
                     <i class="glyphicon glyphicon-user"></i> <span class="text-success">@Model.AuthorName</span>
-                    <div class="pull-right mb5">
+                    <div class="mb5">
                         <p><small><em>@Model.CreatedOn.ToString("dddd, dd MMMM yyyy, HH:mm")</em></small></p>
                     </div>
                 </div>
@@ -17,7 +17,7 @@
             </div>
             @if ((User.Identity.IsAuthenticated && Model.AuthorName == System.Web.HttpContext.Current.User.Identity.Name) || User.IsInRole(_3DMapleSystem.Common.GlobalConstants.AdminRole))
             {
-                <div class="col-md-1 text-right">
+                <div class="col-md-1 col-sm-1 col-xs-1 buttons-editable">
 
                     @using (Ajax.BeginForm("Edit", "Comments",
                     new { commentId = @Model.Id },

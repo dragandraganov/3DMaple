@@ -1,0 +1,36 @@
+﻿@using _3DMapleSystem.Web.ViewModels
+@model CommentViewModel
+<div class="media overflow-visible" id="comment-@Model.Id">
+    <div class="col-md-11 col-md-offset-1">
+        @using (Ajax.BeginForm("Edit", "Comments",
+                    new { polyModelId = Model.PolyModelId },
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "comment-" + @Model.Id,
+                        InsertionMode = InsertionMode.ReplaceWith,
+                        //OnSuccess = "successEditComment",
+                    },
+                    new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { id = "edit-comment-error", @class = "text-danger" })
+            @Html.HiddenFor(c => c.AuthorName)
+            @Html.HiddenFor(c => c.CreatedOn)
+            @Html.HiddenFor(c => c.Id)
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.TextAreaFor(c => c.Content, new { @class = "form-control", id = "comment-content", @rows = 5, @cols = 50 })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2 pr0">
+                    <input type="submit" class="btn btn-xs btn-block btn-success mt5 mb5" value="Save changes" id="btn-edit-comment" />
+                </div>
+                <div class="col-md-2">
+                    <btn class="btn btn-xs btn-default edit-cancel">Cancel</btn>
+                </div>
+            </div>
+        }
+    </div>
+</div>
