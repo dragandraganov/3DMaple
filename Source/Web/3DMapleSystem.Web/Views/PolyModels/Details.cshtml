@@ -1,6 +1,12 @@
 ﻿@using _3DMapleSystem.Web.ViewModels.ComplexModels
+@using _3DMapleSystem.Web.Infrastructure.Helpers
 @model DetailsComplexModel
 
+@{
+    var modelRank = Model.PolyModel.RankName.ToTitleCase();
+    var modelProperty = string.Format("Available{0}Models", modelRank);
+    var availableModelsByRank = (int)Model.CurrentUser.GetType().GetProperty(modelProperty).GetValue(@Model.CurrentUser, null);
+}
 
 <div class="container">
     <div>
@@ -100,8 +106,21 @@
             <div class="row">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <div class="col-md-5">
-                        @Html.ActionLink("Download", "Download", "AppFiles",
+                    if (availableModelsByRank == 0)
+                    {
+                        <div class="col-md-5">
+                            @Html.ActionLink("Download", "BuyModels", "User", null,
+                        new
+                    {
+                        @class = "btn btn-sm btn-info btn-download-model"
+                    })
+                        </div>
+                    }
+
+                    else
+                    {
+                        <div class="col-md-5">
+                            @Html.ActionLink("Download", "Download", "AppFiles",
                  new { area = string.Empty, id = @Model.PolyModel.File3DModelId, modelId = @Model.PolyModel.Id },
                 new
                     {
@@ -110,7 +129,9 @@
                         @class = "btn btn-sm btn-info btn-download-model downloadLink",
                         onclick = "return false;"
                     })
-                    </div>
+                        </div>
+                    }
+
 
                     <div class="col-md-6">
                         @Ajax.ActionLink("Add to favorites", "AddToFavorties", "PolyModels",

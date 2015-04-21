@@ -23,6 +23,8 @@ namespace _3DMapleSystem.Common
 
         public const int DefaultProModels = 0;
 
+        public const decimal DefaultProPrice = 6;
+
         //public const int ColumnsInMainPage = 4;
     }
 }

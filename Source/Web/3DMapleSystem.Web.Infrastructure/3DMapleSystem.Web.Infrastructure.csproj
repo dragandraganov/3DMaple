@@ -36,9 +36,15 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPal">
+      <HintPath>..\..\packages\PayPal.1.4.0\lib\net45\PayPal.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,6 +64,8 @@
     <Compile Include="ActionResult\StandardJsonResult.cs" />
     <Compile Include="Caching\ICacheService.cs" />
     <Compile Include="Caching\InMemoryCache.cs" />
+    <Compile Include="Configurations\PayPalConfiguration.cs" />
+    <Compile Include="Helpers\AdminOnlyAttribute.cs" />
     <Compile Include="Helpers\AjaxAuthorizeAttribute.cs" />
     <Compile Include="Helpers\HyphenatedRouteHandler.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />

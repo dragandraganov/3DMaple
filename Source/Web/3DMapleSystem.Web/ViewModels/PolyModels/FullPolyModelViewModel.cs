@@ -28,6 +28,8 @@ namespace _3DMapleSystem.Web.ViewModels.PolyModels
         [AllowHtml]
         public string Description { get; set; }
 
+        public decimal Price { get; set; }
+
         public int? PreviewId { get; set; }
 
         //public string ModelUrl { get; set; }

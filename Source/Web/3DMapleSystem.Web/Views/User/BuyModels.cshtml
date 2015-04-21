@@ -1,0 +1,93 @@
+﻿@using _3DMapleSystem.Web.ViewModels
+@model UserViewModel
+
+@{
+    ViewBag.Title = "BuyModels";
+}
+
+<h2>BuyModels</h2>
+
+<div class="container">
+    <div>
+        <div class="avatar-wrapper mr10">
+            <a href="#">
+                @if (Model.PhotoId == 0 || Model.PhotoId == null)
+                {
+                    <img class=" img-responsive form-control-sm model-simple-img user-avatar" src="~/Content/Images/defaultPhoto.jpg" />
+                }
+                else
+                {
+                    <img src="@Url.Action("GetPreview", "AppFiles", new {id = Model.PhotoId })"
+                         alt="@Model.UserName" class=" img-responsive form-control-sm model-simple-img user-avatar" />
+                }
+            </a>
+        </div>
+        @*<h4 class="mb10 pt5">
+                <span class="rank-name rank-name-@Model.PolyModel.RankName mr10">@Model.PolyModel.RankName</span>
+                <span>@Model.PolyModel.Title </span>
+            </h4>*@
+        <h4>
+            <span class="glyphicon glyphicon-user mr10"></span>
+            <a href="#">@Model.UserName</a>
+        </h4>
+    </div>
+</div>
+<hr />
+<div class="container">
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col-md-7 payment-menu">
+            <div>
+                <span class="glyphicon glyphicon-shopping-cart"></span>
+                <span> Shopping cart:</span>
+            </div>
+            <div>
+                <label>Choose a number of PRO 3d models:</label>
+                <input type="number" />
+            </div>
+            <div>
+                <label>Availabitily period for FREE 3d models</label>
+                <input type="range" />
+            </div>
+            <div class="models-buy-choice">
+                <h3>Your choice:</h3>
+                <span>0</span><span> Pro</span>
+                <span> + </span>
+                <span>0</span><span> Free</span>
+            </div>
+            <div>
+                Payment method:
+            </div>
+            <div>
+                <input name="payment-method" type="radio" id="payment-method-card" />
+                <span class="glyphicon glyphicon-credit-card"></span>
+                <label for="payment-method-card">Credit Cards</label>
+            </div>
+            <div>
+                <input name="payment-method" type="radio" id="payment-method-paypal" />
+                <span class="glyphicon glyphicon-credit-card"></span>
+                <label for="payment-method-paypal">PayPal</label>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-6">
+                    <hr />
+                    <div class="pull-right pr25">
+                        <span>Amount to pay:</span>
+                        <span> 0 </span>
+                        <span>$</span>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="pull-right">
+                @Html.Partial("_PayPal")
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div>
+                <span class="glyphicon glyphicon-info-sign"> Helpful Information</span>
+            </div>
+        </div>
+    </div>
+</div>
+

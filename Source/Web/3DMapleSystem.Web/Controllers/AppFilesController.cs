@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using _3DMapleSystem.Data;
 using _3DMapleSystem.Web.Infrastructure.Popularizers;
 using _3DMapleSystem.Common;
+using _3DMapleSystem.Web.Infrastructure.Helpers;
 
 namespace _3DMapleSystem.Web.Controllers
 {
@@ -44,7 +45,7 @@ namespace _3DMapleSystem.Web.Controllers
         /// <param name="id">The id.</param>
         /// <param name="modelId">The model id.</param>
         /// <returns></returns>
-        [Authorize(Roles = GlobalConstants.AdminRole)]
+        [AdminOnly(Roles = GlobalConstants.AdminRole, Message="The application is in development. Only admins can download models!")]
         public ActionResult Download(int id, Guid modelId)
         {
 

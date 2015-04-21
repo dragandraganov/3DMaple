@@ -25,6 +25,8 @@ namespace _3DMapleSystem.Data.Models
 
         public string Description { get; set; }
 
+        public decimal Price { get; set; }
+
         public int? File3DModelId { get; set; }
 
         public virtual AppFile File3DModel { get; set; }

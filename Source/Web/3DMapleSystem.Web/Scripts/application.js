@@ -77,8 +77,9 @@
                             })
                         },
                         error: function () {
-                            $('.limits-error').find('.rank-name').addClass("rank-name-" + rank).text(rank);
-                            $('.limits-error').show();
+                            window.location.href = "/User/BuyModels";
+                            //$('.limits-error').find('.rank-name').addClass("rank-name-" + rank).text(rank);
+                            //$('.limits-error').show();
                         }
                     })
                 },
@@ -201,6 +202,7 @@
             $.ajax({
                 url: "/ratings?modelId=" + modelId,
                 method: "POST",
+                data: AddAntiForgeryToken({}),
                 success: function (data) {
                     $('#rating-result').html(data);
                 }

@@ -51,6 +51,9 @@
     <Reference Include="GridMvc">
       <HintPath>..\..\packages\Grid.Mvc.3.0.0\lib\net40\GridMvc.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -64,6 +67,9 @@
     </Reference>
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPal">
+      <HintPath>..\..\packages\PayPal.1.4.0\lib\net45\PayPal.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -212,14 +218,17 @@
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PayPalController.cs" />
     <Compile Include="Controllers\PolyModelsController.cs" />
     <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SubCategoriesController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Logger.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -229,6 +238,7 @@
     <Compile Include="ViewModels\ComplexModels\PolyModelComplexViewModel.cs" />
     <Compile Include="ViewModels\ComplexModels\SearchComplexViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
+    <Compile Include="ViewModels\PayPalTransactionViewModel.cs" />
     <Compile Include="ViewModels\PolyModels\FullPolyModelViewModel.cs" />
     <Compile Include="ViewModels\PolyModels\PolyModelDetailsViewModel.cs" />
     <Compile Include="ViewModels\PolyModels\SimplePolyModelViewModel.cs" />
@@ -388,6 +398,13 @@
     <Content Include="Views\Shared\_CommentPartialView.cshtml" />
     <Content Include="Views\Shared\_AddComment.cshtml" />
     <Content Include="Views\Shared\_EditComment.cshtml" />
+    <Content Include="Views\PayPal\CancelFromPaypal.cshtml" />
+    <Content Include="Views\PayPal\NotifyFromPaypal.cshtml" />
+    <Content Include="Views\PayPal\SuccessView.cshtml" />
+    <Content Include="Views\PayPal\ValidateCommand.cshtml" />
+    <Content Include="Views\Shared\_PayPal.cshtml" />
+    <Content Include="Views\PayPal\FailureView.cshtml" />
+    <Content Include="Views\User\BuyModels.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

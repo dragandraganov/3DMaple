@@ -56,6 +56,9 @@ namespace _3DMapleSystem.Web.Controllers
                 newPolyModel.SubPlatformId = complexModel.PolyModel.SubPlatformId;
                 newPolyModel.Author = this.UserProfile;
 
+                //If user not allowed to add or change price - in ohter case take the price from form
+                newPolyModel.Price = GlobalConstants.DefaultProPrice;
+
                 //TODO remove in production mode - change the logic
                 var rank = new ModelRank();
 

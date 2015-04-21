@@ -1,0 +1,29 @@
+﻿@model _3DMapleSystem.Data.Models.PayPalTransaction
+
+<body>
+    <form id="hiddenform" action=@Model.ActionUrl>
+    @Html.HiddenFor(model => model.Cmd)
+    @Html.HiddenFor(model => model.Business)
+    @Html.HiddenFor(model => model.NoShipping)
+    @Html.HiddenFor(model => model.Redirect)
+    @Html.HiddenFor(model => model.CancelReturn)
+    @Html.HiddenFor(model => model.NotifyUrl)
+    @Html.HiddenFor(model => model.CurrencyCode)
+    @Html.HiddenFor(model => model.ItemName)
+    @Html.HiddenFor(model => model.Amount)
+    </form>
+
+    <p style="text-align: center">
+        <h3>
+            Connecting to Paypal , please wait ...
+        </h3>
+    </p>
+</body>
+ @Scripts.Render("~/bundles/jquery")
+
+<script type="text/javascript" language="javascript">
+    $(this.document).ready(function () {
+        var form = $("#hiddenform");
+        form.submit();
+    });   
+</script>
