@@ -223,13 +223,15 @@
     <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SubCategoriesController.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ConfirmedViewData.cs" />
     <Compile Include="Models\Logger.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PayPalViewData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
@@ -405,7 +407,8 @@
     <Content Include="Views\PayPal\ValidateCommand.cshtml" />
     <Content Include="Views\Shared\_PayPal.cshtml" />
     <Content Include="Views\PayPal\FailureView.cshtml" />
-    <Content Include="Views\Order\Create.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\PayPal\Confirmed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

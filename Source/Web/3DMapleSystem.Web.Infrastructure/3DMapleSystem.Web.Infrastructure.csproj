@@ -69,6 +69,7 @@
     <Compile Include="Helpers\AjaxAuthorizeAttribute.cs" />
     <Compile Include="Helpers\HyphenatedRouteHandler.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
+    <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\IMapFrom.cs" />

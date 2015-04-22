@@ -7,6 +7,11 @@ using System.Web;
 using System.Web.Mvc;
 using _3DMapleSystem.Web.Infrastructure.Configurations;
 using _3DMapleSystem.Web.Models;
+using _3DMapleSystem.Web.ViewModels;
+using _3DMapleSystem.Web.Infrastructure.Helpers;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using PayPal;
 
 namespace _3DMapleSystem.Web.Controllers
 {
@@ -143,95 +148,99 @@ namespace _3DMapleSystem.Web.Controllers
             return View("SuccessView");
         }
 
-        public ActionResult PaymentWithPaypal()
-        {
-            //getting the apiContext as earlier
-            APIContext apiContext = PayPalConfiguration.GetApiContext();
 
-            try
-            {
-                string payerId = Request.Params["PayerID"];
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult PaymentWithPaypal(OrderViewModel order)
+        //{
+        //    order.TotalSum = order.ProModelsOrderedNumber * order.ProModelPrice + order.FreeModelsMonthsSubscription * order.FreeModelsSubscritpionPrice;
+        //    //getting the apiContext as earlier
+        //    APIContext apiContext = PayPalConfiguration.GetApiContext();
 
-                if (string.IsNullOrEmpty(payerId))
-                {
-                    //this section will be executed first because PayerID doesn't exist
-                    //it is returned by the create function call of the payment class
+        //    try
+        //    {
+        //        string payerId = Request.Params["PayerID"];
 
-                    // Creating a payment
-                    // baseURL is the url on which paypal sendsback the data.
-                    // So we have provided URL of this controller only
-                    string baseUri = Request.Url.Scheme + "://" + Request.Url.Authority +
-                                "/Paypal/PaymentWithPayPal?";
+        //        if (string.IsNullOrEmpty(payerId))
+        //        {
+        //            //this section will be executed first because PayerID doesn't exist
+        //            //it is returned by the create function call of the payment class
 
-                    //guid we are generating for storing the paymentID received in session
-                    //after calling the create function and it is used in the payment execution
+        //            // Creating a payment
+        //            // baseURL is the url on which paypal sendsback the data.
+        //            // So we have provided URL of this controller only
+        //            string baseUri = Request.Url.Scheme + "://" + Request.Url.Authority +
+        //                        "/Paypal/PaymentWithPayPal?";
 
-                    var guid = Convert.ToString((new Random()).Next(100000));
+        //            //guid we are generating for storing the paymentID received in session
+        //            //after calling the create function and it is used in the payment execution
 
-                    //CreatePayment function gives us the payment approval url
-                    //on which payer is redirected for paypal account payment
+        //            var guid = Guid.NewGuid().ToString();
 
-                    var createdPayment = this.CreatePayment(apiContext, baseUri + "guid=" + guid);
+        //            //CreatePayment function gives us the payment approval url
+        //            //on which payer is redirected for paypal account payment
 
-                    //get links returned from paypal in response to Create function call
+        //            var createdPayment = this.CreatePayment(apiContext, guid, order);
 
-                    var links = createdPayment.links.GetEnumerator();
+        //            //get links returned from paypal in response to Create function call
 
-                    string paypalRedirectUrl = null;
+        //            var links = createdPayment.links.GetEnumerator();
 
-                    while (links.MoveNext())
-                    {
-                        Links lnk = links.Current;
+        //            string paypalRedirectUrl = null;
 
-                        if (lnk.rel.ToLower().Trim().Equals("approval_url"))
-                        {
-                            //saving the payapalredirect URL to which user will be redirected for payment
-                            paypalRedirectUrl = lnk.href;
-                        }
-                    }
+        //            while (links.MoveNext())
+        //            {
+        //                Links lnk = links.Current;
 
-                    // saving the paymentID in the key guid
-                    Session.Add(guid, createdPayment.id);
+        //                if (lnk.rel.ToLower().Trim().Equals("approval_url"))
+        //                {
+        //                    //saving the payapalredirect URL to which user will be redirected for payment
+        //                    paypalRedirectUrl = lnk.href;
+        //                }
+        //            }
 
-                    return Redirect(paypalRedirectUrl);
-                }
-                else
-                {
-                    // This section is executed when we have received all the payments parameters
+        //            // saving the paymentID in the key guid
+        //            Session.Add(guid, createdPayment.id);
 
-                    // from the previous call to the function Create
+        //            return Redirect(paypalRedirectUrl);
+        //        }
+        //        else
+        //        {
+        //            // This section is executed when we have received all the payments parameters
 
-                    // Executing a payment
+        //            // from the previous call to the function Create
 
-                    var guid = Request.Params["guid"];
+        //            // Executing a payment
 
-                    var executedPayment = ExecutePayment(apiContext, payerId, Session[guid] as string);
+        //            var guid = Request.Params["guid"];
 
-                    if (executedPayment.state.ToLower() != "approved")
-                    {
-                        return View("FailureView");
-                    }
-                }
-            }
-            catch (PayPal.PaymentsException ex)
-            {
-                string errorMessage = string.Empty;
-                if (ex.Details.details != null)
-                {
-                    errorMessage = "Error: " + ex.Details.details[0].issue;
-                }
+        //            var executedPayment = ExecutePayment(apiContext, payerId, Session[guid] as string);
 
-                else
-                {
-                    errorMessage = "Error: " + ex.Details.message;
-                }
+        //            if (executedPayment.state.ToLower() != "approved")
+        //            {
+        //                return View("FailureView");
+        //            }
+        //        }
+        //    }
+        //    catch (PayPal.PaymentsException ex)
+        //    {
+        //        string errorMessage = string.Empty;
+        //        if (ex.Details.details != null)
+        //        {
+        //            errorMessage = "Error: " + ex.Details.details[0].issue;
+        //        }
 
-                Logger.Log(errorMessage);
-                return View("FailureView", null, errorMessage);
-            }
+        //        else
+        //        {
+        //            errorMessage = "Error: " + ex.Details.message;
+        //        }
 
-            return View("SuccessView");
-        }
+        //        Logger.Log(errorMessage);
+        //        return View("FailureView", null, errorMessage);
+        //    }
+
+        //    return View("SuccessView");
+        //}
 
         private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)
         {
@@ -240,43 +249,86 @@ namespace _3DMapleSystem.Web.Controllers
             return this.payment.Execute(apiContext, paymentExecution);
         }
 
-        private Payment CreatePayment(APIContext apiContext, string redirectUrl)
+        public ActionResult Confirmed(Guid id, string token, string payerId)
         {
+            var viewData = new ConfirmedViewData
+            {
+                Id = id,
+                Token = token,
+                PayerId = payerId
+            };
+
+            var accessToken = new OAuthTokenCredential(ConfigManager.Instance.GetProperties()["clientId"], ConfigManager.Instance.GetProperties()["clientSecret"]).GetAccessToken();
+            var apiContext = new APIContext(accessToken);
+            var payment = new Payment()
+            {
+                id = (string)Session[id.ToString()],
+            };
+
+            var executedPayment = payment.Execute(apiContext, new PaymentExecution { payer_id = payerId });
+
+            //viewData.AuthorizationId = executedPayment.transactions[0].related_resources[0].authorization.id;
+            viewData.JsonRequest = JObject.Parse(payment.ConvertToJson()).ToString(Formatting.Indented);
+            viewData.JsonResponse = JObject.Parse(executedPayment.ConvertToJson()).ToString(Formatting.Indented);
+
+            TempData["SuccessfulPayPalPayment"] = string.Format("You payment of {0} {1} was successful", executedPayment.transactions[0].amount.total, executedPayment.transactions[0].amount.currency);
+            return RedirectToAction("Create", "Orders");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreatePayment(OrderViewModel order)
+        {
+            order.TotalSum = order.ProModelsOrderedNumber * order.ProModelPrice + order.FreeModelsMonthsSubscription * order.FreeModelsSubscritpionPrice;
+
+            var viewData = new PayPalViewData();
+            var guid = Guid.NewGuid().ToString();
 
             //similar to credit card create itemlist and add item objects to it
             var itemList = new ItemList() { items = new List<Item>() };
 
-            itemList.items.Add(new Item()
+            if (order.ProModelsOrderedNumber > 0)
             {
-                name = "Item Name",
-                currency = "USD",
-                price = "7",
-                quantity = "2",
-                sku = "sku"
-            });
+                itemList.items.Add(new Item()
+                {
+                    name = "Pro Models",
+                    currency = "USD",
+                    price = order.ProModelPrice.ToString(),
+                    quantity = order.ProModelsOrderedNumber.ToString()
+                });
+            }
+
+            if (order.FreeModelsMonthsSubscription > 0)
+            {
+                itemList.items.Add(new Item()
+                {
+                    name = "Free Models Subscription",
+                    currency = "USD",
+                    price = order.FreeModelsSubscritpionPrice.ToString(),
+                    quantity = order.FreeModelsMonthsSubscription.ToString()
+                });
+            }
 
             var payer = new Payer() { payment_method = "paypal" };
 
             // Configure Redirect Urls here with RedirectUrls object
             var redirUrls = new RedirectUrls()
             {
-                cancel_url = redirectUrl,
-                return_url = redirectUrl
+                return_url = Utilities.ToAbsoluteUrl(HttpContext, String.Format("~/paypal/confirmed?id={0}", guid)),
+                cancel_url = Utilities.ToAbsoluteUrl(HttpContext, String.Format("~/paypal/canceled?id={0}", guid)),
             };
 
             // similar as we did for credit card, do here and create details object
             var details = new Details()
             {
-                tax = "1",
-                shipping = "1",
-                subtotal = "14"
+                subtotal = order.TotalSum.ToString()
             };
 
             // similar as we did for credit card, do here and create amount object
             var amount = new Amount()
             {
                 currency = "USD",
-                total = "16", // Total must be equal to sum of shipping, tax and subtotal.
+                total = order.TotalSum.ToString(), // Total must be equal to sum of shipping, tax and subtotal.
                 details = details
             };
 
@@ -284,8 +336,7 @@ namespace _3DMapleSystem.Web.Controllers
 
             transactionList.Add(new Transaction()
             {
-                description = "Transaction description.",
-                invoice_number = "third invoice number",
+                description = string.Format("Purchase of {0} pro models and {1} months for free models", order.ProModelsOrderedNumber, order.FreeModelsMonthsSubscription),
                 amount = amount,
                 item_list = itemList
             });
@@ -299,7 +350,33 @@ namespace _3DMapleSystem.Web.Controllers
             };
 
             // Create a payment using a APIContext
-            return this.payment.Create(apiContext);
+            viewData.JsonRequest = JObject.Parse(payment.ConvertToJson()).ToString(Formatting.Indented);
+
+            try
+            {
+                var accessToken = new OAuthTokenCredential(ConfigManager.Instance.GetProperties()["clientId"], ConfigManager.Instance.GetProperties()["clientSecret"]).GetAccessToken();
+                var apiContext = new APIContext(accessToken);
+                var createdPayment = payment.Create(apiContext);
+
+                var approvalUrl = createdPayment.links.ToArray().FirstOrDefault(f => f.rel.Contains("approval_url"));
+
+                if (approvalUrl != null)
+                {
+                    Session.Add(guid, createdPayment.id);
+
+                    return Redirect(approvalUrl.href);
+                }
+
+                viewData.JsonResponse = JObject.Parse(createdPayment.ConvertToJson()).ToString(Formatting.Indented);
+
+                return View("Error", viewData);
+            }
+            catch (PayPalException ex)
+            {
+                viewData.ErrorMessage = ex.Message;
+
+                return View("Error", viewData);
+            }
         }
     }
 }

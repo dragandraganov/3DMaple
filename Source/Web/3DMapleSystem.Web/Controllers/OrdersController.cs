@@ -12,9 +12,9 @@ using AutoMapper;
 namespace _3DMapleSystem.Web.Controllers
 {
     [Authorize]
-    public class OrderController : BaseController
+    public class OrdersController : BaseController
     {
-        public OrderController(_3DMapleSystemData data, IListPopulizer populizer)
+        public OrdersController(_3DMapleSystemData data, IListPopulizer populizer)
             : base(data, populizer)
         {
         }
@@ -29,6 +29,18 @@ namespace _3DMapleSystem.Web.Controllers
             orderModel.UserName = this.UserProfile.UserName;
 
             return View(orderModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(OrderViewModel order)
+        {
+            order.TotalSum = order.ProModelsOrderedNumber * order.ProModelPrice + order.FreeModelsMonthsSubscription * order.FreeModelsSubscritpionPrice;
+
+
+            var newOrder = Mapper.Map<OrderViewModel, Order>(order);
+
+            return View();
         }
     }
 }
