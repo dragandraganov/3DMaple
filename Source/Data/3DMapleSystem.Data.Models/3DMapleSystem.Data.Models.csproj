@@ -87,7 +87,7 @@
     <Compile Include="Comment.cs" />
     <Compile Include="DownloadedPolyModelsUsers.cs" />
     <Compile Include="ModelRank.cs" />
-    <Compile Include="PayPalTransaction.cs" />
+    <Compile Include="Order.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="PolyModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

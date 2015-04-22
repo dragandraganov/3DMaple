@@ -1,5 +1,5 @@
 ﻿@using _3DMapleSystem.Web.ViewModels
-@model UserViewModel
+@model OrderViewModel
 
 @{
     ViewBag.Title = "BuyModels";
@@ -11,13 +11,13 @@
     <div>
         <div class="avatar-wrapper mr10">
             <a href="#">
-                @if (Model.PhotoId == 0 || Model.PhotoId == null)
+                @if (Model.UserPhotoId == 0 || Model.UserPhotoId == null)
                 {
                     <img class=" img-responsive form-control-sm model-simple-img user-avatar" src="~/Content/Images/defaultPhoto.jpg" />
                 }
                 else
                 {
-                    <img src="@Url.Action("GetPreview", "AppFiles", new {id = Model.PhotoId })"
+                    <img src="@Url.Action("GetPreview", "AppFiles", new { id = Model.UserPhotoId })"
                          alt="@Model.UserName" class=" img-responsive form-control-sm model-simple-img user-avatar" />
                 }
             </a>

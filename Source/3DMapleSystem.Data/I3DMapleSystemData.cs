@@ -36,6 +36,8 @@ namespace _3DMapleSystem.Data
 
         IDeletableEntityRepository<Rating> Ratings { get; }
 
+        IDeletableEntityRepository<Order> Orders { get; }
+
         void Dispose();
 
         int SaveChanges();

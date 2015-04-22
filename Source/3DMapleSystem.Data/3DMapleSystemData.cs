@@ -131,6 +131,14 @@ namespace _3DMapleSystem.Data
             }
         }
 
+        public IDeletableEntityRepository<Order> Orders
+        {
+            get
+            {
+                return this.GetRepository<Order>();
+            }
+        }
+
         public void Dispose()
         {
             this.Dispose(true);

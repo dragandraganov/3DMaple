@@ -22,6 +22,7 @@ namespace _3DMapleSystem.Data.Models
             this.DownloadedPolyModels = new HashSet<DownloadedPolyModelsUsers>();
             this.Comments = new HashSet<Comment>();
             this.Ratings = new HashSet<Rating>();
+            this.Orders = new HashSet<Order>();
             this.AvailableFreeModels = GlobalConstants.DefaultFreeModels;
             this.AvailableProModels = GlobalConstants.DefaultProModels;
         }
@@ -38,9 +39,17 @@ namespace _3DMapleSystem.Data.Models
 
         public virtual ICollection<Rating> Ratings { get; set; }
 
+        public virtual ICollection<Order> Orders { get; set; }
+
         public int AvailableFreeModels { get; set; }
 
         public int AvailableProModels { get; set; }
+
+        public int ProRankAvailableProModels { get; set; }
+
+        public int ProRankAvailableFreeModels { get; set; }
+
+        public DateTime? EndFreeModelsSusbcription { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

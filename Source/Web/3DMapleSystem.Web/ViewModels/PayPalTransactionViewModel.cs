@@ -8,13 +8,13 @@ using System.Web;
 
 namespace _3DMapleSystem.Web.ViewModels
 {
-    public class PayPalTransactionViewModel : IMapFrom<PayPalTransaction>, IHaveCustomMappings
+    public class PayPalTransactionViewModel : IMapFrom<Order>, IHaveCustomMappings
     {
 
 
         public void CreateMappings(IConfiguration configuration)
         {
-            configuration.CreateMap<PayPalTransaction, PayPalTransactionViewModel>()
+            configuration.CreateMap<Order, PayPalTransactionViewModel>()
                 .ReverseMap();
         }
     }

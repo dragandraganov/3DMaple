@@ -238,6 +238,7 @@
     <Compile Include="ViewModels\ComplexModels\PolyModelComplexViewModel.cs" />
     <Compile Include="ViewModels\ComplexModels\SearchComplexViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\PayPalTransactionViewModel.cs" />
     <Compile Include="ViewModels\PolyModels\FullPolyModelViewModel.cs" />
     <Compile Include="ViewModels\PolyModels\PolyModelDetailsViewModel.cs" />
