@@ -5,7 +5,11 @@
 @{
     var modelRank = Model.PolyModel.RankName.ToTitleCase();
     var modelProperty = string.Format("Available{0}Models", modelRank);
-    var availableModelsByRank = (int)Model.CurrentUser.GetType().GetProperty(modelProperty).GetValue(@Model.CurrentUser, null);
+    var availableModelsByRank = 0;
+    if (Model.CurrentUser != null)
+    {
+        availableModelsByRank = (int)Model.CurrentUser.GetType().GetProperty(modelProperty).GetValue(@Model.CurrentUser, null);
+    }
 }
 
 <div class="container">
