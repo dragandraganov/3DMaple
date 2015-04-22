@@ -12,19 +12,23 @@ using AutoMapper;
 namespace _3DMapleSystem.Web.Controllers
 {
     [Authorize]
-    public class UserController : BaseController
+    public class OrderController : BaseController
     {
-        public UserController(_3DMapleSystemData data, IListPopulizer populizer)
+        public OrderController(_3DMapleSystemData data, IListPopulizer populizer)
             : base(data, populizer)
         {
         }
 
-        // GET: User
-        public ActionResult BuyModels()
+        // GET: Create Order
+        public ActionResult Create()
         {
-            var currentUserModel = Mapper.Map<User, UserViewModel>(this.UserProfile);
+            var orderModel = new OrderViewModel();
 
-            return View(currentUserModel);
+            orderModel.UserPhotoId = this.UserProfile.PhotoId;
+
+            orderModel.UserName = this.UserProfile.UserName;
+
+            return View(orderModel);
         }
     }
 }

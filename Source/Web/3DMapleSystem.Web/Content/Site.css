@@ -422,3 +422,26 @@ a:hover {
 .payment-menu{
     border-right:1px solid gray;
 }
+
+.btn-outset{
+    border:3px outset lightgray;
+}
+
+input[type=range]{
+    width:100%;
+}
+
+.order-plan{
+    font-size:1.5em;
+}
+
+.order-plan-text{
+    background-color:lightblue;
+    padding:10px;
+}
+
+.order-plan-plus{
+    font-size:2em;
+    vertical-align:middle;
+    margin:0 5px;
+}

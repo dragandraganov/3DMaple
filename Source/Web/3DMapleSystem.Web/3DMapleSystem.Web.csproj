@@ -223,7 +223,7 @@
     <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SubCategoriesController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -405,7 +405,7 @@
     <Content Include="Views\PayPal\ValidateCommand.cshtml" />
     <Content Include="Views\Shared\_PayPal.cshtml" />
     <Content Include="Views\PayPal\FailureView.cshtml" />
-    <Content Include="Views\User\BuyModels.cshtml" />
+    <Content Include="Views\Order\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

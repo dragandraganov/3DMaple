@@ -181,7 +181,7 @@
                         window.location.href = "/Account/Login";
                     }
                 }
-               
+
                 else {
                     $('input[name="rating"]').prop('checked', false);
                     checkedStar.prop('checked', true);
@@ -211,7 +211,22 @@
         $('.rating-star').removeClass('filled');
         $('input[name="rating"]').prop('checked', false);
         $('.rating-dynamic-value').text('-');
-    })
+    });
+
+    $('#free-models-month').on('change mousemove', function () {
+        $('.span-free-models-months').text($(this).val());
+        $('#total-sum').text(calculateTotalSum());
+    });
+
+    $('#pro-models-number').on('input', function () {
+        if ($(this).val() === null || $(this).val() === '') {
+            $('.span-pro-models-number').text(0);
+        }
+        else {
+            $('.span-pro-models-number').text($(this).val());
+        }
+        $('#total-sum').text(calculateTotalSum());
+    });
 
     $(document).ajaxError(function (event, jqxhr, settings, exception) {
         if (jqxhr.status === 401) {
@@ -251,6 +266,10 @@ function returnUserRating() {
         $('.rating-dynamic-value').text('-');
 
     }
+}
+
+function calculateTotalSum() {
+    return $('#pro-models-number').val() * $('#promodel-price').val() + $('#free-models-month').val() * $('#freemodel-price').val();
 }
 
 //function downloadModel(url, modelId) {

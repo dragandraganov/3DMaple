@@ -25,6 +25,9 @@ namespace _3DMapleSystem.Common
 
         public const decimal DefaultProPrice = 6;
 
+        public const decimal DefaultFreeModelsOneMonthSubscription = 8;
+
+        public const int DefaultAvailableFreeModelsInMonth = 30;
         //public const int ColumnsInMainPage = 4;
     }
 }

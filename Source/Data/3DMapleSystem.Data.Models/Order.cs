@@ -11,12 +11,23 @@ namespace _3DMapleSystem.Data.Models
 {
     public class Order : IAuditInfo, IDeletableEntity
     {
+        public Order()
+        {
+            this.TotalSum = this.ProModelsOrderedNumber * this.ProModelPrice + this.FreeModelsMonthsSubscription * this.FreeModelsSubscritpionPrice;
+        }
+
         [Key]
         public int Id { get; set; }
 
         public int ProModelsOrderedNumber { get; set; }
 
         public int FreeModelsMonthsSubscription { get; set; }
+
+        public decimal ProModelPrice { get; set; }
+
+        public decimal FreeModelsSubscritpionPrice { get; set; }
+
+        public decimal TotalSum { get; set; }
 
         public string UserId { get; set; }
 
