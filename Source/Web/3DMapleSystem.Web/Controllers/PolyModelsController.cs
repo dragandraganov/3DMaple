@@ -165,9 +165,8 @@ namespace _3DMapleSystem.Web.Controllers
             return View(complexModel);
         }
 
-
-
-        [Authorize(Roles = GlobalConstants.AdminRole)]
+        //[Authorize(Roles = GlobalConstants.AdminRole)]
+        [Authorize]
         public ActionResult DownloadSuccess(string modelId)
         {
             if (this.UserProfile != null)

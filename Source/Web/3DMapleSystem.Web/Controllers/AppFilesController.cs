@@ -45,14 +45,15 @@ namespace _3DMapleSystem.Web.Controllers
         /// <param name="id">The id.</param>
         /// <param name="modelId">The model id.</param>
         /// <returns></returns>
-        [AdminOnly(Roles = GlobalConstants.AdminRole, Message="The application is in development. Only admins can download models!")]
+        //[AdminOnly(Roles = GlobalConstants.AdminRole, Message="The application is in development. Only admins can download models!")]
+        [Authorize]
         public ActionResult Download(int id, Guid modelId)
         {
 
-            if (this.UserProfile == null || !this.HttpContext.User.IsInRole(GlobalConstants.AdminRole))
-            {
-                return RedirectToAction("Login", "Account");
-            }
+            //if (this.UserProfile == null || !this.HttpContext.User.IsInRole(GlobalConstants.AdminRole))
+            //{
+            //    return RedirectToAction("Login", "Account");
+            //}
 
             var polyModel = this.Data.PolyModels
             .All()
